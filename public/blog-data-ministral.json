@@ -1,0 +1,247 @@
+{
+  "generatedAt": "2025-12-06T13:16:03.232Z",
+  "sourceRepo": "https://github.com/pkibbey/peak-blooms",
+  "days": [
+    {
+      "date": "2025-11-22",
+      "dayOfWeek": "Saturday",
+      "commits": [
+        {
+          "hash": "e84d791e44e0bf106d510885317663a4404da0e4",
+          "message": "Initial commit from Create Next App",
+          "author": "Phineas Kibbey",
+          "email": "phineas.kibbey@gmail.com",
+          "date": "2025-11-22T11:06:36.000Z",
+          "files": [
+            {
+              "path": ".gitignore",
+              "status": "added",
+              "additions": 41,
+              "deletions": 0
+            },
+            {
+              "path": "README.md",
+              "status": "added",
+              "additions": 36,
+              "deletions": 0
+            },
+            {
+              "path": "eslint.config.mjs",
+              "status": "added",
+              "additions": 18,
+              "deletions": 0
+            },
+            {
+              "path": "next.config.ts",
+              "status": "added",
+              "additions": 8,
+              "deletions": 0
+            },
+            {
+              "path": "package-lock.json",
+              "status": "added",
+              "additions": 6600,
+              "deletions": 0
+            },
+            {
+              "path": "package.json",
+              "status": "added",
+              "additions": 27,
+              "deletions": 0
+            },
+            {
+              "path": "postcss.config.mjs",
+              "status": "added",
+              "additions": 7,
+              "deletions": 0
+            },
+            {
+              "path": "public/file.svg",
+              "status": "added",
+              "additions": 1,
+              "deletions": 0
+            },
+            {
+              "path": "public/globe.svg",
+              "status": "added",
+              "additions": 1,
+              "deletions": 0
+            },
+            {
+              "path": "public/next.svg",
+              "status": "added",
+              "additions": 1,
+              "deletions": 0
+            },
+            {
+              "path": "public/vercel.svg",
+              "status": "added",
+              "additions": 1,
+              "deletions": 0
+            },
+            {
+              "path": "public/window.svg",
+              "status": "added",
+              "additions": 1,
+              "deletions": 0
+            },
+            {
+              "path": "src/app/favicon.ico",
+              "status": "added",
+              "additions": 0,
+              "deletions": 0
+            },
+            {
+              "path": "src/app/globals.css",
+              "status": "added",
+              "additions": 26,
+              "deletions": 0
+            },
+            {
+              "path": "src/app/layout.tsx",
+              "status": "added",
+              "additions": 34,
+              "deletions": 0
+            },
+            {
+              "path": "src/app/page.tsx",
+              "status": "added",
+              "additions": 65,
+              "deletions": 0
+            },
+            {
+              "path": "tsconfig.json",
+              "status": "added",
+              "additions": 34,
+              "deletions": 0
+            }
+          ],
+          "stats": {
+            "filesChanged": 17,
+            "additions": 6901,
+            "deletions": 0
+          },
+          "shortDiff": "commit e84d791e44e0bf106d510885317663a4404da0e4\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Sat Nov 22 11:06:36 2025 +0000\n\n    Initial commit from Create Next App\n\ndiff --git a/.gitignore b/.gitignore\nnew file mode 100644\nindex 0000000..5ef6a52\n--- /dev/null\n+++ b/.gitignore\n@@ -0,0 +1,41 @@\n+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.\n+\n+# dependencies\n+/node_modules\n+/.pnp\n+.pnp.*\n+.yarn/*\n+!.yarn/patches\n+!.yarn/plugins\n+!.yarn/releases\n+!.yarn/versions\n+\n+# testing\n+/coverage\n+\n+# next.js\n+/.next/\n+/out/\n+\n+# production\n+/build\n+\n+# misc\n+.DS_Store\n+*.pem\n+\n+# debug\n+npm-debug.log*\n+yarn-debug.log*\n+yarn-error.log*\n+.pnpm-debug.log*\n+\n+# env files (can opt-in for committing if needed)\n+.env*\n+\n+# vercel\n+.vercel\n+\n+# typescript\n+*.tsbuildinfo\n+next-env.d.ts\ndiff --git a/README.md b/README.md\nnew file mode 100644\nindex 0000000..e215bc4\n--- /dev/null\n+++ b/README.md\n@@ -0,0 +1,36 @@\n+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).\n+\n+## Getting Started\n+\n+First, run the development server:\n+\n+```bash\n+npm run dev\n+# or\n+yarn dev\n+# or\n+pnpm dev\n+# or\n+bun dev\n+```\n+\n+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.\n+\n+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.\n+\n+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.\n+\n+## Learn More\n+\n+To learn more about Next.js, take a look at the following resources:\n+\n+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.\n+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.\n+\n+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - "
+        },
+        {
+          "hash": "fd3b4e3637bad398e1666ef3819f75c7f4e418ba",
+          "message": "Add UI button component and utility functions",
+          "author": "Phineas Kibbey",
+          "email": "phineas.kibbey@gmail.com",
+          "date": "2025-11-22T17:23:35.000Z",
+          "files": [
+            {
+              "path": "components.json",
+              "status": "added",
+              "additions": 22,
+              "deletions": 0
+            },
+            {
+              "path": "package-lock.json",
+              "status": "modified",
+              "additions": 92,
+              "deletions": 15
+            },
+            {
+              "path": "package.json",
+              "status": "modified",
+              "additions": 7,
+              "deletions": 1
+            },
+            {
+              "path": "src/app/globals.css",
+              "status": "modified",
+              "additions": 109,
+              "deletions": 13
+            },
+            {
+              "path": "src/components/ui/button.tsx",
+              "status": "added",
+              "additions": 60,
+              "deletions": 0
+            },
+            {
+              "path": "src/lib/utils.ts",
+              "status": "added",
+              "additions": 6,
+              "deletions": 0
+            }
+          ],
+          "stats": {
+            "filesChanged": 6,
+            "additions": 296,
+            "deletions": 29
+          },
+          "shortDiff": "commit fd3b4e3637bad398e1666ef3819f75c7f4e418ba\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Sat Nov 22 17:23:35 2025 +0000\n\n    Add UI button component and utility functions\n    \n    Introduces a reusable Button component with multiple variants and sizes using class-variance-authority and Radix UI Slot. Adds a utility function for merging Tailwind and clsx classes. Updates globals.css for new color variables, theme support, and animation imports. Adds required dependencies and configuration for UI components.\n\ndiff --git a/components.json b/components.json\nnew file mode 100644\nindex 0000000..71a1088\n--- /dev/null\n+++ b/components.json\n@@ -0,0 +1,22 @@\n+{\n+  \"$schema\": \"https://ui.shadcn.com/schema.json\",\n+  \"style\": \"new-york\",\n+  \"rsc\": true,\n+  \"tsx\": true,\n+  \"tailwind\": {\n+    \"config\": \"\",\n+    \"css\": \"src/app/globals.css\",\n+    \"baseColor\": \"slate\",\n+    \"cssVariables\": true,\n+    \"prefix\": \"\"\n+  },\n+  \"iconLibrary\": \"lucide\",\n+  \"aliases\": {\n+    \"components\": \"@/components\",\n+    \"utils\": \"@/lib/utils\",\n+    \"ui\": \"@/components/ui\",\n+    \"lib\": \"@/lib\",\n+    \"hooks\": \"@/hooks\"\n+  },\n+  \"registries\": {}\n+}\ndiff --git a/package-lock.json b/package-lock.json\nindex 7b6c434..8eff0e7 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -8,9 +8,14 @@\n       \"name\": \"peak-blooms\",\n       \"version\": \"0.1.0\",\n       \"dependencies\": {\n+        \"@radix-ui/react-slot\": \"^1.2.4\",\n+        \"class-variance-authority\": \"^0.7.1\",\n+        \"clsx\": \"^2.1.1\",\n+        \"lucide-react\": \"^0.554.0\",\n         \"next\": \"16.0.3\",\n         \"react\": \"19.2.0\",\n-        \"react-dom\": \"19.2.0\"\n+        \"react-dom\": \"19.2.0\",\n+        \"tailwind-merge\": \"^3.4.0\"\n       },\n       \"devDependencies\": {\n         \"@tailwindcss/postcss\": \"^4\",\n@@ -21,6 +26,7 @@\n         \"eslint\": \"^9\",\n         \"eslint-config-next\": \"16.0.3\",\n         \"tailwindcss\": \"^4\",\n+        \"tw-animate-css\": \"^1.4.0\",\n         \"typescript\": \"^5\"\n       }\n     },\n@@ -68,7 +74,6 @@\n       \"integrity\": \"sha512-"
+        }
+      ],
+      "aiSummary": "The day's development for Peak Blooms marks a pivotal transition from monolithic Next.js app setup to a structured, scalable UI framework, showcasing strong engineering foresight in adopting modern components and utility libraries. This commit demonstrates an intentional effort to establish a reusable component architecture while optimizing consistency across design variants through Tailwind CSS and Radix UI principles. The addition of `class-variance-author custom` and `tailwind-merge` highlights a deliberate choice toward maintainable, modular styling solutions rather than hard-coded classes, setting the stage for future growth with scalable components.",
+      "keyDecisions": [
+        "Use of a Next.js component registry (`components.json`) to organize UI components and their configuration early in development, ensuring alignment between design requirements (via `style: 'new-york'`) and branding choices (such as `slate` base color).",
+        "Selecting `class-variance-authority` and `tailwind-merge` for dynamic class management—promoting flexibility over static classes while respecting Tailwind's utility-first philosophy."
+      ],
+      "learnings": [
+        "The importance of integrating a UI component library early in a project to standardize designs and improve maintainability, even when using a custom design system like `new-york'`.",
+        "Tailwind CSS’ variable-based configuration (`tailwind-config.css-variables: true`) can simplify theming and theme switching for large projects, enabling easier future adjustments."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Reusable Button Component with Variants",
+          "description": "Leverage Tailwind's `@authority` mechanism to enable a button component that adapts based on props like `variant' and `size`, promoting consistency across the application."
+        },
+        {
+          "type": "design-decision",
+          "title": "Radix UI Slot for Component Variability",
+          "description": "Use Radix UI slots (`@radix-ui/react-slot`) to encapsulate internal logic, allowing a single base button component to dynamically render different UI configurations via child components."
+        },
+        {
+          "type": "design-decision",
+          "title": "Class Variance Authority for Tailwind Class Management",
+          "description": "Use `class-variance-authority` alongside Radix slots to ensure React’s class name reconciliation works harmoniously with dynamic Tailwind utility classes, reducing potential classname collisions."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Tailwind CSS Utility Classes with `tailwind-merge'",
+          "description": "The project is using Tailwind's `tailwind-merge` to prevent class explosion and ensure minimal styling duplication. This is a strong example of utility-first design in combination with dynamic class merging."
+        },
+        {
+          "type": "performance-insight",
+          "title": "Optimized Component Loading via RSC (Reconciliation) Configuration",
+          "description": "This project configures the component registry for `rsc: true` and `tsx: true', enabling Radix UI to be a viable choice without needing heavyweight React classes or CSS-in-JS alternatives. This improves performance while maintaining consistency with Tailwind's style system."
+        },
+        {
+          "type": "performance-insight",
+          "title": "Recommended Component Registry Layout",
+          "description": "The organization of components in `/src/app/[ui]/` and related utilities (e.g., `@/components/ui') is a good approach to scalable component architecture, preventing the monolithic `node_modules' structure while promoting modular imports."
+        },
+        {
+          "type": "learning",
+          "title": "Early Dependency Management for UI Components",
+          "description": "The use of a dedicated `tailwind` config and `slate` base color implies an understanding of modular dependencies, where each component library is imported only when required. This reduces unnecessary bundle size while ensuring all necessary libraries are included."
+        },
+        {
+          "type": "learning",
+          "title": "Crafting Dynamic Class Configurations for Tailwind",
+          "description": "The commit demonstrates an understanding of how class names can be modified dynamically—either by using the `tailwind` config section or by relying on utility classes. This is a key lesson in ensuring flexibility while adhering to tailwind conventions."
+        },
+        {
+          "type": "design-decision",
+          "title": "Radix UI Slots and Geist font integration",
+          "description": "The combination of Radix UI slots with `next/font` is a clever way to leverage a font-family like Geist for the entire project without duplicating styles across components, emphasizing the use of global styling in Next.js projects."
+        },
+        {
+          "type": "performance-insight",
+          "title": "Preventing Hard-Coded CSS in global stylesheets",
+          "description": "The inclusion of Tailwind variables and animations imports in `globals.css` demonstrates a preference for maintaining consistency via dynamic CSS rather than hard-coded styles, improving future maintainability."
+        }
+      ],
+      "stats": {
+        "totalCommits": 2,
+        "filesChanged": 23,
+        "additions": 7197,
+        "deletions": 29
+      }
+    }
+  ]
+}

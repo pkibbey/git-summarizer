@@ -6,21 +6,35 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "fetch-commits": "dotenv -e .env.local -- tsx scripts/fetch-commits.ts",
+    "analyze:gemma": "dotenv -e .env.local -- tsx scripts/process-blog-data-gemma.ts",
+    "analyze:ministral": "dotenv -e .env.local -- tsx scripts/process-blog-data-ministral.ts"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^3.0.0-beta.84",
+    "@ai-sdk/openai-compatible": "2.0.0-beta.44",
+    "@ai-sdk/react": "^3.0.0-beta.137",
+    "ai": "^6.0.0-beta.136",
+    "date-fns": "^4.1.0",
+    "dotenv": "^17.2.3",
+    "dotenv-cli": "^11.0.0",
     "next": "16.0.7",
-    "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
+    "shiki": "^3.19.0",
+    "simple-git": "^3.30.0",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.1",
     "eslint-config-next": "16.0.7",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "tailwindcss": "^4.1.17",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }
