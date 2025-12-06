@@ -5,25 +5,24 @@ import type { BlogData } from '@/lib/types';
 import { useEffect, useState } from 'react';
 
 type ModelType = 'gemma' | 'ministral';
+type PromptVersion = 'v1' | 'v2' | 'v3';
 
 export default function Home() {
   const [blogData, setBlogData] = useState<BlogData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedModel, setSelectedModel] = useState<ModelType>('gemma');
+  const [selectedVersion, setSelectedVersion] = useState<PromptVersion>('v1');
+  const [availableVersions, setAvailableVersions] = useState<PromptVersion[]>(['v1']);
 
   useEffect(() => {
-    async function loadBlogData(model: ModelType) {
+    async function loadBlogData(model: ModelType, version: PromptVersion) {
       setIsLoading(true);
       try {
-        const filenames: Record<ModelType, string> = {
-          gemma: 'blog-data-gemma.json',
-          ministral: 'blog-data-ministral.json',
-        };
-        const filename = filenames[model];
-        const response = await fetch(`/${filename}`);
+        const url = `/blog-data/${model}/${version}.json`;
+        const response = await fetch(url);
         if (!response.ok) {
-          throw new Error(`Blog data not found for ${model} model. Run: npm run analyze:${model}`);
+          throw new Error(`Blog data not found for ${model} model with prompt version ${version}. Run: npm run analyze:${model} -- --version=${version}`);
         }
         const data = await response.json();
         setBlogData(data);
@@ -36,8 +35,35 @@ export default function Home() {
       }
     }
 
-    loadBlogData(selectedModel);
-  }, [selectedModel]);
+    loadBlogData(selectedModel, selectedVersion);
+  }, [selectedModel, selectedVersion]);
+
+  useEffect(() => {
+    // Check which versions are available for the selected model
+    async function checkAvailableVersions() {
+      const versions: PromptVersion[] = [];
+      const versionList: PromptVersion[] = ['v1', 'v2', 'v3'];
+
+      for (const v of versionList) {
+        try {
+          const response = await fetch(`/blog-data/${selectedModel}/${v}.json`, { method: 'HEAD' });
+          if (response.ok) {
+            versions.push(v);
+          }
+        } catch {
+          // Version not available
+        }
+      }
+
+      setAvailableVersions(versions.length > 0 ? versions : ['v1']);
+      // Reset to first available version if current selection is not available
+      if (!versions.includes(selectedVersion)) {
+        setSelectedVersion(versions[0] || 'v1');
+      }
+    }
+
+    checkAvailableVersions();
+  }, [selectedModel, selectedVersion]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
@@ -68,19 +94,39 @@ export default function Home() {
         )}
 
         {!isLoading && !error && (
-          <div className="mb-6 flex items-center gap-4">
-            <label htmlFor="model-select" className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              AI Model:
-            </label>
-            <select
-              id="model-select"
-              value={selectedModel}
-              onChange={(e) => setSelectedModel(e.target.value as ModelType)}
-              className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="gemma">Gemma 3 (LM Studio)</option>
-              <option value="ministral">Ministral 3B (LM Studio)</option>
-            </select>
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+            <div className="flex items-center gap-3">
+              <label htmlFor="model-select" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                AI Model:
+              </label>
+              <select
+                id="model-select"
+                value={selectedModel}
+                onChange={(e) => setSelectedModel(e.target.value as ModelType)}
+                className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="gemma">Gemma 3 (LM Studio)</option>
+                <option value="ministral">Ministral 3B (LM Studio)</option>
+              </select>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <label htmlFor="version-select" className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Prompt Version:
+              </label>
+              <select
+                id="version-select"
+                value={selectedVersion}
+                onChange={(e) => setSelectedVersion(e.target.value as PromptVersion)}
+                className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                {availableVersions.map((v) => (
+                  <option key={v} value={v}>
+                    {v === 'v1' ? 'Original (v1)' : v === 'v2' ? 'Refined (v2)' : 'Latest (v3)'}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
         )}
 
@@ -104,13 +150,13 @@ export default function Home() {
                 3. Generate analysis with one of:
               </p>
               <p className="text-gray-600 dark:text-gray-400 ml-4">
-                • Gemma: <span className="text-gray-900 dark:text-gray-50">GITHUB_TOKEN=your_token npm run analyze:gemma</span>
+                • Gemma: <span className="text-gray-900 dark:text-gray-50">GITHUB_TOKEN=your_token npm run analyze:gemma -- --version=v1</span>
               </p>
               <p className="text-gray-600 dark:text-gray-400 ml-4">
-                • Ministral: <span className="text-gray-900 dark:text-gray-50">GITHUB_TOKEN=your_token npm run analyze:ministral</span>
+                • Ministral: <span className="text-gray-900 dark:text-gray-50">GITHUB_TOKEN=your_token npm run analyze:ministral -- --version=v1</span>
               </p>
               <p className="text-gray-600 dark:text-gray-400">
-                4. Commit and push: <span className="text-gray-900 dark:text-gray-50">git add public/blog-data-*.json && git commit -m &quot;chore: update blog data&quot;</span>
+                4. Commit and push: <span className="text-gray-900 dark:text-gray-50">git add public/blog-data/ && git commit -m &quot;chore: update blog data&quot;</span>
               </p>
             </div>
           </div>

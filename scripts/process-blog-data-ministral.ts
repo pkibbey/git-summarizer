@@ -3,6 +3,7 @@ import path from 'path';
 import { format, parse } from 'date-fns';
 import { loadStoredCommits } from '../lib/load-commits';
 import { analyzeCommitDay } from '../lib/ai-ministral';
+import { type PromptVersion } from '../lib/ai-shared';
 import type { BlogData, DayPost } from '../lib/types';
 
 // Load environment variables from .env.local
@@ -29,10 +30,11 @@ async function loadEnv() {
   }
 }
 
-async function processBlogData(testMode = false) {
+async function processBlogData(testMode = false, promptVersion: PromptVersion = 'v1') {
   try {
     const modeLabel = testMode ? '(TEST MODE)' : '';
     console.log(`Starting blog data generation (Ministral model)... ${modeLabel}\n`);
+    console.log(`Using prompt version: ${promptVersion}\n`);
 
     if (testMode) {
       console.log('Test mode: Will process only 1 day or stop after 2 minutes\n');
@@ -69,7 +71,7 @@ async function processBlogData(testMode = false) {
       const commits = groupedCommits.get(dateStr)!;
       console.log(`Processing ${dateStr} (${commits.length} commits)...`);
 
-      const analysis = await analyzeCommitDay(commits, dateStr);
+      const analysis = await analyzeCommitDay(commits, dateStr, promptVersion);
 
       // Calculate stats
       const stats = commits.reduce(
@@ -108,8 +110,8 @@ async function processBlogData(testMode = false) {
       days,
     };
 
-    // Step 4: Write to public directory
-    const outputPath = path.join(process.cwd(), 'public', 'blog-data-ministral.json');
+    // Step 4: Write to versioned directory structure
+    const outputPath = path.join(process.cwd(), 'public', 'blog-data', 'ministral', `${promptVersion}.json`);
     await fs.mkdir(path.dirname(outputPath), { recursive: true });
     await fs.writeFile(outputPath, JSON.stringify(blogData, null, 2), 'utf-8');
 
@@ -122,10 +124,9 @@ async function processBlogData(testMode = false) {
       console.log(`\n📝 Test mode: Output saved to ${outputPath}`);
     } else {
       console.log(`\nNext steps:`);
-      console.log(`   1. Review public/blog-data-ministral.json`);
-      console.log(`   2. Compare with Gemma results: public/blog-data-gemma.json`);
-      console.log(`   3. Commit changes: git add public/blog-data-ministral.json && git commit -m "chore: add Ministral analysis"`);
-      console.log(`   4. Deploy to Vercel with: git push`);
+      console.log(`   1. Review ${outputPath}`);
+      console.log(`   2. Commit changes: git add public/blog-data/ && git commit -m "chore: update blog data"`);
+      console.log(`   3. Deploy to Vercel with: git push`);
     }
   } catch (error) {
     console.error('Error processing blog data:', error);
@@ -136,5 +137,13 @@ async function processBlogData(testMode = false) {
 (async () => {
   await loadEnv();
   const testMode = process.argv.includes('--test');
-  await processBlogData(testMode);
+  const promptVersionArg = process.argv.find(arg => arg.startsWith('--version='))?.split('=')[1];
+  const promptVersion = (promptVersionArg || 'v1') as PromptVersion;
+
+  if (!['v1', 'v2', 'v3'].includes(promptVersion)) {
+    console.error(`Invalid prompt version: ${promptVersion}. Must be one of: v1, v2, v3`);
+    process.exit(1);
+  }
+
+  await processBlogData(testMode, promptVersion);
 })();

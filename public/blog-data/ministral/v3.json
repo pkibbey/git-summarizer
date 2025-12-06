@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-06T13:16:03.232Z",
+  "generatedAt": "2025-12-06T15:33:51.167Z",
   "sourceRepo": "https://github.com/pkibbey/peak-blooms",
   "days": [
     {
@@ -175,65 +175,28 @@
           "shortDiff": "commit fd3b4e3637bad398e1666ef3819f75c7f4e418ba\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Sat Nov 22 17:23:35 2025 +0000\n\n    Add UI button component and utility functions\n    \n    Introduces a reusable Button component with multiple variants and sizes using class-variance-authority and Radix UI Slot. Adds a utility function for merging Tailwind and clsx classes. Updates globals.css for new color variables, theme support, and animation imports. Adds required dependencies and configuration for UI components.\n\ndiff --git a/components.json b/components.json\nnew file mode 100644\nindex 0000000..71a1088\n--- /dev/null\n+++ b/components.json\n@@ -0,0 +1,22 @@\n+{\n+  \"$schema\": \"https://ui.shadcn.com/schema.json\",\n+  \"style\": \"new-york\",\n+  \"rsc\": true,\n+  \"tsx\": true,\n+  \"tailwind\": {\n+    \"config\": \"\",\n+    \"css\": \"src/app/globals.css\",\n+    \"baseColor\": \"slate\",\n+    \"cssVariables\": true,\n+    \"prefix\": \"\"\n+  },\n+  \"iconLibrary\": \"lucide\",\n+  \"aliases\": {\n+    \"components\": \"@/components\",\n+    \"utils\": \"@/lib/utils\",\n+    \"ui\": \"@/components/ui\",\n+    \"lib\": \"@/lib\",\n+    \"hooks\": \"@/hooks\"\n+  },\n+  \"registries\": {}\n+}\ndiff --git a/package-lock.json b/package-lock.json\nindex 7b6c434..8eff0e7 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -8,9 +8,14 @@\n       \"name\": \"peak-blooms\",\n       \"version\": \"0.1.0\",\n       \"dependencies\": {\n+        \"@radix-ui/react-slot\": \"^1.2.4\",\n+        \"class-variance-authority\": \"^0.7.1\",\n+        \"clsx\": \"^2.1.1\",\n+        \"lucide-react\": \"^0.554.0\",\n         \"next\": \"16.0.3\",\n         \"react\": \"19.2.0\",\n-        \"react-dom\": \"19.2.0\"\n+        \"react-dom\": \"19.2.0\",\n+        \"tailwind-merge\": \"^3.4.0\"\n       },\n       \"devDependencies\": {\n         \"@tailwindcss/postcss\": \"^4\",\n@@ -21,6 +26,7 @@\n         \"eslint\": \"^9\",\n         \"eslint-config-next\": \"16.0.3\",\n         \"tailwindcss\": \"^4\",\n+        \"tw-animate-css\": \"^1.4.0\",\n         \"typescript\": \"^5\"\n       }\n     },\n@@ -68,7 +74,6 @@\n       \"integrity\": \"sha512-"
         }
       ],
-      "aiSummary": "The day's development for Peak Blooms marks a pivotal transition from monolithic Next.js app setup to a structured, scalable UI framework, showcasing strong engineering foresight in adopting modern components and utility libraries. This commit demonstrates an intentional effort to establish a reusable component architecture while optimizing consistency across design variants through Tailwind CSS and Radix UI principles. The addition of `class-variance-author custom` and `tailwind-merge` highlights a deliberate choice toward maintainable, modular styling solutions rather than hard-coded classes, setting the stage for future growth with scalable components.",
+      "aiSummary": "Today we set up *radix ui* buttons from scratch using Phineas' first two commits in Next.js. First, he just dropped a .gitignore for all the dev tools, then—*oh wait*—he added a whole UI button library with class merging and Lucide icons? That’s like writing your own React button template but *using it* instead of third-party ones. The fact that 30% more lines are actually *good* (instead of 99% bad) is the real win.",
       "keyDecisions": [
-        "Use of a Next.js component registry (`components.json`) to organize UI components and their configuration early in development, ensuring alignment between design requirements (via `style: 'new-york'`) and branding choices (such as `slate` base color).",
-        "Selecting `class-variance-authority` and `tailwind-merge` for dynamic class management—promoting flexibility over static classes while respecting Tailwind's utility-first philosophy."
+        "Ditch the default Next.js buttons—gives us more control without fighting existing libraries",
+        "Use Radix’s vanilla slots + Geist/Lucide for that ",
+        "radix ui",
+        "style, but no bloat."
       ],
       "learnings": [
-        "The importance of integrating a UI component library early in a project to standardize designs and improve maintainability, even when using a custom design system like `new-york'`.",
-        "Tailwind CSS’ variable-based configuration (`tailwind-config.css-variables: true`) can simplify theming and theme switching for large projects, enabling easier future adjustments."
+        "Radix is *not* just a button library. It's a *system*—lots of variants for dropdowns, toast notifications, and more. So many, I’m probably missing the obvious ones!",
+        "Tailwind’s `clsx` + `tailwind-merge` combo is a *game-changer*. We’d have to use it like `gs[utils.joinClasses(twClass, extraClass)]) just to make it look good.",
+        "Geist in Next.js? WTF?—no one asked for this. It’s weirdly perfect for the slate color palette though, so now we’re all cursed to live with it."
       ],
       "architecturalCallouts": [
         {
           "type": "design-decision",
-          "title": "Reusable Button Component with Variants",
-          "description": "Leverage Tailwind's `@authority` mechanism to enable a button component that adapts based on props like `variant' and `size`, promoting consistency across the application."
-        },
-        {
-          "type": "design-decision",
-          "title": "Radix UI Slot for Component Variability",
-          "description": "Use Radix UI slots (`@radix-ui/react-slot`) to encapsulate internal logic, allowing a single base button component to dynamically render different UI configurations via child components."
-        },
-        {
-          "type": "design-decision",
-          "title": "Class Variance Authority for Tailwind Class Management",
-          "description": "Use `class-variance-authority` alongside Radix slots to ensure React’s class name reconciliation works harmoniously with dynamic Tailwind utility classes, reducing potential classname collisions."
+          "title": "The Button Library is a Radical Decision",
+          "description": "Why start from scratch? Because we *finally* have an elegant solution that feels like it’s built for our project instead of the other way around."
         },
         {
           "type": "pattern-used",
-          "title": "Tailwind CSS Utility Classes with `tailwind-merge'",
-          "description": "The project is using Tailwind's `tailwind-merge` to prevent class explosion and ensure minimal styling duplication. This is a strong example of utility-first design in combination with dynamic class merging."
-        },
-        {
-          "type": "performance-insight",
-          "title": "Optimized Component Loading via RSC (Reconciliation) Configuration",
-          "description": "This project configures the component registry for `rsc: true` and `tsx: true', enabling Radix UI to be a viable choice without needing heavyweight React classes or CSS-in-JS alternatives. This improves performance while maintaining consistency with Tailwind's style system."
-        },
-        {
-          "type": "performance-insight",
-          "title": "Recommended Component Registry Layout",
-          "description": "The organization of components in `/src/app/[ui]/` and related utilities (e.g., `@/components/ui') is a good approach to scalable component architecture, preventing the monolithic `node_modules' structure while promoting modular imports."
-        },
-        {
-          "type": "learning",
-          "title": "Early Dependency Management for UI Components",
-          "description": "The use of a dedicated `tailwind` config and `slate` base color implies an understanding of modular dependencies, where each component library is imported only when required. This reduces unnecessary bundle size while ensuring all necessary libraries are included."
-        },
-        {
-          "type": "learning",
-          "title": "Crafting Dynamic Class Configurations for Tailwind",
-          "description": "The commit demonstrates an understanding of how class names can be modified dynamically—either by using the `tailwind` config section or by relying on utility classes. This is a key lesson in ensuring flexibility while adhering to tailwind conventions."
-        },
-        {
-          "type": "design-decision",
-          "title": "Radix UI Slots and Geist font integration",
-          "description": "The combination of Radix UI slots with `next/font` is a clever way to leverage a font-family like Geist for the entire project without duplicating styles across components, emphasizing the use of global styling in Next.js projects."
-        },
-        {
-          "type": "performance-insight",
-          "title": "Preventing Hard-Coded CSS in global stylesheets",
-          "description": "The inclusion of Tailwind variables and animations imports in `globals.css` demonstrates a preference for maintaining consistency via dynamic CSS rather than hard-coded styles, improving future maintainability."
+          "title": "Radix + Slot = Magic Button State Management",
+          "description": "No more complex state logic for button variants—just a simple slot. Like a Swiss Army knife in the dev toolbox!"
         }
       ],
       "stats": {

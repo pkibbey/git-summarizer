@@ -4,6 +4,7 @@ import path from 'path';
 import type { Commit } from '../lib/types';
 
 const TEMP_REPO_DIR = path.join(process.cwd(), '.temp-peak-blooms-repo');
+console.log('TEMP_REPO_DIR: ', TEMP_REPO_DIR);
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const REPO_URL = 'https://github.com/pkibbey/peak-blooms.git';
 

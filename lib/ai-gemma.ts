@@ -1,6 +1,6 @@
 import { generateText } from 'ai';
 import { createOpenAICompatible } from '@ai-sdk/openai-compatible';
-import { analysisResultSchema, buildPrompt, normalizeArchitecturalCallouts } from './ai-shared';
+import { analysisResultSchema, buildPrompt, normalizeArchitecturalCallouts, type PromptVersion } from './ai-shared';
 import type { Commit } from './types';
 import type { AnalysisResult } from './ai-shared';
 
@@ -13,8 +13,8 @@ const lmstudio = createOpenAICompatible({
   baseURL: baseUrl,
 });
 
-export async function analyzeCommitDay(commits: Commit[], date: string): Promise<AnalysisResult> {
-  const prompt = buildPrompt(commits, date);
+export async function analyzeCommitDay(commits: Commit[], date: string, promptVersion: PromptVersion = 'v1'): Promise<AnalysisResult> {
+  const prompt = buildPrompt(commits, date, promptVersion);
 
   try {
     const { text } = await generateText({
