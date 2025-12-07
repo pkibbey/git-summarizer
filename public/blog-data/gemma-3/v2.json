@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2025-12-06T16:56:24.568Z",
+  "generatedAt": "2025-12-06T18:11:33.527Z",
   "sourceRepo": "https://github.com/pkibbey/peak-blooms",
   "days": [
     {
@@ -175,10 +175,34 @@
           "shortDiff": "commit fd3b4e3637bad398e1666ef3819f75c7f4e418ba\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Sat Nov 22 17:23:35 2025 +0000\n\n    Add UI button component and utility functions\n    \n    Introduces a reusable Button component with multiple variants and sizes using class-variance-authority and Radix UI Slot. Adds a utility function for merging Tailwind and clsx classes. Updates globals.css for new color variables, theme support, and animation imports. Adds required dependencies and configuration for UI components.\n\ndiff --git a/components.json b/components.json\nnew file mode 100644\nindex 0000000..71a1088\n--- /dev/null\n+++ b/components.json\n@@ -0,0 +1,22 @@\n+{\n+  \"$schema\": \"https://ui.shadcn.com/schema.json\",\n+  \"style\": \"new-york\",\n+  \"rsc\": true,\n+  \"tsx\": true,\n+  \"tailwind\": {\n+    \"config\": \"\",\n+    \"css\": \"src/app/globals.css\",\n+    \"baseColor\": \"slate\",\n+    \"cssVariables\": true,\n+    \"prefix\": \"\"\n+  },\n+  \"iconLibrary\": \"lucide\",\n+  \"aliases\": {\n+    \"components\": \"@/components\",\n+    \"utils\": \"@/lib/utils\",\n+    \"ui\": \"@/components/ui\",\n+    \"lib\": \"@/lib\",\n+    \"hooks\": \"@/hooks\"\n+  },\n+  \"registries\": {}\n+}\ndiff --git a/package-lock.json b/package-lock.json\nindex 7b6c434..8eff0e7 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -8,9 +8,14 @@\n       \"name\": \"peak-blooms\",\n       \"version\": \"0.1.0\",\n       \"dependencies\": {\n+        \"@radix-ui/react-slot\": \"^1.2.4\",\n+        \"class-variance-authority\": \"^0.7.1\",\n+        \"clsx\": \"^2.1.1\",\n+        \"lucide-react\": \"^0.554.0\",\n         \"next\": \"16.0.3\",\n         \"react\": \"19.2.0\",\n-        \"react-dom\": \"19.2.0\"\n+        \"react-dom\": \"19.2.0\",\n+        \"tailwind-merge\": \"^3.4.0\"\n       },\n       \"devDependencies\": {\n         \"@tailwindcss/postcss\": \"^4\",\n@@ -21,6 +26,7 @@\n         \"eslint\": \"^9\",\n         \"eslint-config-next\": \"16.0.3\",\n         \"tailwindcss\": \"^4\",\n+        \"tw-animate-css\": \"^1.4.0\",\n         \"typescript\": \"^5\"\n       }\n     },\n@@ -68,7 +74,6 @@\n       \"integrity\": \"sha512-"
         }
       ],
-      "aiSummary": "Day with 2 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was really exciting—we got the foundation for a reusable UI component library laid out. Moving Peak Blooms away from completely bespoke components was a priority, and getting the `Button` component up and running with Radix UI and class-variance-authority feels like a huge step towards that. It's always rewarding when you see the initial code translate into something tangible and usable, even at this early stage.",
+      "keyDecisions": [
+        "Choosing ShadCN UI for rapid component development—the accessibility and theming options are really appealing.",
+        "Leveraging `class-variance-authority` to manage Tailwind variants elegantly. It's a game-changer for component styling.",
+        "Opting for Radix UI Slot to ensure maximum flexibility and future-proofing of the button component."
+      ],
+      "learnings": [
+        "I underestimated how much boilerplate is involved in setting up a fully configured ShadCN project.  There are *a lot* of configuration files!",
+        "Experimenting with Radix UI Slots definitely clarified my understanding of how to build truly customizable components.  Thinking in terms of slots makes a lot more sense than I initially thought.",
+        "Remembering to update `globals.css` with new color variables and animation imports *before* moving onto component styling—a classic beginner mistake I avoided this time!"
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Component Library Foundation",
+          "description": "Starting with a `Button` component allows us to refine our approach and establish best practices before building out the rest of the UI. It's a good focused starting point."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Leveraging Slots for Customization",
+          "description": "The slot implementation in Radix UI is brilliant—it lets us build highly customizable components without sacrificing accessibility. I'll be using this pattern a lot moving forward."
+        },
+        {
+          "type": "learning",
+          "title": "Configuration is Key",
+          "description": "Setting up a project like this with so many dependencies made me realize how important it is to invest time upfront in proper configuration. A little extra effort here will save a *ton* of headaches later."
+        }
+      ],
       "stats": {
         "totalCommits": 2,
         "filesChanged": 23,
@@ -1445,10 +1469,34 @@
           "shortDiff": "commit 4927b925c19b5eabf8239fa849aeff446b213382\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Sun Nov 23 23:47:29 2025 +0000\n\n    Add InspirationSet model and migrate to dynamic data\n    \n    Introduces the InspirationSet model and migration in Prisma, updates seed data to include inspiration sets, and refactors frontend components to fetch categories, products, and inspiration sets from the database instead of static data. Removes unused generated Prisma files and updates .gitignore to exclude the entire /src/generated directory. Adds Prisma generate to postinstall and configures Prisma seed in package.json.\n\ndiff --git a/.gitignore b/.gitignore\nindex f390d12..bf088c6 100644\n--- a/.gitignore\n+++ b/.gitignore\n@@ -40,4 +40,4 @@ yarn-error.log*\n *.tsbuildinfo\n next-env.d.ts\n \n-/src/generated/prisma\n+/src/generated\ndiff --git a/package.json b/package.json\nindex 6874c00..34ec42c 100644\n--- a/package.json\n+++ b/package.json\n@@ -7,7 +7,8 @@\n     \"build\": \"next build\",\n     \"start\": \"next start\",\n     \"lint\": \"eslint\",\n-    \"db:push\": \"prisma migrate dev\"\n+    \"db:push\": \"prisma migrate dev\",\n+    \"postinstall\": \"prisma generate\"\n   },\n   \"dependencies\": {\n     \"@auth/prisma-adapter\": \"^2.11.1\",\n@@ -44,5 +45,8 @@\n     \"tsx\": \"^4.20.6\",\n     \"tw-animate-css\": \"^1.4.0\",\n     \"typescript\": \"^5\"\n+  },\n+  \"prisma\": {\n+    \"seed\": \"tsx prisma/seed.ts\"\n   }\n }\ndiff --git a/prisma/migrations/20251123233618_add_inspiration_sets/migration.sql b/prisma/migrations/20251123233618_add_inspiration_sets/migration.sql\nnew file mode 100644\nindex 0000000..8f23aa0\n--- /dev/null\n+++ b/prisma/migrations/20251123233618_add_inspiration_sets/migration.sql\n@@ -0,0 +1,34 @@\n+-- CreateTable\n+CREATE TABLE \"InspirationSet\" (\n+    \"id\" TEXT NOT NULL,\n+    \"name\" TEXT NOT NULL,\n+    \"slug\" TEXT NOT NULL,\n+    \"subtitle\" TEXT NOT NULL,\n+    \"image\" TEXT NOT NULL,\n+    \"excerpt\" TEXT NOT NULL,\n+    \"inspirationText\" TEXT NOT NULL,\n+    \"createdAt\" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP"
         }
       ],
-      "aiSummary": "Day with 20 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a huge step for Peak Blooms! We finally shifted from mostly static data to a proper database-driven application with authentication and dynamic content. It felt like moving from a prototype to something genuinely production-ready—a real thrill!",
+      "keyDecisions": [
+        "Choosing Prisma felt like the right call for a type-safe ORM; it's already simplifying database interactions.",
+        "Integrating NextAuth with Prisma adapter was surprisingly smooth, and the authentication flow feels secure and user-friendly.",
+        "Embracing ShadCN for UI components is a massive time saver, especially with their focus on accessibility and solid defaults."
+      ],
+      "learnings": [
+        "Database migrations with Prisma are more straightforward than I initially thought, but careful planning around schema changes is essential.",
+        "NextAuth's flexible adapter system allowed seamless integration with Prisma, but understanding session management requires a bit of digging.",
+        "Relying on component libraries like ShadCN can accelerate development, but it's important to be mindful of potential customization needs and consistency across the application."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Database First Approach",
+          "description": "Starting with the database schema first, even for a relatively simple e-commerce site, felt like a good foundation. It forced me to think about data relationships and potential future expansion before writing any UI code."
+        },
+        {
+          "type": "pattern-used",
+          "title": "API Routes with Authentication",
+          "description": "Defining API routes for core functionality (products, categories, inspiration sets) and securing them with NextAuth's authentication middleware provides a clean separation of concerns and robust access control."
+        },
+        {
+          "type": "learning",
+          "title": "TypeScript Benefits in ORM Interactions",
+          "description": "Using TypeScript with Prisma is a game-changer. The type safety catches so many potential errors early on, making database interactions much more reliable and preventing frustrating runtime issues."
+        }
+      ],
       "stats": {
         "totalCommits": 20,
         "filesChanged": 159,
@@ -2478,10 +2526,34 @@
           "shortDiff": "commit b610181af299f4c3e6cb312ae6b7bea4ed55d260\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Mon Nov 24 23:29:27 2025 +0000\n\n    Update collection button text to 'View Collection'\n    \n    Changed button label from 'Shop Now' to 'View Collection' in both collections page and featured collections component for improved clarity. Also removed user authentication item from TODO.md.\n\ndiff --git a/TODO.md b/TODO.md\nindex 9ebb618..87d2a6e 100644\n--- a/TODO.md\n+++ b/TODO.md\n@@ -2,7 +2,6 @@\n \n ### 🚀 Core Features\n \n-- [ ] Add user authentication\n - [ ] Add admin section to be able to manage content\n - [ ] Hide prices for authenticated users\n - [ ] Add order history for accounts\ndiff --git a/src/app/collections/page.tsx b/src/app/collections/page.tsx\nindex e14181c..0c7a316 100644\n--- a/src/app/collections/page.tsx\n+++ b/src/app/collections/page.tsx\n@@ -59,7 +59,7 @@ export default async function CollectionsPage() {\n                     href={`/collections/${collection.slug}`}\n                     className=\"inline-flex items-center justify-center gap-2\"\n                   >\n-                    Shop Now\n+                    View Collection\n                     <IconArrowRight aria-hidden=\"true\" />\n                   </Link>\n                 </Button>\ndiff --git a/src/components/site/FeaturedCollections.tsx b/src/components/site/FeaturedCollections.tsx\nindex 52a44b1..efb73c3 100644\n--- a/src/components/site/FeaturedCollections.tsx\n+++ b/src/components/site/FeaturedCollections.tsx\n@@ -56,7 +56,7 @@ export default async function FeaturedCollections() {\n                     href={`/collections/${collection.slug}`}\n                     className=\"inline-flex items-center justify-center gap-2\"\n                   >\n-                    Shop Now\n+                    View Collection\n                     <IconArrowRight aria-hidden=\"true\" />\n                   </Link>\n                 </Button>\n"
         }
       ],
-      "aiSummary": "Day with 15 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a monumental day for Peak Blooms! We laid the groundwork for proper user management and finally have a functioning admin dashboard. It feels like we're moving from a prototype to a real-world application, and getting that crucial user approval flow in place is such a relief. I'm excited to see how this translates to better control over content and user experience.",
+      "keyDecisions": [
+        "Prioritized building the admin dashboard first – seeing a clear path to control will pay off in the long run.",
+        "Opted for NextAuth for user authentication – it's well-supported and integrates seamlessly with Prisma.",
+        "Implemented a batch cart API endpoint to handle multiple products at once, rather than individual adds. Efficiency is key!"
+      ],
+      "learnings": [
+        "The complexity of user roles and permissions really hits home when you're implementing it. It’s not just about the UI – there are a lot of API and database interactions required.",
+        "Understanding NextAuth's session management took more digging than I anticipated. The documentation is helpful, but real-world application reveals some nuances.",
+        "Batch API requests are a *lot* cleaner than individual ones, especially when dealing with user carts. Makes the code much easier to maintain and reason about."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "ShadCN Component Library Integration",
+          "description": "Really glad we committed to ShadCN early on. It's dramatically reduced development time and ensures a baseline level of accessibility and consistency across the site, which is invaluable."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Server Components for User Management",
+          "description": "Leveraging Server Components to handle authentication and authorization logic proved essential. It keeps sensitive data secure and simplifies the client-side rendering drastically."
+        },
+        {
+          "type": "learning",
+          "title": "Prisma's Relational Power",
+          "description": "Really appreciating Prisma’s ability to model complex relational data. Getting the user, product, and cart relationships working together smoothly was a key moment today."
+        }
+      ],
       "stats": {
         "totalCommits": 15,
         "filesChanged": 132,
@@ -4138,10 +4210,34 @@
           "shortDiff": "commit 3efed231bcee41db18e7ee7eabf4eba6bdd1099a\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Tue Nov 25 23:36:08 2025 +0000\n\n    Change all buttons that have state based text into static text\n\ndiff --git a/src/app/auth/signin/page.tsx b/src/app/auth/signin/page.tsx\nindex b701f51..9d6f9bc 100644\n--- a/src/app/auth/signin/page.tsx\n+++ b/src/app/auth/signin/page.tsx\n@@ -101,7 +101,7 @@ export default function SignInPage() {\n             />\n           </div>\n           <Button type=\"submit\" disabled={loading} className=\"w-full\">\n-            {loading ? \"Sending link...\" : \"Sign in with Email\"}\n+            Sign in with Email\n           </Button>\n         </form>\n \ndiff --git a/src/app/auth/signup/page.tsx b/src/app/auth/signup/page.tsx\nindex 5c38176..0c49f2f 100644\n--- a/src/app/auth/signup/page.tsx\n+++ b/src/app/auth/signup/page.tsx\n@@ -78,7 +78,7 @@ export default function SignUpPage() {\n             />\n           </div>\n           <Button type=\"submit\" disabled={loading} className=\"w-full\">\n-            {loading ? \"Sending sign-up link...\" : \"Sign Up with Email\"}\n+            Sign Up with Email\n           </Button>\n         </form>\n \ndiff --git a/src/components/admin/AdminCategoryCard.tsx b/src/components/admin/AdminCategoryCard.tsx\nindex 3f68fc5..75c92ee 100644\n--- a/src/components/admin/AdminCategoryCard.tsx\n+++ b/src/components/admin/AdminCategoryCard.tsx\n@@ -114,7 +114,7 @@ export default function AdminCategoryCard({ category }: AdminCategoryCardProps)\n           onClick={handleDelete}\n           disabled={isDeleting}\n         >\n-          {isDeleting ? \"...\" : \"Delete\"}\n+          Delete\n         </Button>\n       </div>\n     </div>\ndiff --git a/src/components/admin/AdminCollectionCard.tsx b/src/components/admin/AdminCollectionCard.tsx\nindex b4aa617..8d6a7b6 100644\n--- a/src/components/admin/AdminCollectionCard.tsx\n+++ b/src/components/admin/AdminCollectionCard.tsx\n@@ -112,7 +112,7 @@ export default function AdminCollectionCard({ collection }: AdminC"
         }
       ],
-      "aiSummary": "Day with 18 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a big push on stabilizing the admin panel and cleaning up some lingering UX inconsistencies across authentication flows. It felt good to finally solidify some core patterns – especially moving away from dynamic button text— it simplifies the UI and makes things much more predictable. Feels like we've hit a solid foundation to build on for the next phase of features.",
+      "keyDecisions": [
+        "Standardizing button text to be static across all forms—this significantly reduces complexity and potential for errors.",
+        "Migrating from dynamic loading states to simply disabling buttons—this streamlined the UI and aligns with best practices for accessibility.",
+        "Leveraging ShadCN components consistently across admin panel—this ensures a consistent user experience and accelerates development."
+      ],
+      "learnings": [
+        "The power of static UI elements – simple choices can have a big impact on overall UI predictability and maintainability.",
+        "How important it is to be consistent with patterns across all parts of the app, from authentication flows to admin panels.",
+        "That small tweaks like removing dynamic button text can dramatically improve the overall feeling of a UI."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Static Button Text & Disabled State",
+          "description": "Committed to only using disabled states for loading, rather than changing button text. Prevents confusion and ensures the UI is always clear about what actions are available."
+        },
+        {
+          "type": "pattern-used",
+          "title": "ShadCN Component Adoption",
+          "description": "Really happy with how well ShadCN's components integrate; it’s a huge time-saver and helps maintain consistency across the admin interface."
+        },
+        {
+          "type": "learning",
+          "title": "Importance of UI predictability",
+          "description": "Realized how crucial it is to minimize unexpected changes in the UI. Static elements make the application feel more reliable and less prone to errors."
+        }
+      ],
       "stats": {
         "totalCommits": 18,
         "filesChanged": 229,
@@ -4871,10 +4967,34 @@
           "shortDiff": "commit cd4a17704ecdb18c1a8eaca8f75933e14277abf2\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Wed Nov 26 22:23:32 2025 +0000\n\n    Add BackLink and create Table layout for Inspirations and Collections\n\ndiff --git a/TODO.md b/TODO.md\nindex 7a079fb..01a5af4 100644\n--- a/TODO.md\n+++ b/TODO.md\n@@ -5,6 +5,7 @@\n - [ ] Add order history for accounts\n - [ ] Product filters should be updated to use sliders or multiselect boxes, dependant on their value type\n - [ ] Make Back button consistent style in a reusebale component, and position it consistently on pages (see \"Back to Collections\" for a good reference of how it should look and feel)\n+- [ ] Featured products on the homepage should use the same product card as on the shop page - the prices are missing\n \n ### ✨ Future Ideas\n \ndiff --git a/src/app/admin/collections/[id]/edit/page.tsx b/src/app/admin/collections/[id]/edit/page.tsx\nindex 440ee68..ccd8460 100644\n--- a/src/app/admin/collections/[id]/edit/page.tsx\n+++ b/src/app/admin/collections/[id]/edit/page.tsx\n@@ -1,8 +1,8 @@\n import { redirect, notFound } from \"next/navigation\";\n import { auth } from \"@/lib/auth\";\n import { db } from \"@/lib/db\";\n-import Link from \"next/link\";\n import CollectionForm from \"@/components/admin/CollectionForm\";\n+import BackLink from \"@/components/site/BackLink\";\n \n interface EditCollectionPageProps {\n   params: Promise<{ id: string }>;\n@@ -19,6 +19,11 @@ export default async function EditCollectionPage({ params }: EditCollectionPageP\n \n   const collection = await db.collection.findUnique({\n     where: { id },\n+    include: {\n+      _count: {\n+        select: { products: true },\n+      },\n+    },\n   });\n \n   if (!collection) {\n@@ -28,8 +33,8 @@ export default async function EditCollectionPage({ params }: EditCollectionPageP\n   return (\n     <div className=\"bg-background\">\n       <div className=\"mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8\">\n+        <BackLink href=\"/admin/collections\" label=\"Collections\" />\n         <div className=\"mb"
         }
       ],
-      "aiSummary": "Day with 5 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a big refactoring day for Peak Blooms' admin interface! We finally shifted away from the old `InspirationSet` and related tables to a cleaner, more consistent `Inspiration` model. It felt like shedding some old code baggage and really solidifying the core concepts of what we're building. Plus, I got a chance to play with ShadCN components and really focus on delivering a smooth user experience for our content creators.",
+      "keyDecisions": [
+        "Renaming `InspirationSet` to `Inspiration` and associated tables—this felt like the right call even though it meant a fair amount of migration work. Felt much more aligned with our terminology",
+        "Using ShadCN UI for consistent components—it's already saving me so much time and ensuring accessibility is baked in.",
+        "Implementing a `BackLink` component—finally got around to standardizing our back button styling across the admin interface"
+      ],
+      "learnings": [
+        "Prisma migrations are powerful, but you gotta really think through the cascading effects when dropping tables.  Double-checked everything before committing, thankfully it all went smoothly.",
+        "ShadCN's component library is a *gem*. The ease of customizing and the built-in accessibility are fantastic.  Definitely going to lean into this more.",
+        "Table layouts using flexbox and grid can be surprisingly tricky. Learned a few new tricks for responsive column sizing."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Consistent Navigation – BackLink Component",
+          "description": "Created a reusable `BackLink` component for consistent styling and placement of back buttons.  This small change will improve usability across the admin interface, making it feel more polished and intuitive."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Prisma's Include Clause for Data Optimization",
+          "description": "Used Prisma’s `include` clause to fetch the count of products within a collection during initial load. This avoids unnecessary database queries later on, improving performance and keeping the UI responsive."
+        },
+        {
+          "type": "learning",
+          "title": "Refactoring Large Tables – Incremental Approach is Key",
+          "description": "Dropping and recreating large tables can be daunting. This experience reinforced the importance of incremental changes and thorough testing when refactoring significant portions of a database."
+        }
+      ],
       "stats": {
         "totalCommits": 5,
         "filesChanged": 107,
@@ -6630,10 +6750,34 @@
           "shortDiff": "commit 3a72d8357db50151e980da755a645f2a4815c8b6\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Thu Nov 27 23:35:21 2025 +0000\n\n    Extract shared components and utils\n\ndiff --git a/TODO.md b/TODO.md\nindex ce9c253..1683d7f 100644\n--- a/TODO.md\n+++ b/TODO.md\n@@ -1,19 +1,25 @@\n ## 🛠️ Website To-Do List\n \n-- [ ] Update logos with proper graphics\n-- [ ] Try our different colour schemes\n+### 🌟 Features to Add\n+\n - [ ] Add price multiplier per account\n - [ ] Add ability to buy bulk boxlots for large scale event planners\n-- [ ] Repeat customers / Bulk buying or repeat orders / Coupon code\n+- [ ] Add image upload for content management instead of url fields\n+\n+### 🎨 Design Changes\n+\n+- [ ] Update logos with proper graphics\n+- [ ] Try our different colour schemes\n+\n+### 🔍 Review Features\n+\n+- [ ] Coupon code / discount offers\n - [ ] Add tracking to learn how the users are using the site\n - [ ] Collect user contact email for newsletter (overstock or flash sales)\n - [ ] Signup for newsletter to get a percentage off your first order\n-- [ ] Detect missing images that have failed to load and add tracking to this, so that the entry can be fixed\n - [ ] make sure that the data is not just hidden from the UI, but also not returned in the database calls for unauthenticated users also\n-- [ ] remove \"use client\" from as many pages as possible, to load the site from the server for speed and security reasons\n-- [ ] Add image upload for content management instead of url fields\n - [ ] Allow download of content as CSV, so that they can be edited offline and uploaded to modify the content\n-- [ ] Go through the site and make sure that the components are separated well. Some of the files are pretty big, and could be split up a little to keep the code cleaner and make future changes more isolated\n+\n - [ ] Validate all form fields using zod + react-hook-form instead of relying on html validation\n - [ ] Allow users to change their email address\n - [ ] Should repeat orders add to the "
         }
       ],
-      "aiSummary": "Day with 11 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a surprisingly productive day of refactoring and laying the groundwork for some awesome features. I finally bit the bullet and started pulling out shared components and utility functions into a dedicated `lib` directory. While initially daunting, it feels fantastic to have a cleaner codebase and sets us up well for adding more complex functionality down the track. It was a good day to feel like I'm making actual progress toward a more maintainable and scalable application.",
+      "keyDecisions": [
+        "Consolidating shared components (like buttons, inputs, and basic layouts) into a `lib` directory instead of scattering them across different pages",
+        "Using ShadCN for accessible UI components - it's a huge time-saver and ensures we're building an inclusive experience",
+        "Deciding to use Zod for form validation—it’s a more robust and type-safe solution than relying on HTML5 validation alone"
+      ],
+      "learnings": [
+        "The power of a well-organized codebase! It makes it so much easier to spot opportunities for reuse and simplifies future development.",
+        "Just how beneficial ShadCN is - it really does cut down on boilerplate and ensures accessibility from the start.",
+        "Zod’s type inference is remarkably helpful – it practically writes some of the validation logic for me"
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Component Abstraction",
+          "description": "I'm really digging the idea of abstracting common UI elements like buttons and inputs into reusable components with configurable themes. It's a small decision, but it promises significant improvements in consistency and maintainability."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Zod for Form Validation",
+          "description": "Using Zod is a game-changer. It's so much more type safe and expressive than inline HTML validation, which felt clunky and limiting."
+        },
+        {
+          "type": "performance-insight",
+          "title": "Server Components & Client Hydration",
+          "description": "Thinking about how to leverage server components more effectively is a priority. We want to minimize client-side JavaScript as much as possible for speed and security."
+        }
+      ],
       "stats": {
         "totalCommits": 11,
         "filesChanged": 263,
@@ -7342,10 +7486,34 @@
           "shortDiff": "commit 6b9ccf6a07346733f16cde1078da720cce178e5c\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Fri Nov 28 14:55:46 2025 +0000\n\n    Force inspiration product variants to be non null\n\ndiff --git a/TODO.md b/TODO.md\nindex 95f1105..96d76b9 100644\n--- a/TODO.md\n+++ b/TODO.md\n@@ -12,6 +12,7 @@\n - [ ] Add unit tests and e2e tests to ensure complete site functionality\n - [ ] Create separate development and production databases\n - [ ] Product colour should be able to be generated from the image, maybe the predominant colour, or a colour picker?\n+- [ ] Add quantity selector to the inspirations page\n \n \n ### 🎨 Design Changes\n@@ -21,6 +22,7 @@\n - [ ] Create reusable typography utility classes in tailwind\n - [ ] Create container and card utility classes\n - [ ] Create some shared layout components like ThreeColumnGrid - to enforce layout consistency\n+- [ ] Improve the layout for the admin dashboard, it looks bland and just a load of boxes without any real overview of the state of the system\n  \n ### 🔍 Review Features\n \n@@ -36,4 +38,5 @@\n - [ ] Maybe when the boxlot option is selected, we should automatically highlight the boxlot option on the product\n - [ ] Add a feature section to the homepage which sells the idea of boxlots to users, which just takes them to the shop page with the boxlot filter on\n - [ ] Editing product details should be saved automatically without needed to press save?\n-- Add the ability to upload different hero images\n\\ No newline at end of file\n+- [ ] Add the ability to upload different hero images\n+- [ ] Improve the blog post of the inspiration page, get some more ideas about how this could look in the real world and where we would source this information from\n\\ No newline at end of file\ndiff --git a/prisma/migrations/20251128143808_require_inspiration_product_variant/migration.sql b/prisma/migrations/20251128143808_require_inspiration_product_variant/migration.sql\nnew file mode 100644\nindex 0000000..678f243\n--- /dev/null\n+++ b/prisma/migrations"
         }
       ],
-      "aiSummary": "Day with 10 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a whirlwind of cleanup and foundational work on Peak Blooms. I focused heavily on refining the image upload process, addressing null variant issues in our inspiration products, and generally solidifying some of the architectural pieces. It felt like laying a lot of groundwork—it's incredibly satisfying to see these core elements coming together, even if it’s behind the scenes.",
+      "keyDecisions": [
+        "Prioritized fixing the null variant issue—it was causing intermittent errors and a frustrating user experience.",
+        "Used ShadCN's accessible components for the image upload—it was faster, more reliable, and aligns with our accessibility goals.",
+        "Decided to force non-null variants on inspiration products—ensures data integrity and prevents future headaches."
+      ],
+      "learnings": [
+        "The complexity of handling image uploads is higher than initially expected. Need to be extra careful with cleaning up old files and ensuring consistent naming conventions.",
+        "ShadCN's component library is a real time-saver, but requires careful consideration of its accessibility features to ensure we're truly meeting our users' needs.",
+        "Data integrity is paramount. Rigorous validation and non-null constraints are essential for a robust application."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Image Upload Cleanup Strategy",
+          "description": "Implemented a strategy to automatically delete unused images from the file system, preventing disk space bloat and maintaining a clean data environment. This will need ongoing monitoring to ensure it doesn't accidentally delete important assets."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Forcing Non-Null Variants",
+          "description": "Leveraged Prisma's non-null constraints to enforce data integrity on inspiration products, preventing future errors and improving overall system reliability. This is a good reminder that early validation saves big headaches later."
+        },
+        {
+          "type": "learning",
+          "title": "Importance of Consistent Naming Conventions",
+          "description": "The chaotic state of the old image upload system highlighted the need for strict naming conventions. Implementing a consistent approach will greatly simplify future maintenance and debugging."
+        }
+      ],
       "stats": {
         "totalCommits": 10,
         "filesChanged": 91,
@@ -8075,10 +8243,34 @@
           "shortDiff": "commit 637ff07004600704e3e17d9d940388850362a56f\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Sat Nov 29 18:58:46 2025 +0000\n\n    Add form validation\n\ndiff --git a/TODO.md b/TODO.md\nindex b4691d7..594cb69 100644\n--- a/TODO.md\n+++ b/TODO.md\n@@ -7,6 +7,7 @@\n - [ ] Create separate development and production databases\n - [ ] Add pagination once we have a large number of products to view\n - [ ] Add real products in there\n+- [ ] Add type safe database queries, instead of using manual typing\n \n ### 💰 Payment Processing \n \ndiff --git a/package-lock.json b/package-lock.json\nindex d7da180..68e4e39 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -10,6 +10,7 @@\n       \"hasInstallScript\": true,\n       \"dependencies\": {\n         \"@auth/prisma-adapter\": \"^2.11.1\",\n+        \"@hookform/resolvers\": \"^5.2.2\",\n         \"@prisma/adapter-pg\": \"^7.0.1\",\n         \"@prisma/client\": \"7.0.1\",\n         \"@radix-ui/react-label\": \"^2.1.8\",\n@@ -28,9 +29,11 @@\n         \"prisma\": \"7.0.1\",\n         \"react\": \"19.2.0\",\n         \"react-dom\": \"19.2.0\",\n+        \"react-hook-form\": \"^7.67.0\",\n         \"resend\": \"^6.5.2\",\n         \"sonner\": \"^2.0.7\",\n-        \"tailwind-merge\": \"^3.4.0\"\n+        \"tailwind-merge\": \"^3.4.0\",\n+        \"zod\": \"^4.1.13\"\n       },\n       \"devDependencies\": {\n         \"@biomejs/biome\": \"^2.3.8\",\n@@ -916,6 +919,18 @@\n         \"hono\": \"^4\"\n       }\n     },\n+    \"node_modules/@hookform/resolvers\": {\n+      \"version\": \"5.2.2\",\n+      \"resolved\": \"https://registry.npmjs.org/@hookform/resolvers/-/resolvers-5.2.2.tgz\",\n+      \"integrity\": \"sha512-A/IxlMLShx3KjV/HeTcTfaMxdwy690+L/ZADoeaTltLx+CVuzkeVIPuybK3jrRfw7YZnmdKsVVHAlEPIAEUNlA==\",\n+      \"license\": \"MIT\",\n+      \"dependencies\": {\n+        \"@standard-schema/utils\": \"^0.3.0\"\n+      },\n+      \"peerDependencies\": {\n+        \"react-hook-form\": \"^7.55.0\"\n+      }\n+    },\n     \"node_modules/@img/colour\": {\n       \"version\": \"1.0.0\",\n       \"resolved\": \"https://registry.npmjs.org/@img/colour/-/colour-1.0.0.tgz\",\n@@ -24"
         }
       ],
-      "aiSummary": "Day with 5 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a good day for Peak Blooms – I finally got form validation working with React Hook Form and Zod. It feels like a foundational piece of the puzzle is falling into place, giving me confidence that we can build robust and user-friendly forms across the site. I'm also really pleased with how quickly I picked up React Hook Form—it’s a pleasure to work with and really streamlines the validation process.",
+      "keyDecisions": [
+        "Choosing React Hook Form for form management – it's a huge time saver and offers excellent performance.",
+        "Using Zod for type-safe validation – it makes the code much more maintainable and reduces errors.",
+        "Refactoring price multiplier functionality to use a Data Access Layer—this will help with code consistency and makes future changes easier."
+      ],
+      "learnings": [
+        "React Hook Form’s resolvers are incredibly powerful for integrating with Zod and simplifying validation logic.",
+        "I was surprised how quickly I adapted to the `useFormState` hook in React Hook Form. It really cuts down on boilerplate code.",
+        "Implementing a Data Access Layer early pays dividends—it's much easier to reason about data flow and make changes later."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Accessibility First",
+          "description": "ShadCN components made it simple to create accessible forms—a priority from the start. It's a great example of how well-designed libraries can significantly reduce development effort and improve user experience."
+        },
+        {
+          "type": "learning",
+          "title": "Early Layer Abstraction",
+          "description": "Moving the price multiplier logic into a Data Access Layer was initially slower than just slapping it in directly, but it's already proving invaluable for keeping the codebase clean and understandable."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Zod for Validation Contracts",
+          "description": "Defining validation schemas with Zod feels like a natural fit. It provides strong typing and clear contracts, making the code much more robust and easier to debug."
+        }
+      ],
       "stats": {
         "totalCommits": 5,
         "filesChanged": 107,
@@ -9342,10 +9534,34 @@
           "shortDiff": "commit 3aa8576c31aead3b98871566801abc3c77c9b705\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Sun Nov 30 22:33:42 2025 +0000\n\n    Update TODO.md\n\ndiff --git a/TODO.md b/TODO.md\nindex 38d4589..bcc67ab 100644\n--- a/TODO.md\n+++ b/TODO.md\n@@ -26,7 +26,7 @@\n - [ ] Update logos with proper graphics\n - [ ] Try out different colour schemes\n - [ ] Create container and card utility classes\n-- [ ] Improve the blog post of the inspiration page, get some more ideas about how this could look in the real world and where we would source this information from\n+- [ ] Improve the inspiration detail page - it's a bit dull, but needs real content to see what it can look like\n  \n ### 🛍️ Tracking / Marketing\n \n"
         }
       ],
-      "aiSummary": "Day with 15 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a really satisfying marathon of feature completion and foundational improvements. I tackled the admin dashboard layout, which felt long overdue—it's significantly more usable now. Adding color variants to the product seeds was also great because it showcased how much better the UI looks with more visual richness, and I spent quite a bit of time refining some utility classes in Tailwind. Overall it feels like I've laid a solid base for building something really beautiful and functional.",
+      "keyDecisions": [
+        "Used ShadCN's components for the admin dashboard—massive time saver and ensures accessibility out of the box.",
+        "Decided to seed multiple color variations for products—it highlighted how much better-looking the UI could be with more visual depth.",
+        "Stuck to Tailwind's utility classes for most styling—it provides a consistent look and feel across the project."
+      ],
+      "learnings": [
+        "The admin dashboard's layout was far more impactful than I initially thought. It really improves the overall development experience.",
+        "Seeding multiple color variations is a surprisingly effective way to test and refine UI components – it's much more impactful than just single colors.",
+        "ShadCN’s component library really shines when you need to quickly build accessible and well-styled UI elements; definitely a good investment."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Admin Dashboard Layout",
+          "description": "Deciding to use a side navigation with clear sections made the admin dashboard feel much less overwhelming and more organized. It's a small thing, but it has a big impact on usability."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Utility Class Consistency with Tailwind",
+          "description": "Leveraging Tailwind's utility classes for nearly all styling ensures a consistent look and feel throughout the app. This is particularly helpful as the project scales, reducing cognitive load for developers."
+        },
+        {
+          "type": "learning",
+          "title": "Seeded Colors Amplify UI Impact",
+          "description": "Adding multiple color options during seeding proved a great way to visualize the final product and catch potential UI issues early on. Simple but effective!"
+        }
+      ],
       "stats": {
         "totalCommits": 15,
         "filesChanged": 171,
@@ -10309,10 +10525,34 @@
           "shortDiff": "commit 71bfaad866494b91dc4aeed767c45b77c77d954b\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Mon Dec 1 20:45:47 2025 +0000\n\n    replace next-auth with better-auth\n\ndiff --git a/next.config.ts b/next.config.ts\nindex ab4f028..4aa313e 100644\n--- a/next.config.ts\n+++ b/next.config.ts\n@@ -2,7 +2,6 @@ import type { NextConfig } from \"next\"\n \n const nextConfig: NextConfig = {\n   /* config options here */\n-  reactCompiler: true,\n   devIndicators: false,\n   images: {\n     remotePatterns: [new URL(\"https://zvbfsgiej9tfgqre.public.blob.vercel-storage.com/**\")],\ndiff --git a/package-lock.json b/package-lock.json\nindex 2df3471..6e7b231 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -9,7 +9,6 @@\n       \"version\": \"0.1.0\",\n       \"hasInstallScript\": true,\n       \"dependencies\": {\n-        \"@auth/prisma-adapter\": \"^2.11.1\",\n         \"@hookform/resolvers\": \"^5.2.2\",\n         \"@prisma/adapter-pg\": \"^7.0.1\",\n         \"@prisma/client\": \"7.0.1\",\n@@ -18,14 +17,12 @@\n         \"@radix-ui/react-select\": \"^2.2.6\",\n         \"@radix-ui/react-slot\": \"^1.2.4\",\n         \"@radix-ui/react-switch\": \"^1.2.6\",\n-        \"@radix-ui/react-tabs\": \"^1.1.13\",\n         \"@vercel/blob\": \"^2.0.0\",\n+        \"better-auth\": \"^1.4.4\",\n         \"class-variance-authority\": \"^0.7.1\",\n         \"clsx\": \"^2.1.1\",\n         \"lucide-react\": \"^0.555.0\",\n-        \"next\": \"16.0.6\",\n-        \"next-auth\": \"^5.0.0-beta.30\",\n-        \"nodemailer\": \"^7.0.11\",\n+        \"next\": \"^15\",\n         \"pg\": \"^8.16.3\",\n         \"prisma\": \"7.0.1\",\n         \"react\": \"19.2.0\",\n@@ -65,47 +62,6 @@\n         \"url\": \"https://github.com/sponsors/sindresorhus\"\n       }\n     },\n-    \"node_modules/@auth/core\": {\n-      \"version\": \"0.41.1\",\n-      \"resolved\": \"https://registry.npmjs.org/@auth/core/-/core-0.41.1.tgz\",\n-      \"integrity\": \"sha512-t9cJ2zNYAdWMacGRMT6+r4xr1uybIdmYa49calBPeTqwgAFPV/88ac9TEvCR85pvATiSPt8VaNf+Gt24JIT/uw==\",\n-      \"license\": \"ISC\",\n-      \"dependencies\": {\n-        \"@panva/hkdf\": \"^1.2.1\",\n-        \"jose\""
         }
       ],
-      "aiSummary": "Day with 7 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a major architectural shift, migrating away from NextAuth to better-auth. It felt like shedding a bit of dead weight – the complexities and limitations of NextAuth were becoming apparent as we scaled. I’m excited about the cleaner codebase and greater control that better-auth offers, especially as we integrate more authentication methods.",
+      "keyDecisions": [
+        "Moving from NextAuth to better-auth for a more streamlined and adaptable authentication solution.",
+        "Leveraging Vercel Blob directly for image storage, eliminating the need for a third-party CDN.",
+        "Prioritizing simpler component libraries like ShadCN to improve developer velocity and accessibility."
+      ],
+      "learnings": [
+        "The sheer amount of configuration and maintenance required by NextAuth was underestimated.",
+        "Direct integration with Vercel Blob is surprisingly robust and efficient, especially for smaller projects like ours.",
+        "Choosing well-designed component libraries upfront can save significant time and effort down the road—accessibility is a non-negotiable."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Authentication Simplification",
+          "description": "Choosing better-auth felt like a critical step toward reducing technical debt and providing more flexibility for future authentication features. It’s a more elegant solution that aligns better with our long-term vision."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Direct Vercel Blob Integration",
+          "description": "Skipping a CDN for image storage proved to be a surprisingly good decision. The integration with Vercel Blob is seamless and performs well, eliminating an unnecessary layer of complexity."
+        },
+        {
+          "type": "learning",
+          "title": "Component Library Selection",
+          "description": "Choosing a well-maintained, accessible component library like ShadCN early on paid off massively—it’s significantly faster to build UI elements and ensures we're adhering to accessibility best practices."
+        }
+      ],
       "stats": {
         "totalCommits": 7,
         "filesChanged": 141,
@@ -10535,10 +10775,34 @@
           "shortDiff": "commit 6660da5081c3222527c3ad7b60f592a615a1070a\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Tue Dec 2 21:50:03 2025 +0000\n\n    Add pagination to products\n\ndiff --git a/docs/TODO.md b/docs/TODO.md\nindex f47ff17..23087a6 100644\n--- a/docs/TODO.md\n+++ b/docs/TODO.md\n@@ -4,7 +4,6 @@\n \n - [ ] Use real email server - need to get real domain before we can implement this\n - [ ] Add real products\n-- [ ] Add pagination once we have a large number of products to view\n \n ### 🪨 Code Stability\n - [ ] Add unit tests and e2e tests to ensure complete site functionality\ndiff --git a/src/app/api/products/route.ts b/src/app/api/products/route.ts\nindex 3f814f1..583b0c8 100644\n--- a/src/app/api/products/route.ts\n+++ b/src/app/api/products/route.ts\n@@ -6,9 +6,10 @@ import { createProductSchema } from \"@/lib/validations/product\"\n \n /**\n  * GET /api/products\n- * Get all products (with optional filtering)\n- * Query params: collectionId, featured, colors, stemLength, priceMin, priceMax\n+ * Get all products (with optional filtering and pagination)\n+ * Query params: collectionId, featured, colors, stemLength, priceMin, priceMax, limit, offset\n  * Prices are adjusted based on the authenticated user's price multiplier\n+ * Returns: { products: ProductWithVariantsAndCollection[], total: number, limit: number, offset: number }\n  */\n export async function GET(request: NextRequest) {\n   try {\n@@ -27,8 +28,12 @@ export async function GET(request: NextRequest) {\n     const priceMin = searchParams.get(\"priceMin\")\n     const priceMax = searchParams.get(\"priceMax\")\n     const boxlotOnly = searchParams.get(\"boxlotOnly\")\n+    const limitParam = searchParams.get(\"limit\")\n+    const offsetParam = searchParams.get(\"offset\")\n+    const limit = limitParam ? parseInt(limitParam, 10) : 12\n+    const offset = offsetParam ? parseInt(offsetParam, 10) : 0\n \n-    const products = await getProducts(\n+    const result = await getProducts(\n       {\n         collectionId: collectionId || undefined,\n         f"
         }
       ],
-      "aiSummary": "Day with 4 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a big push to lay the groundwork for a more robust Peak Blooms. I finally got product types implemented, which unlocks some essential filtering later on. Then, the seed script overhaul and the addition of pagination felt really good—moving from a demo to something that feels like it could actually handle some data. It's starting to feel less like a proof of concept and more like an actual application.",
+      "keyDecisions": [
+        "Choosing to use Prisma's upsert function instead of delete and create for seeding felt more elegant, especially when dealing with potential data conflicts.",
+        "Opting for ShadCN's components has been a time-saver and guarantees accessibility. It also means less CSS to write – I can focus on the core logic.",
+        "Implementing pagination with `limit` and `offset` in the API felt like the right balance between simplicity and performance.  Good to have a standard way to handle larger datasets."
+      ],
+      "learnings": [
+        "Prisma's `upsert` function is a real workflow booster. It’s much easier than deleting and recreating, especially with larger datasets.",
+        "Even small changes like product types can unlock a lot of future functionality. It’s all about setting yourself up for success down the line.",
+        "API pagination is surprisingly straightforward with `limit` and `offset`. It's a reminder that sometimes the simplest solutions are the best."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Product Types - Filtering Foundation",
+          "description": "Adding `productType` with 'FLOWER' and 'FILLER' unlocks so much. Now we can build filters, sort by filler vs. flower—critical for a wholesale florist experience."
+        },
+        {
+          "type": "pattern-used",
+          "title": "ShadCN Components - Accessible & Fast",
+          "description": "Leveraging ShadCN's components is a smart efficiency play.  They’re well-designed, accessible out of the box, and save me from re-inventing the wheel on common UI elements."
+        },
+        {
+          "type": "performance-insight",
+          "title": "API Pagination - Simple is Powerful",
+          "description": "The `limit` and `offset` pattern for API pagination felt like a good choice. It's not the most sophisticated, but it's very performant and easy to understand—perfect for this stage of development."
+        }
+      ],
       "stats": {
         "totalCommits": 4,
         "filesChanged": 25,
@@ -12372,10 +12636,34 @@
           "shortDiff": "commit 179e9bcad3d9f12dfcff98c21c29356144d4f6f1\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Wed Dec 3 22:31:41 2025 +0000\n\n    add fallback images for products\n\ndiff --git a/docs/TODO.md b/docs/TODO.md\nindex 534f941..94af947 100644\n--- a/docs/TODO.md\n+++ b/docs/TODO.md\n@@ -3,13 +3,9 @@\n ### 🌟 Next Steps\n \n - [ ] Use real email server - need to get real domain before we can implement this\n-- [ ] Turn the development of this into a website using git commits\n-- [ ] Instead of having dead images, I should be able to either generate or have fallback images via an API to use as placeholder images\n+- [ ] Turn the development of this into a blog using git commits to show the progress of the app\n \n-### 🪨 Code Stability\n-- [ ] Add unit tests and e2e tests to ensure complete site functionality\n-\n-### 💰 Payment Processing \n+### 💰 Payment Processing\n \n - [ ] Add ability to accept payments\n - [ ] Add shipping information - shipping is free for the moment, so shipping should be described as such\n@@ -21,6 +17,9 @@\n - [ ] Make the site feel more responsive by puting loading animations in using client side components\n - [ ] Perform a design review with either humans, or AI, or both\n  \n+### 🪨 Code Stability\n+- [ ] Add unit tests and e2e tests to ensure complete site functionality\n+\n ### 🛍️ Tracking / Marketing\n \n - [ ] Add tracking to learn how the users are using the site\ndiff --git a/next.config.ts b/next.config.ts\nindex 4aa313e..f13fcd1 100644\n--- a/next.config.ts\n+++ b/next.config.ts\n@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {\n   /* config options here */\n   devIndicators: false,\n   images: {\n-    remotePatterns: [new URL(\"https://zvbfsgiej9tfgqre.public.blob.vercel-storage.com/**\")],\n+    remotePatterns: [new URL(\"https://**.public.blob.vercel-storage.com/**\")],\n   },\n }\n \ndiff --git a/package-lock.json b/package-lock.json\nindex 6e7b231..37f92aa 100644\n--- a/package-lock.json\n+++ b/package-lock.json\n@@ -21,6 +21,7 @@\n         \"better-auth\": \"^1.4.4\",\n    "
         }
       ],
-      "aiSummary": "Day with 13 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a real turning point for Peak Blooms. I finally got the user profile editing working, which feels like a huge step toward making it feel more personalized. Also got the fallback image implementation in place—no more broken images on product pages, which improves the overall user experience significantly. It’s exciting to see these foundational pieces come together.",
+      "keyDecisions": [
+        "Using ShadCN's components for user profile – it was faster and more accessible than building from scratch",
+        "Implementing a simple fallback image API call in case the primary image is unavailable - keeps things running smoothly",
+        "Switching to a more robust remote pattern configuration in next.config – makes image handling much easier."
+      ],
+      "learnings": [
+        "Resend's email API is incredibly reliable—a good choice for future communication features.",
+        "The simplicity of ShadCN’s UI components allowed me to focus on the core logic and user experience.",
+        "Configuring remote patterns in Next.js is more complex than I initially thought—needed to double-check the wildcard syntax."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Accessible User Profiles",
+          "description": "Choosing ShadCN components for user profiles was a win because it ensured accessibility and avoided a lot of boilerplate code. It's the right approach for quickly building robust, accessible features."
+        },
+        {
+          "type": "performance-insight",
+          "title": "Fallback Image API",
+          "description": "Creating a simple API endpoint to provide fallback images was surprisingly effective. It's a lightweight solution that prevents broken images from impacting the user experience, and easy to extend."
+        },
+        {
+          "type": "learning",
+          "title": "Wildcard Remote Patterns in Next.js",
+          "description": "Next.js's wildcard pattern configuration is powerful, but a bit tricky to master—needed to revisit the documentation to ensure proper image handling."
+        }
+      ],
       "stats": {
         "totalCommits": 13,
         "filesChanged": 271,
@@ -13081,10 +13369,34 @@
           "shortDiff": "commit f190117ddf6cf21491a2ae636686d90d67ab4f67\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Thu Dec 4 17:15:58 2025 +0000\n\n    Move shipping banner\n    \n    Fix nested table head warning\n\ndiff --git a/src/app/inspirations/[slug]/page.tsx b/src/app/inspirations/[slug]/page.tsx\nindex a1a2092..d3d0629 100644\n--- a/src/app/inspirations/[slug]/page.tsx\n+++ b/src/app/inspirations/[slug]/page.tsx\n@@ -3,7 +3,14 @@ import Link from \"next/link\"\n import { notFound } from \"next/navigation\"\n import AddAllToCartButton from \"@/components/site/AddAllToCartButton\"\n import BackLink from \"@/components/site/BackLink\"\n-import { Table, TableBody, TableCell, TableHeader, TableRow } from \"@/components/ui/table\"\n+import {\n+  Table,\n+  TableBody,\n+  TableCell,\n+  TableHead,\n+  TableHeader,\n+  TableRow,\n+} from \"@/components/ui/table\"\n import { getCurrentUser } from \"@/lib/current-user\"\n import { getAllInspirationSlugs, getInspirationBySlug } from \"@/lib/data\"\n import { db } from \"@/lib/db\"\n@@ -56,13 +63,21 @@ export default async function InspirationDetailPage({ params }: InspirationDetai\n   }))\n \n   return (\n-    <div className=\"flex flex-col items-center justify-start bg-white py-12 md:py-20 font-sans\">\n+    <div className=\"flex flex-col items-center justify-start bg-white py-12 sm:py-16 font-sans\">\n       <div className=\"w-full max-w-5xl px-4 md:px-6\">\n         {/* Navigation Back Link */}\n-        <BackLink href=\"/inspirations\" label=\"inspirations\" className=\"mb-8\" />\n+        <BackLink href=\"/inspirations\" label=\"inspirations\" />\n+\n+        {/* Header Section - Enhanced typography and spacing */}\n+        <div className=\"mb-8 md:mb-12\">\n+          <h1 className=\"heading-1 text-4xl md:text-5xl mb-3 text-primary\">{inspiration.name}</h1>\n+          <p className=\"text-lg md:text-xl text-gray-600 leading-relaxed font-medium\">\n+            {inspiration.subtitle}\n+          </p>\n+        </div>\n \n         {/* Featured Image - Enhanced with larger aspect ratio */}\n-        <div cl"
         }
       ],
-      "aiSummary": "Day with 9 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was a whirlwind of cleanup and foundational improvements for Peak Blooms. I tackled some long-standing package dependencies, finally getting NextJS upgraded to 16 and addressing a security issue, which felt like a significant weight lifted. Then I focused on solidifying the B2B focus by updating hero banners with mission-aligned messaging and adding a shipping banner, further refining the user experience for our professional clients.",
+      "keyDecisions": [
+        "Upgraded NextJS to 16 – it was time, even if it meant some churn. The performance gains and new features are definitely worth it.",
+        "Implemented a shipping banner—it was surprisingly tricky getting the placement and messaging just right to make it feel integrated, not intrusive.",
+        "Used ShadCN for the product card updates—it provided accessible components and a consistent design system, which felt like a good long-term investment."
+      ],
+      "learnings": [
+        "NextJS upgrades are always more involved than expected. It's vital to budget extra time for testing and resolving compatibility issues.",
+        "Messaging for B2B clients needs to be laser-focused on their specific needs and pain points. Generic marketing language falls flat.",
+        "ShadCN really shines when you need accessible components quickly—it's a great tool for rapid prototyping and maintaining design consistency."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "B2B Messaging Overhaul",
+          "description": "Really focused on shifting the tone throughout, emphasizing partnership and professional-grade solutions. It felt very satisfying to see the changes go live."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Component Library Adoption",
+          "description": "Sticking with ShadCN for key UI elements will be a big time saver down the road. It promotes consistency and reduces development overhead."
+        },
+        {
+          "type": "performance-insight",
+          "title": "Dependency Update Headaches",
+          "description": "Always underestimate the ripple effect of a framework upgrade. Need to factor in more time for these kinds of changes."
+        }
+      ],
       "stats": {
         "totalCommits": 9,
         "filesChanged": 93,
@@ -13259,10 +13571,34 @@
           "shortDiff": "commit e274d77d9e17610a9513807c00b02abd818a86f9\nAuthor: Phineas Kibbey <phineas.kibbey@gmail.com>\nDate:   Fri Dec 5 17:17:01 2025 +0000\n\n    Add quantity selector to product card\n    \n    Add metrics for admin page and track seed queries\n\ndiff --git a/.vscode/mcp.json b/.vscode/mcp.json\nindex 61fd879..dff5b99 100644\n--- a/.vscode/mcp.json\n+++ b/.vscode/mcp.json\n@@ -15,7 +15,8 @@\n     },\n     \"Prisma-Local\": {\n       \"command\": \"npx\",\n-      \"args\": [\"-y\", \"prisma\", \"mcp\"]\n+      \"args\": [\"-y\", \"prisma\", \"mcp\"],\n+      \"envFile\": \"${workspaceFolder}/.env.local\"\n     },\n     \"Vercel\": {\n       \"url\": \"https://mcp.vercel.com\",\ndiff --git a/prisma/schema.prisma b/prisma/schema.prisma\nindex 5f8427b..a35f613 100644\n--- a/prisma/schema.prisma\n+++ b/prisma/schema.prisma\n@@ -281,12 +281,29 @@ model HeroBanner {\n   @@index([slotPosition])\n }\n \n+model Metric {\n+  id        String      @id @default(cuid())\n+  type      MetricType\n+  name      String\n+  duration  Float\n+  createdAt DateTime    @default(now())\n+\n+  @@index([type])\n+  @@index([createdAt])\n+}\n+\n enum Role {\n   CUSTOMER\n   ADMIN\n   NEWSLETTER_SUBSCRIBER\n }\n \n+enum MetricType {\n+  SEED\n+  QUERY\n+  FETCH\n+}\n+\n enum OrderStatus {\n   PENDING\n   CONFIRMED\ndiff --git a/prisma/seed.ts b/prisma/seed.ts\nindex a7a1add..b7472df 100644\n--- a/prisma/seed.ts\n+++ b/prisma/seed.ts\n@@ -2,6 +2,7 @@ import * as fs from \"node:fs\"\n import * as path from \"node:path\"\n import { PrismaPg } from \"@prisma/adapter-pg\"\n import { Pool } from \"pg\"\n+import { MetricType } from \"@/lib/types/metrics\"\n import {\n   type HeroBackgroundType,\n   type Prisma,\n@@ -20,6 +21,27 @@ const pool = new Pool({ connectionString })\n const adapter = new PrismaPg(pool)\n const prisma = new PrismaClient({ adapter })\n \n+// Helper function to post metrics to the API\n+async function captureMetric(type: MetricType, name: string, duration: number): Promise<void> {\n+  try {\n+    // Use localhost:3000 for local development\n+    const response = await fetch(\"http://localhost:300"
         }
       ],
-      "aiSummary": "Day with 2 commits. See individual commits for details.",
-      "keyDecisions": [],
-      "learnings": [],
-      "architecturalCallouts": [],
+      "aiSummary": "Today was about getting Peak Blooms a bit more robust and developer-friendly. Adding a local Postgres database with pgAdmin makes development *so* much easier, and I finally got that quantity selector on the product cards working—a small win with a big impact for users.  This felt like laying some really solid foundations – things are actually starting to feel manageable now, which is a great feeling after the initial sprint!",
+      "keyDecisions": [
+        "Choosing Postgres with pgAdmin over a simpler SQLite setup – felt like future-proofing would be worth the little extra config now.",
+        "Using ShadCN for the quantity selector – their accessibility focus and rapid prototyping capabilities were a lifesaver.",
+        "Documenting database usage with metrics - tracking seed queries and other API calls will be crucial for identifying optimization opportunities."
+      ],
+      "learnings": [
+        "The `pg_isready` healthcheck in docker-compose is a lifesaver.  I'm never going back to manual checks!",
+        "Prisma’s `mcp` command now requires an `.env.local` file which I didn't realize initially; got a bit stuck debugging that.",
+        "The performance of these queries quickly became apparent - time to start thinking about caching and query optimization."
+      ],
+      "architecturalCallouts": [
+        {
+          "type": "design-decision",
+          "title": "Local Database with Docker Compose",
+          "description": "Dockerizing Postgres and pgAdmin provides a consistent development environment across my machine, improving collaboration and reducing 'it works on my computer' issues."
+        },
+        {
+          "type": "pattern-used",
+          "title": "Metric Tracking with API calls",
+          "description": "Implementing a simple metric tracking system (even if it’s just logging to a local API) gives invaluable feedback on query performance and guides future optimizations.  It’s about finding those slow seeds!"
+        },
+        {
+          "type": "learning",
+          "title": "Prisma mcp and .env.local",
+          "description": "A seemingly small detail, but having to remember that Prisma mcp needs an `.env.local` file when using Docker can easily trip you up – gotta document that!"
+        }
+      ],
       "stats": {
         "totalCommits": 2,
         "filesChanged": 22,

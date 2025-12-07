@@ -2,38 +2,21 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import { format, parse } from 'date-fns';
 import { loadStoredCommits } from '../lib/load-commits';
-import { analyzeCommitDay } from '../lib/ai-gemma';
+import { analyzeCommitDay } from '../lib/ai-structured';
 import { type PromptVersion } from '../lib/ai-shared';
 import type { BlogData, DayPost } from '../lib/types';
 
-// Load environment variables from .env.local
-async function loadEnv() {
-  const envPath = path.join(process.cwd(), '.env.local');
-  try {
-    const envContent = await fs.readFile(envPath, 'utf-8');
-    envContent.split('\n').forEach((line) => {
-      const trimmed = line.trim();
-      if (trimmed && !trimmed.startsWith('#')) {
-        const [key, ...valueParts] = trimmed.split('=');
-        let value = valueParts.join('=').trim();
-        // Remove surrounding quotes if present
-        if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith("'") && value.endsWith("'"))) {
-          value = value.slice(1, -1);
-        }
-        if (key && value) {
-          process.env[key] = value;
-        }
-      }
-    });
-  } catch {
-    // .env.local not found, continue with environment variables
-  }
-}
-
-async function processBlogData(testMode = false, promptVersion: PromptVersion = 'v1') {
+async function processBlogData(
+  modelId: string,
+  modelName: string,
+  outputDir: string,
+  testMode = false,
+  promptVersion: PromptVersion = 'v1'
+) {
   try {
     const modeLabel = testMode ? '(TEST MODE)' : '';
-    console.log(`Starting blog data generation (Gemma)... ${modeLabel}\n`);
+    console.log(`Starting blog data generation (${modelName}) - Structured Output... ${modeLabel}\n`);
+    console.log(`Using model: ${modelId}`);
     console.log(`Using prompt version: ${promptVersion}\n`);
 
     if (testMode) {
@@ -71,7 +54,7 @@ async function processBlogData(testMode = false, promptVersion: PromptVersion = 
       const commits = groupedCommits.get(dateStr)!;
       console.log(`Processing ${dateStr} (${commits.length} commits)...`);
 
-      const analysis = await analyzeCommitDay(commits, dateStr, promptVersion);
+      const analysis = await analyzeCommitDay(modelId, commits, dateStr, promptVersion);
 
       // Calculate stats
       const stats = commits.reduce(
@@ -111,11 +94,11 @@ async function processBlogData(testMode = false, promptVersion: PromptVersion = 
     };
 
     // Step 4: Write to versioned directory structure
-    const outputPath = path.join(process.cwd(), 'public', 'blog-data', 'gemma', `${promptVersion}.json`);
+    const outputPath = path.join(process.cwd(), 'public', 'blog-data', outputDir, `${promptVersion}.json`);
     await fs.mkdir(path.dirname(outputPath), { recursive: true });
     await fs.writeFile(outputPath, JSON.stringify(blogData, null, 2), 'utf-8');
 
-    console.log(`\n✅ Blog data generated successfully!`);
+    console.log(`\n✅ Blog data generated successfully (${modelName})!`);
     console.log(`   Output: ${outputPath}`);
     console.log(`   Days processed: ${days.length}`);
     console.log(`   Total commits: ${days.reduce((acc, d) => acc + d.stats.totalCommits, 0)}`);
@@ -135,15 +118,35 @@ async function processBlogData(testMode = false, promptVersion: PromptVersion = 
 }
 
 (async () => {
-  await loadEnv();
   const testMode = process.argv.includes('--test');
+  const modelIdArg = process.argv.find(arg => arg.startsWith('--model='))?.split('=')[1];
+  const modelNameArg = process.argv.find(arg => arg.startsWith('--name='))?.split('=')[1];
+  const outputDirArg = process.argv.find(arg => arg.startsWith('--output='))?.split('=')[1];
   const promptVersionArg = process.argv.find(arg => arg.startsWith('--version='))?.split('=')[1];
   const promptVersion = (promptVersionArg || 'v1') as PromptVersion;
+
+  if (!modelIdArg) {
+    console.error('Error: --model argument is required');
+    console.error('Usage: tsx process-blog-data-structured.ts --model=<model_id> --name=<model_name> --output=<output_dir> [--version=v1|v2|v3] [--test]');
+    process.exit(1);
+  }
+
+  if (!modelNameArg) {
+    console.error('Error: --name argument is required');
+    console.error('Usage: tsx process-blog-data-structured.ts --model=<model_id> --name=<model_name> --output=<output_dir> [--version=v1|v2|v3] [--test]');
+    process.exit(1);
+  }
+
+  if (!outputDirArg) {
+    console.error('Error: --output argument is required');
+    console.error('Usage: tsx process-blog-data-structured.ts --model=<model_id> --name=<model_name> --output=<output_dir> [--version=v1|v2|v3] [--test]');
+    process.exit(1);
+  }
 
   if (!['v1', 'v2', 'v3'].includes(promptVersion)) {
     console.error(`Invalid prompt version: ${promptVersion}. Must be one of: v1, v2, v3`);
     process.exit(1);
   }
 
-  await processBlogData(testMode, promptVersion);
+  await processBlogData(modelIdArg, modelNameArg, outputDirArg, testMode, promptVersion);
 })();
