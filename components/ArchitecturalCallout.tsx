@@ -35,14 +35,14 @@ export function ArchitecturalCalloutComponent({
   const style = typeStyles[callout.type] || typeStyles.learning;
 
   return (
-    <div className={`my-4 rounded border-l-4 p-4 ${style.bg} ${style.border}`}>
-      <div className="flex items-start gap-3">
+    <div className={`rounded border-l-3 p-5 ${style.bg} ${style.border}`}>
+      <div className="flex items-start gap-2">
         <span className="text-xl">{style.icon}</span>
         <div className="flex-1">
-          <h4 className="font-semibold text-sm text-gray-900 dark:text-gray-50">
+          <h4 className="font-semibold text-base text-gray-900 dark:text-gray-50 mb-2">
             {callout.title}
           </h4>
-          <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
+          <p className="text-base text-gray-700 dark:text-gray-300 mt-1">
             {callout.description}
           </p>
         </div>

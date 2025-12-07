@@ -177,9 +177,9 @@
       ],
       "aiSummary": "Today was really exciting—we got the foundation for a reusable UI component library laid out. Moving Peak Blooms away from completely bespoke components was a priority, and getting the `Button` component up and running with Radix UI and class-variance-authority feels like a huge step towards that. It's always rewarding when you see the initial code translate into something tangible and usable, even at this early stage.",
       "keyDecisions": [
-        "Choosing ShadCN UI for rapid component development—the accessibility and theming options are really appealing.",
-        "Leveraging `class-variance-authority` to manage Tailwind variants elegantly. It's a game-changer for component styling.",
-        "Opting for Radix UI Slot to ensure maximum flexibility and future-proofing of the button component."
+        "Choose ShadCN UI for rapid component development",
+        "Improve component styling with Tailwind classes",
+        "Opt for Radix UI Slot to future-proof the button component"
       ],
       "learnings": [
         "I underestimated how much boilerplate is involved in setting up a fully configured ShadCN project.  There are *a lot* of configuration files!",
