@@ -20,11 +20,7 @@ interface PageProps {
 export default async function Page({ params, searchParams }: PageProps) {
   const { date } = await params
   const version = (await searchParams)?.version ?? 'v2'
-  console.log('version: ', version);
-  const model = (await searchParams)?.model ?? 'gemma-3'
-  console.log('model: ', model);
-
-
+  const model = (await searchParams)?.model ?? 'gemma-3n'
 
   const filePath = path.join(process.cwd(), 'public', 'blog-data', model, `${version}.json`)
   let raw: string
@@ -58,15 +54,11 @@ export default async function Page({ params, searchParams }: PageProps) {
         </div>
       </header>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_18rem] gap-8">
-        <main className="min-w-0">
-          <article>
-            <DayPost day={day!} />
-          </article>
-        </main>
-
-        <CommitSidebar commits={day!.commits} />
-      </div>
+      <main className="min-w-0">
+        <article>
+          <DayPost day={day!} />
+        </article>
+      </main>
     </div>
   )
 }

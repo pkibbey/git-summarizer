@@ -6,6 +6,7 @@ import { DailySummary } from './DailySummary';
 import KeyDecisions from './KeyDecisions';
 import { InsightsAndLearnings } from './InsightsAndLearnings';
 import { useState } from 'react';
+import CommitSidebar from './CommitSidebar';
 
 interface DayPostProps {
   day: DayPost;
@@ -16,22 +17,15 @@ export function DayPost({ day }: DayPostProps) {
   // on wider screens a dedicated sticky right sidebar will display commits
   const [showMobileCommits, setShowMobileCommits] = useState(false);
 
-  // Combine architectural insights and learnings into a single array
-  const allInsights = [
-    ...day.architecturalCallouts.map((callout) => ({
-      title: callout.title,
-      description: callout.description,
-      type: callout.type as 'design-decision' | 'pattern-used' | 'performance-insight' | 'learning',
-    })),
-    ...day.learnings.map((learning) => ({
-      title: 'Learning',
-      description: learning,
-      type: 'learning' as const,
-    })),
-  ];
+  // Combine architectural insights into a single array
+  const allInsights = day.architecturalCallouts.map((callout) => ({
+    title: callout.title,
+    description: callout.description,
+    type: callout.type as 'design-decision' | 'pattern-used' | 'performance-insight' | 'learning',
+  }));
 
   return (
-    <div id={`day-${day.date}`} className="mb-12 pb-12 border-b border-gray-200 dark:border-gray-800 last:border-b-0">
+    <div id={`day-${day.date}`} className="max-w-3xl mb-12 pb-12 border-b border-gray-200 dark:border-gray-800 last:border-b-0">
       <DailySummary text={day.aiSummary} />
 
       <KeyDecisions decisions={day.keyDecisions} />
@@ -63,6 +57,7 @@ export function DayPost({ day }: DayPostProps) {
           <p className="text-xs text-gray-500 dark:text-gray-400">On larger screens, commits are shown in a sticky right-hand panel.</p>
         )}
       </div>
+      <CommitSidebar commits={day!.commits} />
     </div>
   );
 }

@@ -30,7 +30,6 @@ export interface DayPost {
   commits: Commit[];
   aiSummary: string;
   keyDecisions: string[];
-  learnings: string[];
   architecturalCallouts: ArchitecturalCallout[];
   stats: {
     totalCommits: number;

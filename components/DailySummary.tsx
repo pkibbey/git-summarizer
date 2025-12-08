@@ -13,7 +13,7 @@ export function DailySummary({
   className = '',
 }: DailySummaryProps) {
   return (
-    <p className={`text-lg text-gray-600 dark:text-gray-400 max-w-3xl mb-12 pl-6 border-l-2 border-primary ${className}`}>
+    <p className={`font-script text-gray-700 text-2xl dark:text-gray-300 mb-12 leading-snug ${className}`}>
       {text}
     </p>
   );

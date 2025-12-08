@@ -4,10 +4,9 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // Keep these simple and aligned with the user's request:
-// models: gemma-3 | gemma-3n | ministral
+// models: gemma-3n | ministral
 // versions: v1 | v2 | v3
 const MODELS = [
-  { id: "gemma-3", label: "gemma-3" },
   { id: "gemma-3n", label: "gemma-3n" },
   { id: "ministral", label: "ministral" },
 ];

@@ -5,7 +5,6 @@ import type { Commit } from './types';
 export const analysisResultSchema = z.object({
   summary: z.string().describe('A 2-3 sentence summary of the day\'s work'),
   keyDecisions: z.array(z.string()).describe('Key decisions made during the day'),
-  learnings: z.array(z.string()).describe('Important learnings from the day'),
   architecturalCallouts: z.array(
     z.object({
       type: z.enum(['design-decision', 'pattern-used', 'performance-insight', 'learning']),
@@ -40,7 +39,6 @@ Please provide a comprehensive analysis in the following JSON format:
 {
   "summary": "A 2-3 sentence summary of the day's work and its significance to the project",
   "keyDecisions": ["Decision 1", "Decision 2", "Decision 3"],
-  "learnings": ["Learning 1", "Learning 2", "Learning 3"],
   "architecturalCallouts": [
     {
       "type": "design-decision|pattern-used|performance-insight|learning",
@@ -54,10 +52,14 @@ Focus on:
 1. How decisions demonstrate user-centric design and deep thinking
 2. What architectural patterns or principles are being applied
 3. Performance considerations and optimization choices
-4. Learning moments that show problem-solving ability
+4. Problem-solving insights and technical learnings
 5. How the code demonstrates software quality principles
 
-Be specific and insightful - this is a portfolio demonstration of engineering excellence.`,
+Writing guidelines:
+- Use short, clear sentences (one idea per sentence)
+- Do not use em-dashes. Use commas or break into separate sentences instead
+- Be specific and insightful - this is a portfolio demonstration of engineering excellence
+- Example good style: "Choosing Prisma as the database allowed me to benefit from type safety" instead of "Choosing Prisma felt like the right call for type-safe ORM; it's already simplifying database interactions"`,
   },
   v2: {
     name: 'Refined Prompt (v2)',
@@ -73,7 +75,6 @@ Please provide your analysis in this JSON format:
 {
   "summary": "What you accomplished today in 2-3 sentences. Make it personal—what did this day mean for the project?",
   "keyDecisions": ["Decision 1", "Decision 2", "Decision 3"],
-  "learnings": ["Learning 1", "Learning 2", "Learning 3"],
   "architecturalCallouts": [
     {
       "type": "design-decision|pattern-used|performance-insight|learning",
@@ -84,12 +85,12 @@ Please provide your analysis in this JSON format:
 }
 
 Write like you're explaining this to a smart friend:
-1. **Key Decisions** - Why did you choose this approach? Keep it short and human. ("I went with ShadCN for accessible components—saves us time and headaches" instead of technical jargon)
-2. **Learnings** - What surprised you? What did you figure out?
-3. **Callouts** - Highlight smart choices, patterns you noticed, or things you're proud of
-4. **Keep it punchy** - Use short sentences. Avoid walls of text. Think "conversational blog post," not technical documentation
+1. **Key Decisions** - Why did you choose this approach? Keep it short and human. Example: "I used ShadCN for accessible components. This saves us time and reduces headaches."
+2. **Callouts** - Highlight smart choices, patterns you noticed, or things you're proud of
+3. **Keep it punchy** - Use short sentences. Avoid walls of text. Think "conversational blog post," not technical documentation
+4. **No em-dashes** - Use commas or split into separate sentences instead
 
-Be specific, be honest, and let your expertise show naturally through your choices—not through complex language.`,
+Be specific, be honest, and let your expertise show naturally through your choices, not through complex language.`,
   },
   v3: {
     name: 'Latest Prompt (v3)',
@@ -105,7 +106,6 @@ Gimme your take in this format:
 {
   "summary": "What happened today? Keep it real—did you ship something cool? Hit a wall then break through? Just tell it straight in 2-3 sentences.",
   "keyDecisions": ["Decision 1", "Decision 2", "Decision 3"],
-  "learnings": ["Learning 1", "Learning 2", "Learning 3"],
   "architecturalCallouts": [
     {
       "type": "design-decision|pattern-used|performance-insight|learning",
@@ -116,11 +116,12 @@ Gimme your take in this format:
 }
 
 Rules:
-1. **Keep it snappy** - Short, punchy sentences. No fluff. If it takes more than one line to explain, you're overthinking it.
-2. **Have fun with it** - Humor is allowed. Sarcasm is allowed. ("Turned out precompiling routes saves a ton of headaches" is better than any technical explanation)
+1. **Keep it snappy** - Short, punchy sentences. One idea per sentence. No fluff.
+2. **Have fun with it** - Humor is allowed. Sarcasm is allowed. Example: "Precompiling routes saves a ton of headaches. The code is cleaner and faster."
 3. **Be real** - What actually surprised you? What made you go "aha"? That's the stuff people want to hear.
-4. **Skip the jargon** - Would you use that word explaining this to a friend over coffee? If not, say it differently.
-5. **Celebrate the wins** - Shipping is hard. Call out what worked, what you're proud of, what just clicked.
+4. **No em-dashes** - Use commas or split ideas into separate sentences. Avoid dashes that join clauses.
+5. **Skip the jargon** - Would you use that word explaining this to a friend over coffee? If not, say it differently.
+6. **Celebrate the wins** - Shipping is hard. Call out what worked, what you're proud of, what just clicked.
 
 Make it readable. Make it honest. Make it memorable.`,
   },

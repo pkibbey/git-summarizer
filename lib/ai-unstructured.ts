@@ -82,7 +82,6 @@ export async function analyzeCommitDay(
     return {
       summary: `Day with ${commits.length} commits. See individual commits for details.`,
       keyDecisions: [],
-      learnings: [],
       architecturalCallouts: [],
     };
   }

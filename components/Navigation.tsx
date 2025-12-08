@@ -1,7 +1,7 @@
 "use client"
 
 import { useMemo } from "react"
-import { useParams, useRouter } from "next/navigation"
+import { useParams, useRouter, useSearchParams } from "next/navigation"
 import { BlogData } from "@/lib/types"
 import { MiniCalendar, MiniCalendarDays, MiniCalendarDay } from "./kibo-ui/mini-calendar"
 import { parse } from "date-fns"
@@ -16,6 +16,7 @@ export default function Navigation({
   blogData: BlogData
 }) {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { date } = useParams();
 
   const startDate = useMemo(() => convertStringToDate(blogData.days[0].date),
@@ -29,7 +30,10 @@ export default function Navigation({
 
   function handleDateChange(date?: Date | Date[]) {
     if (!date || Array.isArray(date)) return
-    router.push(`/post/${date.toISOString().slice(0, 10)}`)
+    const newDate = date.toISOString().slice(0, 10)
+    const queryString = searchParams?.toString()
+    const url = queryString ? `/post/${newDate}?${queryString}` : `/post/${newDate}`
+    router.push(url)
   }
 
   // use route `date` param as the initial selected date when present
