@@ -5,16 +5,26 @@ import { notFound } from 'next/navigation'
 import type { DayPost as DayPostType } from '@/lib/types'
 import { parseISO, format } from 'date-fns'
 import { DayPost } from '@/components/DayPost'
-import { DailySummary } from '@/components/DailySummary'
+import CommitSidebar from '@/components/CommitSidebar'
 
 interface PageProps {
-  params: { date: string }
+  params: {
+    date: string
+  }
+  searchParams: {
+    version: string
+    model?: string
+  }
 }
 
-export default async function Page({ params }: PageProps) {
-  const { date } = await params;
-  const model = 'gemma-3'
-  const version = 'v2'
+export default async function Page({ params, searchParams }: PageProps) {
+  const { date } = await params
+  const version = (await searchParams)?.version ?? 'v2'
+  console.log('version: ', version);
+  const model = (await searchParams)?.model ?? 'gemma-3'
+  console.log('model: ', model);
+
+
 
   const filePath = path.join(process.cwd(), 'public', 'blog-data', model, `${version}.json`)
   let raw: string
@@ -48,9 +58,15 @@ export default async function Page({ params }: PageProps) {
         </div>
       </header>
 
-      <article>
-        <DayPost day={day!} />
-      </article>
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_18rem] gap-8">
+        <main className="min-w-0">
+          <article>
+            <DayPost day={day!} />
+          </article>
+        </main>
+
+        <CommitSidebar commits={day!.commits} />
+      </div>
     </div>
   )
 }

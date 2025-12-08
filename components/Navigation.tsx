@@ -38,7 +38,7 @@ export default function Navigation({
     const d = Array.isArray(date) ? date[0] : date
     try {
       return convertStringToDate(d)
-    } catch (e) {
+    } catch {
       return undefined
     }
   }, [date])

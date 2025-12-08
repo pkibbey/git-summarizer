@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import blogData from '../public/blog-data/gemma-3/v2.json'
+import blogData from '../public/blog-data/gemma-3n/v2.json'
 import type { BlogData } from '@/lib/types';
 import Navigation from "@/components/Navigation";
+import VersionModelSelector from "@/components/VersionModelSelector";
 import Link from "next/link";
 
 const geistSans = Geist({
@@ -67,7 +68,8 @@ export default function RootLayout({
               </div>
             </Link>
 
-            <div className="ml-auto">
+            <div className="ml-auto flex items-center gap-4">
+              <VersionModelSelector />
               <Navigation blogData={blogData as BlogData} />
             </div>
           </header>
