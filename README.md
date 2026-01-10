@@ -1,4 +1,4 @@
-# Peak Blooms Blog
+# Git Summarizer
 
 A lightweight blog interface that analyzes git commit history and surfaces AI-driven summaries, commit diffs, and daily insights. Visually it presents posts organized by date with commit timelines, diffs, and a compact calendar for navigation.
 
