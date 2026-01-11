@@ -1,4 +1,8 @@
-# Git Summarizer
+<p align="center">
+  <img src="./logo.png" alt="MultiCam logo" width="400" />
+</p>
+
+<h1 align="center">Git Summarizer</h1>
 
 A lightweight blog interface that analyzes git commit history and surfaces AI-driven summaries, commit diffs, and daily insights. Visually it presents posts organized by date with commit timelines, diffs, and a compact calendar for navigation.
 
@@ -19,33 +23,6 @@ Prerequisites
 - **Environment:** `.env.local` is used by analysis scripts when present
 
 Installation & Development
-1. Clone the repo
-
-```bash
-# Peak Blooms Blog
-
-A lightweight blog interface that analyzes git commit history and surfaces AI-driven summaries, commit diffs, and daily insights. Visually it presents posts organized by date with commit timelines, diffs, and a compact calendar for navigation.
-
-<!-- [Live Demo](https://...) -->
-
-## Features
-
-- **AI Analysis:** Structured and unstructured analysis pipelines that summarize commit data into readable post content.
-- **Commit-based Posts:** Posts generated from commit history with diffs and per-commit context.
-- **Daily Summaries:** Condensed view of changes and key learnings per day.
-- **Mini Calendar:** Quick navigation to posts by date via a compact calendar component.
-- **Configurable Models:** Scripts support switching models and outputs for different analysis runs.
-
-## Getting Started
-
-### Prerequisites
-
-- **Node:** 18 or newer
-- **Package manager:** `npm` (or compatible)
-- **Environment:** `.env.local` is used by analysis scripts when present
-
-### Installation & Development
-
 1. Clone the repo
 
 ```bash
