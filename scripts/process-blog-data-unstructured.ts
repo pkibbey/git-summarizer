@@ -74,7 +74,6 @@ async function processBlogData(
         commits,
         aiSummary: analysis.summary,
         keyDecisions: analysis.keyDecisions,
-        learnings: analysis.learnings,
         architecturalCallouts: analysis.architecturalCallouts,
         stats,
       };
@@ -89,7 +88,7 @@ async function processBlogData(
     // Step 3: Create blog data structure
     const blogData: BlogData = {
       generatedAt: new Date().toISOString(),
-      sourceRepo: 'https://github.com/pkibbey/peak-blooms',
+      sourceRepo: process.env.NEXT_PUBLIC_REPO || "",
       days,
     };
 

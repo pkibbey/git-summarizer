@@ -27,7 +27,7 @@ Installation & Development
 
 ```bash
 git clone <repo-url>
-cd peak-blooms-blog
+cd git-summarizer
 npm install
 ```
 

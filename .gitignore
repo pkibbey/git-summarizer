@@ -43,5 +43,5 @@ yarn-error.log*
 next-env.d.ts
 
 # temporary repo clone
-.temp-peak-blooms-repo/
+.temp-repo/
 

@@ -3,10 +3,10 @@ import { promises as fs } from 'fs';
 import path from 'path';
 import type { Commit } from '../lib/types';
 
-const TEMP_REPO_DIR = path.join(process.cwd(), '.temp-peak-blooms-repo');
+const TEMP_REPO_DIR = path.join(process.cwd(), '.temp-repo');
 console.log('TEMP_REPO_DIR: ', TEMP_REPO_DIR);
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const REPO_URL = 'https://github.com/pkibbey/peak-blooms.git';
+const NEXT_PUBLIC_REPO = `${process.env.NEXT_PUBLIC_REPO}.git`
 
 async function cloneRepository(): Promise<SimpleGit> {
   // Clean up existing clone
@@ -20,7 +20,7 @@ async function cloneRepository(): Promise<SimpleGit> {
   await fs.mkdir(TEMP_REPO_DIR, { recursive: true });
 
   // Clone with authentication
-  const authUrl = REPO_URL.replace('https://', `https://${GITHUB_TOKEN}@`);
+  const authUrl = NEXT_PUBLIC_REPO.replace('https://', `https://${GITHUB_TOKEN}@`);
   const git = simpleGit();
   await git.clone(authUrl, TEMP_REPO_DIR);
 

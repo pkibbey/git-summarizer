@@ -10,7 +10,7 @@ interface CommitCardProps {
 
 export function CommitCard({ commit }: CommitCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const commitUrl = `https://github.com/pkibbey/peak-blooms/commit/${commit.hash}`;
+  const commitUrl = `${process.env.NEXT_PUBLIC_REPO}/commit/${commit.hash}`;
 
   const formatTime = (dateStr: string) => {
     const date = new Date(dateStr);
