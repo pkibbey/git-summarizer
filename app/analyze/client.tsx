@@ -69,6 +69,11 @@ function AnalyzePageContent() {
   >(new Map());
   const [loadingCached, setLoadingCached] = useState<Set<string>>(new Set());
   const [currentlyAnalyzing, setCurrentlyAnalyzing] = useState<string | null>(null);
+  const [visibility, setVisibility] = useState({
+    summary: true,
+    decisions: true,
+    callouts: true,
+  });
 
   // Fetch commits
   useEffect(() => {
@@ -234,17 +239,9 @@ function AnalyzePageContent() {
 
     setAnalyzing(true);
     setError(null);
-    const newResults = new Map(results);
 
     try {
       for (const modelName of Array.from(selectedModels)) {
-        const resultKey = `${selectedCommitHash}-${modelName}`;
-
-        // Skip if already analyzed
-        if (newResults.has(resultKey)) {
-          continue;
-        }
-
         const response = await fetch('/api/analyze-commit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -263,8 +260,10 @@ function AnalyzePageContent() {
             data.error || `Failed to analyze with ${modelName}`
           );
         }
+        
+        const resultKey = `${selectedCommitHash}-${modelName}`;
 
-        newResults.set(resultKey, {
+        setResults(results => new Map(results).set(resultKey, {
           modelName,
           summary: data.result.aiSummary,
           decisions: data.result.keyDecisions,
@@ -273,10 +272,9 @@ function AnalyzePageContent() {
           tokens: data.result.tokens,
           estimatedCost: data.metrics?.estimatedCost,
           wasCached: data.wasCached,
-        });
+        }));
       }
 
-      setResults(newResults);
     } catch (err) {
       setError(
         err instanceof Error
@@ -502,13 +500,13 @@ function AnalyzePageContent() {
                         <div className="font-bold">{selectedCommit.stats.filesChanged}</div>
                       </div>
                       <div className="bg-slate-900 p-2 rounded">
-                        <div className="text-slate-400">+</div>
+                        <div className="text-slate-400">Lines +</div>
                         <div className="font-bold text-green-400">
                           {selectedCommit.stats.additions}
                         </div>
                       </div>
                       <div className="bg-slate-900 p-2 rounded">
-                        <div className="text-slate-400">-</div>
+                        <div className="text-slate-400">Lines -</div>
                         <div className="font-bold text-red-400">
                           {selectedCommit.stats.deletions}
                         </div>
@@ -520,6 +518,30 @@ function AnalyzePageContent() {
             )}
 
             {/* Analysis Results */}
+            <div className="mb-4">
+              <div className="bg-slate-800 rounded-lg p-3 border border-slate-700 flex items-center gap-3">
+                <div className="text-sm text-slate-300">Show:</div>
+                <button
+                  onClick={() => setVisibility((v) => ({ ...v, summary: !v.summary }))}
+                  className={`px-2 py-1 text-sm rounded ${visibility.summary ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300'}`}
+                >
+                  Summary
+                </button>
+                <button
+                  onClick={() => setVisibility((v) => ({ ...v, decisions: !v.decisions }))}
+                  className={`px-2 py-1 text-sm rounded ${visibility.decisions ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300'}`}
+                >
+                  Key Decisions
+                </button>
+                <button
+                  onClick={() => setVisibility((v) => ({ ...v, callouts: !v.callouts }))}
+                  className={`px-2 py-1 text-sm rounded ${visibility.callouts ? 'bg-blue-600 text-white' : 'bg-slate-700 text-slate-300'}`}
+                >
+                  Callouts
+                </button>
+              </div>
+            </div>
+
             <div className="space-y-4">
               {visibleResults.map(([key, result]) => (
                 <div
@@ -567,14 +589,16 @@ function AnalyzePageContent() {
                   </div>
 
                   <div className="space-y-4">
-                    <div>
-                      <h4 className="font-semibold text-sm text-slate-300 mb-2">
-                        Summary
-                      </h4>
-                      <p className="text-sm">{result.summary}</p>
-                    </div>
+                    {visibility.summary && (
+                      <div>
+                        <h4 className="font-semibold text-sm text-slate-300 mb-2">
+                          Summary
+                        </h4>
+                        <p className="text-sm">{result.summary}</p>
+                      </div>
+                    )}
 
-                    {result.decisions.length > 0 && (
+                    {visibility.decisions && result.decisions.length > 0 && (
                       <div>
                         <h4 className="font-semibold text-sm text-slate-300 mb-2">
                           Key Decisions
@@ -589,7 +613,7 @@ function AnalyzePageContent() {
                       </div>
                     )}
 
-                    {result.callouts.length > 0 && (
+                    {visibility.callouts && result.callouts.length > 0 && (
                       <div>
                         <h4 className="font-semibold text-sm text-slate-300 mb-2">
                           Architectural Callouts

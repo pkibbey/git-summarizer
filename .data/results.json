@@ -416,6 +416,452 @@
           "generatedAt": "2026-01-24T04:10:56.518Z"
         }
       }
+    },
+    "721fc534c3784841bdee51badecde9ca2e9abbf6": {
+      "Qwen/Qwen3-32B:nscale": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit introduces a comprehensive integration of GitHub Copilot CLI for repository analysis, replacing the previous document-based approach. The system now clones repositories, leverages Copilot's code-aware analysis, and provides structured insights (summary, technical observations, and actionable recommendations). Key features include temporary clone management, fallback error handling, and setup instructions for Copilot CLI. The implementation emphasizes full codebase context understanding, improved dependency/architecture analysis, and performance optimizations like shallow clones.",
+          "keyDecisions": [
+            "Adopted GitHub Copilot CLI for full codebase analysis instead of markdown-only document parsing",
+            "Used temporary directories with automatic cleanup to handle repository cloning securely",
+            "Implemented a fallback mechanism to LM Studio when Copilot CLI is unavailable or fails",
+            "Structured analysis output into standardized JSON format (summary, insights, actions)",
+            "Prioritized shallow clones (--depth 1) to reduce analysis latency for large repositories"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Modular Component Separation",
+              "description": "Created dedicated modules (repo-cloner.ts, copilot-analyzer.ts) to isolate cloning, analysis, and cleanup logic, improving maintainability and testability."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Shallow Clone Optimization",
+              "description": "Used --depth 1 cloning to minimize repository size and reduce clone times while maintaining sufficient context for analysis."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Try-Catch-Finally Workflow",
+              "description": "Wrapped analysis logic in try-catch-finally blocks to ensure repository cleanup occurs even if analysis fails."
+            },
+            {
+              "type": "design-decision",
+              "title": "Standardized Analysis Output",
+              "description": "Defined a consistent JSON response structure (summary, insights, actions) to unify output across different analysis methods (Copilot CLI vs LM Studio)."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Context-Aware Analysis",
+              "description": "Leveraged Copilot CLI's ability to analyze code structure, dependencies, and architecture patterns for richer insights compared to document-only approaches."
+            },
+            {
+              "type": "learning",
+              "title": "Token Scope Requirements",
+              "description": "Learned that GITHUB_TOKEN must include the 'repo' scope for cloning private repositories, requiring updated documentation and configuration guidance."
+            }
+          ],
+          "duration": 31935,
+          "tokens": {
+            "inputTokens": 2439,
+            "outputTokens": 893,
+            "totalTokens": 3332
+          },
+          "generatedAt": "2026-01-24T05:33:59.780Z"
+        }
+      },
+      "meta-llama/Llama-3.1-8B-Instruct:nscale": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "default",
+          "aiSummary": "A comprehensive summary of the commit: The commit introduces GitHub Copilot CLI integration, allowing for AI-powered repository analysis. The new integration uses Copilot to analyze the entire codebase, including code structure, dependencies, and architecture patterns. This provides a more comprehensive understanding of the project, enabling users to make informed decisions about improvements. The system has been updated to support shallow clones, authentication via GitHub token, and caching to improve performance.",
+          "keyDecisions": [
+            "Decided to use GitHub Copilot CLI for AI-powered repository analysis",
+            "Implemented shallow clones to improve performance",
+            "Updated API endpoint to use Copilot CLI instead of LM Studio",
+            "Added fallback mechanism for Copilot CLI errors"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Design Decision: Use of GitHub Copilot CLI",
+              "description": "The commit introduces the use of GitHub Copilot CLI for repository analysis, providing a more comprehensive understanding of the project."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Pattern-Used: Shallow Clones",
+              "description": "The system uses shallow clones to improve performance and reduce analysis time."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Performance Insight: Using shallow clones",
+              "description": "The use of shallow clones reduces the time required for repository analysis, making the system more responsive."
+            },
+            {
+              "type": "learning",
+              "title": "Learning: Error Handling and Fallback Mechanism",
+              "description": "The commit highlights the importance of error handling and fallback mechanisms in ensuring a smooth user experience, even in the presence of errors."
+            },
+            {
+              "type": "design-decision",
+              "title": "Design Decision: Caching",
+              "description": "The system is designed to store Copilot analysis results, reducing the need for re-cloning on every request and improving performance."
+            }
+          ],
+          "duration": 7587,
+          "tokens": {
+            "inputTokens": 2411,
+            "outputTokens": 462,
+            "totalTokens": 2873
+          },
+          "generatedAt": "2026-01-24T05:34:07.401Z"
+        }
+      },
+      "openai/gpt-oss-120b:novita": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "default",
+          "aiSummary": "The commit introduces a new local AI analysis pipeline that replaces the previous LM Studio document‑based approach with GitHub Copilot CLI. New utilities were added to clone repositories shallowly into temporary directories, invoke Copilot for full‑codebase analysis, parse its JSON output, and clean up afterwards. The API route handling repository data was updated to orchestrate this workflow, and extensive documentation and a verification script were added. The changes improve analysis depth, provide richer insights, and include robust error handling with a fallback mechanism.",
+          "keyDecisions": [
+            "Switch repository analysis from LM Studio markdown parsing to GitHub Copilot CLI for full codebase insight.",
+            "Implement shallow cloning (--depth 1) to minimize I/O and speed up analysis.",
+            "Introduce a dedicated repo‑cloner module to handle cloning and cleanup, ensuring resources are released even on failure.",
+            "Encapsulate Copilot interactions in a copilot‑analyzer module, abstracting CLI details from the API layer.",
+            "Provide a fallback response when Copilot CLI is unavailable, preserving API contract.",
+            "Add environment variable configuration (GITHUB_TOKEN, AI_MODEL, LM_STUDIO_URL) and a verification script to ensure required tools are installed and authenticated."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Full‑Repository AI Analysis via Copilot CLI",
+              "description": "The system now clones the entire repository and passes it to the GitHub Copilot CLI, allowing analysis of code structure, dependencies, and architecture rather than just markdown files."
+            },
+            {
+              "type": "design-decision",
+              "title": "Separation of Concerns with Repo‑Cloner Service",
+              "description": "A new `src/lib/repo-cloner.ts` module centralizes cloning, shallow clone options, authentication handling, and cleanup, making the workflow reusable and testable."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Adapter/Facade Pattern for AI Engine",
+              "description": "`src/lib/copilot-analyzer.ts` acts as an adapter that translates the Copilot CLI's output into the internal `RepoAnalysis` format, isolating the rest of the codebase from CLI specifics."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Try‑Finally Cleanup Pattern",
+              "description": "The API route wraps the clone‑analyze sequence in a `try...finally` block to guarantee that temporary directories are removed even if analysis throws an error."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Shallow Clone for Faster Execution",
+              "description": "Using `git clone --depth 1` reduces network transfer and disk usage, cutting typical clone times to a few seconds and keeping analysis latency within 10‑30 seconds for larger projects."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Resource Hygiene via Automatic Cleanup",
+              "description": "Ensuring temporary repository directories are deleted prevents disk bloat on the server, maintaining long‑term performance and stability."
+            },
+            {
+              "type": "learning",
+              "title": "Importance of GitHub Token Scope",
+              "description": "The integration highlighted that the `GITHUB_TOKEN` must include the `repo` scope to clone private repositories, a detail now documented in setup guides."
+            },
+            {
+              "type": "learning",
+              "title": "Fallback Strategy to Preserve API Contract",
+              "description": "Implementing a structured fallback JSON response when Copilot CLI fails taught the value of graceful degradation, ensuring client applications continue to receive predictable data."
+            }
+          ],
+          "duration": 7875,
+          "tokens": {
+            "inputTokens": 2475,
+            "outputTokens": 1071,
+            "totalTokens": 3546
+          },
+          "generatedAt": "2026-01-24T05:34:15.315Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit introduces support for GitHub Copilot CLI integration, enabling AI-powered repository analysis. The project now clones repositories, leverages Copilot for comprehensive insights, and ensures cleanup of temporary clones. Key features include setup documentation, new library functions, API route updates, and a fallback mechanism.",
+          "keyDecisions": [
+            "Decided to integrate GitHub Copilot CLI for repository analysis, replacing previous document-based approach.",
+            "Implemented shallow cloning for performance and cleanup efficiency.",
+            "Designed fallback mechanisms for authentication and error handling.",
+            "Decided to use dependency injection for logging and configuration management."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Switch to Copilot CLI Integration",
+              "description": "The project now uses GitHub Copilot CLI for AI analysis, which involves cloning repositories, running Copilot commands, and ensuring cleanup. This replaces the previous method of analyzing only markdown documents."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Singleton Pattern",
+              "description": "The `RepoAnalyzer` class uses the singleton pattern to ensure there is only one instance handling analysis, improving performance and reducing resource usage."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Shallow Cloning for Efficiency",
+              "description": "The implementation uses shallow clones (via `--depth 1`) to minimize disk usage and reduce analysis time, enhancing overall performance."
+            },
+            {
+              "type": "learning",
+              "title": "Authentication and Token Handling",
+              "description": "The system requires a GitHub token with repo scope for cloning private repositories, emphasizing the importance of proper authentication setup."
+            }
+          ],
+          "duration": 13733,
+          "tokens": {
+            "inputTokens": 2381,
+            "outputTokens": 868,
+            "totalTokens": 3249
+          },
+          "generatedAt": "2026-01-24T05:34:29.086Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai",
+          "promptId": "default",
+          "aiSummary": "Commit 721fc53: Add local AI analysis",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 18314,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-24T05:34:47.438Z"
+        }
+      }
+    },
+    "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a": {
+      "meta-llama/Llama-3.1-8B-Instruct:nscale": {
+        "default": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit adds project statistics, updates dependencies, and introduces several new components from the Radix UI library. It appears to be a significant step in enhancing the project's performance and user experience.",
+          "keyDecisions": [
+            "Decided to use Radix UI library for improved performance and user experience",
+            "Updated dependencies to latest versions for better compatibility and security"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Radix UI Library Integration",
+              "description": "The project has decided to integrate the Radix UI library to improve performance and user experience. This decision is expected to have a significant impact on the project's overall architecture and development pace."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Dependency Management",
+              "description": "The project has adopted a standardized approach to dependency management, updating dependencies to their latest versions and using peer dependencies to ensure compatibility and security."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Radix UI Library Performance Benefits",
+              "description": "The integration of the Radix UI library is expected to provide significant performance benefits, including improved rendering and animation performance, as well as enhanced accessibility features."
+            },
+            {
+              "type": "learning",
+              "title": "React Version Upgrade",
+              "description": "The project has upgraded from React 19.1.0 to 19.2.0, which may require adjustments to existing code and may introduce new features and performance improvements."
+            }
+          ],
+          "duration": 6229,
+          "tokens": {
+            "inputTokens": 3377,
+            "outputTokens": 336,
+            "totalTokens": 3713
+          },
+          "generatedAt": "2026-01-24T06:31:33.385Z"
+        }
+      },
+      "Qwen/Qwen3-32B:nscale": {
+        "default": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit introduces significant updates to project dependencies and adds Radix UI components for enhanced interactivity. Key changes include upgrading React to v19.2.0, integrating @radix-ui/react-toggle-group for UI controls, and updating dev tools like ESLint and TypeScript. The addition of Radix UI primitives (collection, context, roving focus) suggests implementing complex component patterns requiring accessibility and composition. Overall, the focus was on modernizing the tech stack while laying groundwork for reusable, accessible UI patterns.",
+          "keyDecisions": [
+            "Adopted Radix UI's toggle-group component for enhanced UI controls",
+            "Upgraded React and React DOM to version 19.2.0 for new features and performance improvements",
+            "Standardized development tools with updated ESLint, Tailwind, and TypeScript versions",
+            "Integrated Radix UI's foundational primitives for building composable components"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Radix UI Integration Strategy",
+              "description": "Chose Radix UI's composable components over custom solutions to improve accessibility and maintainability in toggle interactions"
+            },
+            {
+              "type": "pattern-used",
+              "title": "Composable Refs Pattern",
+              "description": "Implemented @radix-ui/react-compose-refs to safely combine multiple ref handlers in component patterns"
+            },
+            {
+              "type": "performance-insight",
+              "title": "Primitive Optimization",
+              "description": "Used Radix's low-level primitives (react-primitive) to reduce unnecessary re-renders in UI components"
+            },
+            {
+              "type": "learning",
+              "title": "Dependency Version Management",
+              "description": "Confirmed importance of keeping dependencies aligned with peerDependencies to avoid compatibility issues during major upgrades"
+            }
+          ],
+          "duration": 26475,
+          "tokens": {
+            "inputTokens": 3500,
+            "outputTokens": 727,
+            "totalTokens": 4227
+          },
+          "generatedAt": "2026-01-24T06:31:59.905Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale": {
+        "default": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit adds project statistics functionality and updates various dependencies. It includes updates to React, TypeScript, Tailwind CSS, and adds new Radix UI components. The changes improve development tools and user interface elements.",
+          "keyDecisions": [
+            "Bumped React and related dependencies to version 19.2.0 for improved functionality and performance.",
+            "Added Radix UI components and related libraries for enhanced UI development."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Dependency Version Update",
+              "description": "Updated React, TypeScript, and Tailwind CSS versions to leverage new features and performance improvements."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Radix UI Integration",
+              "description": "Integrated Radix UI components for modern and reusable user interface elements."
+            },
+            {
+              "type": "learning",
+              "title": "Versioning and Dependency Management",
+              "description": "Learned best practices for versioning dependencies and maintaining development tools."
+            }
+          ],
+          "duration": 10092,
+          "tokens": {
+            "inputTokens": 3347,
+            "outputTokens": 590,
+            "totalTokens": 3937
+          },
+          "generatedAt": "2026-01-24T06:32:10.043Z"
+        }
+      },
+      "openai/gpt-oss-120b:novita": {
+        "default": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "default",
+          "aiSummary": "The commit introduces a new \"project stats\" feature and brings in the Radix UI component library, notably @radix-ui/react-toggle-group, to support the UI for this feature. It also upgrades the core React version to 19.2.0 and bumps several related dependencies and dev tools (ESLint, Tailwind, TypeScript, @types packages) to their latest releases. The extensive changes in package-lock.json reflect the addition of multiple Radix UI primitives and utilities, preparing the codebase for accessible, composable UI components needed by the stats view.",
+          "keyDecisions": [
+            "Add a project statistics feature to the application.",
+            "Adopt Radix UI components (toggle group and related primitives) for accessible UI.",
+            "Upgrade React and React‑DOM to version 19.2.0.",
+            "Update dev dependencies (ESLint, Tailwind, TypeScript, @types) to newer releases."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Use Radix UI toggle group for stats UI",
+              "description": "The project now depends on @radix-ui/react-toggle-group and a suite of Radix primitives, indicating a decision to build the stats interface with accessible, composable components provided by Radix."
+            },
+            {
+              "type": "design-decision",
+              "title": "Upgrade core React version",
+              "description": "React and React‑DOM are bumped from 19.1.0 to 19.2.0, aligning the app with the latest React features and performance improvements."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Component composition via Radix primitives",
+              "description": "The added Radix packages (react-collection, react-compose-refs, react-context, etc.) enable a pattern of low‑level primitive composition, promoting reusability and consistent accessibility across UI components."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Potential bundle size impact from Radix UI",
+              "description": "Introducing many Radix UI packages will increase the JavaScript bundle size; developers should monitor load performance and consider tree‑shaking or lazy‑loading the stats component."
+            },
+            {
+              "type": "learning",
+              "title": "Managing peer dependencies and optional type packages",
+              "description": "Radix UI packages declare peer dependencies for React and optional @types packages, highlighting the need to keep type definitions in sync and ensure compatibility across React versions."
+            },
+            {
+              "type": "learning",
+              "title": "Keeping tooling up‑to‑date",
+              "description": "Updating ESLint, Tailwind, and TypeScript versions demonstrates the importance of regularly refreshing the development toolchain to benefit from bug fixes and new language features."
+            }
+          ],
+          "duration": 16128,
+          "tokens": {
+            "inputTokens": 3372,
+            "outputTokens": 956,
+            "totalTokens": 4328
+          },
+          "generatedAt": "2026-01-24T06:32:26.223Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai": {
+        "default": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai",
+          "promptId": "default",
+          "aiSummary": "Today's work focused on implementing project statistics visualization with a polished UI component. The team added a toggle-based stats interface using Radix UI's Toggle Group, allowing users to switch between different data views. This involved upgrading React to 19.2.0 and modernizing several dev dependencies for better TypeScript support and tooling stability. The changes show a clear direction toward enhancing data visualization capabilities while maintaining strict accessibility standards through well-tested UI primitives.",
+          "keyDecisions": [
+            "Adopted Radix UI Toggle Group component for accessible stats view switching instead of building custom solution",
+            "Upgraded React to 19.2.0 to leverage latest concurrent rendering features for smoother stats UI interactions",
+            "Standardized TypeScript version across all tooling dependencies to eliminate version conflicts in type checking"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Radix UI for Accessible Toggle Implementation",
+              "description": "Chose Radix UI's Toggle Group over custom implementation to ensure WCAG-compliant keyboard navigation and focus management for stats view switching, reducing accessibility testing surface while maintaining design flexibility"
+            },
+            {
+              "type": "pattern-used",
+              "title": "Progressive Dependency Modernization",
+              "description": "Upgraded dependencies in cohesive groups (React ecosystem + TypeScript toolchain) rather than piecemeal, minimizing version conflict risks while maintaining backward compatibility through minor version updates"
+            },
+            {
+              "type": "performance-insight",
+              "title": "Selective UI Library Adoption",
+              "description": "Added only the specific Radix UI toggle component instead of full component library, keeping bundle size impact minimal (70 lines added vs 10 removed) while gaining production-tested accessibility features"
+            },
+            {
+              "type": "learning",
+              "title": "Version Range Precision in Lockfiles",
+              "description": "Observed how precise version ranges (^1.1.11) in package-lock.json prevent unexpected breaking changes during dependency updates, validating the team's strict version control policy for UI components"
+            }
+          ],
+          "duration": 13175,
+          "tokens": {
+            "inputTokens": 3502,
+            "outputTokens": 1354,
+            "totalTokens": 4856
+          },
+          "generatedAt": "2026-01-24T06:32:39.432Z"
+        }
+      }
     }
   }
 }
