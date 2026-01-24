@@ -1,0 +1,421 @@
+{
+  "https://github.com/pkibbey/projects-radar": {
+    "46cd9b3bdd2334f52d97848e031c19ff0e760080": {
+      "mistralai/Mistral-7B-Instruct-v0.2": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "mistralai/Mistral-7B-Instruct-v0.2",
+          "promptId": "default",
+          "aiSummary": "Commit 46cd9b3: Initial commit from Create Next App",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 710,
+          "generatedAt": "2026-01-24T03:23:41.138Z"
+        }
+      },
+      "meta-llama/Llama-3-70b-chat-hf": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "meta-llama/Llama-3-70b-chat-hf",
+          "promptId": "default",
+          "aiSummary": "Commit 46cd9b3: Initial commit from Create Next App",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 262,
+          "generatedAt": "2026-01-24T03:23:41.408Z"
+        }
+      },
+      "Qwen/Qwen-32B-Chat": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "Qwen/Qwen-32B-Chat",
+          "promptId": "default",
+          "aiSummary": "Commit 46cd9b3: Initial commit from Create Next App",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 261,
+          "generatedAt": "2026-01-24T03:23:41.677Z"
+        }
+      },
+      "meta-llama/Llama-3.1-8B-Instruct:nscale": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "default",
+          "aiSummary": "This is the initial commit from Create Next App, setting up a new Next.js project with TypeScript, ESLint, and Tailwind CSS. The project includes a basic README, .gitignore, and package-lock.json files, as well as a next.config.ts file for configuring the Next.js app.",
+          "keyDecisions": [
+            "Setting up a new Next.js project with TypeScript",
+            "Using ESLint for code linting and Tailwind CSS for styling",
+            "Configuring the Next.js app using the next.config.ts file"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Using a FlatCompat ESLint configuration",
+              "description": "The project uses a FlatCompat ESLint configuration, which is a lightweight and modular approach to ESLint configuration. This design decision allows for easy customization and extension of the ESLint configuration."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Using a package-lock.json file",
+              "description": "The project includes a package-lock.json file, which is used to lock down the dependencies of the project. This is a common pattern in Node.js projects to ensure reproducibility and consistency of dependencies."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Using Web Vitals for performance optimization",
+              "description": "The project includes the `next/core-web-vitals` ESLint configuration, which is used to optimize the performance of the Next.js app. This is a best practice for ensuring a fast and responsive user experience."
+            },
+            {
+              "type": "learning",
+              "title": "Setting up a new Next.js project",
+              "description": "This commit provides a starting point for learning how to set up a new Next.js project from scratch. The included files and configurations provide a solid foundation for building a Next.js app."
+            }
+          ],
+          "duration": 7486,
+          "generatedAt": "2026-01-24T03:52:17.507Z"
+        }
+      },
+      "Qwen/Qwen3-32B:nscale": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit initializes a new Next.js project using the Create Next App tooling, establishing foundational project structure, configuration files, and dependency management. Core components include standard .gitignore patterns, ESLint configuration for TypeScript and Next.js best practices, and basic project scaffolding for a React 19 + Next.js 15.5.4 application.",
+          "keyDecisions": [
+            "Adopted Next.js 15.5.4 with React 19.1.0 as the core framework",
+            "Integrated TypeScript 5 for type safety",
+            "Configured ESLint with @eslint/eslintrc and FlatCompat for configuration compatibility",
+            "Established standard .gitignore patterns for Next.js and Node.js development",
+            "Prepared Tailwind CSS 4 integration through devDependencies"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Next.js Project Scaffolding",
+              "description": "Initialized project structure using Create Next App tooling, ensuring standard directory layout and essential configuration files for optimal Next.js development workflow"
+            },
+            {
+              "type": "pattern-used",
+              "title": "FlatCompat ESLint Configuration",
+              "description": "Implemented FlatCompat to maintain compatibility with existing ESLint configuration patterns while adopting the new flat config format introduced in ESLint 9"
+            },
+            {
+              "type": "design-decision",
+              "title": "TypeScript Integration",
+              "description": "Added TypeScript 5 with corresponding type definitions for React 19 and Node.js 20, establishing type safety as a core development practice"
+            },
+            {
+              "type": "performance-insight",
+              "title": "Core Web Vitals Configuration",
+              "description": "Pre-configured ESLint to enforce Next.js core web vitals best practices through the 'next/core-web-vitals' configuration preset"
+            }
+          ],
+          "duration": 31093,
+          "tokens": {
+            "inputTokens": 3370,
+            "outputTokens": 872,
+            "totalTokens": 4242
+          },
+          "generatedAt": "2026-01-24T04:56:59.291Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit initializes a new Next.js project, setting up the basic project structure, configuration files, and dependencies. It includes the creation of a .gitignore file, a README.md file with project documentation, an ESLint configuration, a Next.js configuration file, and the package-lock.json with initial dependencies.",
+          "keyDecisions": [
+            "Choosing Next.js as the framework for the project."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Next.js Framework Usage",
+              "description": "The project uses Next.js, a React-based framework with built-in support for server-side rendering and static site generation, to build the web application."
+            },
+            {
+              "type": "pattern-used",
+              "title": "ESLint Configuration",
+              "description": "The project sets up ESLint with specific ignores and extends configurations to maintain code quality and consistency."
+            },
+            {
+              "type": "learning",
+              "title": "Project Initialization",
+              "description": "The commit demonstrates the initial setup of a Next.js project, including necessary configuration files and dependency management."
+            }
+          ],
+          "duration": 11082,
+          "tokens": {
+            "inputTokens": 3213,
+            "outputTokens": 667,
+            "totalTokens": 3880
+          },
+          "generatedAt": "2026-01-24T04:57:10.448Z"
+        }
+      },
+      "openai/gpt-oss-120b:novita": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "default",
+          "aiSummary": "The initial commit sets up a brand‑new Next.js application using the create‑next‑app scaffold. It adds core project files (.gitignore, README, next.config.ts, ESLint flat config), pulls in Next.js v15.5.4 with React 19, and includes TypeScript, Tailwind CSS, and related development dependencies. The commit establishes the baseline project structure, tooling, and configuration needed for future feature development, while also documenting how to run and deploy the app.",
+          "keyDecisions": [
+            "Adopt Next.js (v15.5.4) as the primary framework for the web application.",
+            "Use TypeScript as the language for type‑safety and developer productivity.",
+            "Configure ESLint with the new flat config format and extend Next.js core‑web‑vitals rules.",
+            "Include Tailwind CSS as a styling solution (added as a devDependency).",
+            "Leverage next/font (Geist) for automatic font optimization.",
+            "Set up a minimal .gitignore to exclude build artefacts, node_modules, and environment files."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Framework Selection – Next.js",
+              "description": "Choosing Next.js provides built‑in routing, server‑side rendering, and static site generation, aligning the project with modern React best practices and Vercel deployment workflows."
+            },
+            {
+              "type": "design-decision",
+              "title": "TypeScript Integration",
+              "description": "Including TypeScript from the start ensures static typing across the codebase, reducing runtime errors and improving IDE support."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Flat ESLint Configuration",
+              "description": "The project adopts ESLint’s flat config (eslint.config.mjs) with compatibility helpers, simplifying rule management and supporting future modular rule sets."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Scaffolding via create‑next‑app",
+              "description": "Using the official Next.js starter establishes a conventional file layout (app/, public/, etc.) and includes starter scripts for development and deployment."
+            },
+            {
+              "type": "performance-insight",
+              "title": "next/font Automatic Optimization",
+              "description": "The README mentions next/font, which loads the Geist font with built‑in optimization (preloading, subsetting), improving initial paint performance."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Lint Ignoring Build Directories",
+              "description": "The ESLint config explicitly ignores .next, out, and build folders, preventing unnecessary lint passes on generated files and speeding up CI."
+            },
+            {
+              "type": "learning",
+              "title": "Initial Dependency Footprint",
+              "description": "The generated package‑lock shows a large set of transitive dev dependencies (eslint, tailwindcss, @types/*). Understanding this baseline helps anticipate future upgrade or pruning efforts."
+            },
+            {
+              "type": "learning",
+              "title": "Future Tailwind Integration",
+              "description": "Tailwind CSS is added as a dev dependency but not yet configured; developers will need to create tailwind.config.ts and add the PostCSS plugin to fully enable utility‑first styling."
+            }
+          ],
+          "duration": 12958,
+          "tokens": {
+            "inputTokens": 3253,
+            "outputTokens": 946,
+            "totalTokens": 4199
+          },
+          "generatedAt": "2026-01-24T04:57:23.453Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai",
+          "promptId": "default",
+          "aiSummary": "Commit 46cd9b3: Initial commit from Create Next App",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 15150,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-24T04:57:38.649Z"
+        }
+      }
+    },
+    "b3998828eab2ac971587b1c01be089d76638598a": {
+      "meta-llama/Llama-3.1-8B-Instruct:nscale": {
+        "default": {
+          "hash": "b3998828eab2ac971587b1c01be089d76638598a",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit updates the filters feature, removing the analytics page and replacing it with a new set of filters and sorting options. The update includes a new design for the tech stack grid and improved performance by reducing the number of API calls.",
+          "keyDecisions": [
+            "Refactored the filters feature to improve performance",
+            "Removed the analytics page and replaced it with a new set of filters and sorting options",
+            "Updated the design of the tech stack grid for better user experience"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Improved performance by reducing API calls",
+              "description": "The commit updated the code to fetch data from the API only once, reducing the number of API calls and improving performance."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Used memoization to improve performance",
+              "description": "The code used memoization to cache the results of expensive function calls, reducing the number of API calls and improving performance."
+            },
+            {
+              "type": "learning",
+              "title": "Learned about the importance of caching in improving performance",
+              "description": "The commit highlighted the importance of caching in improving performance, especially when dealing with large datasets or expensive function calls."
+            },
+            {
+              "type": "design-decision",
+              "title": "Updated the design of the tech stack grid",
+              "description": "The commit updated the design of the tech stack grid to make it more user-friendly and visually appealing."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Identified opportunities to improve performance",
+              "description": "The commit identified opportunities to improve performance by reducing the number of API calls and using memoization to cache results."
+            }
+          ],
+          "duration": 6934,
+          "tokens": {
+            "inputTokens": 2396,
+            "outputTokens": 390,
+            "totalTokens": 2786
+          },
+          "generatedAt": "2026-01-24T04:09:20.497Z"
+        }
+      },
+      "Qwen/Qwen3-32B:nscale": {
+        "default": {
+          "hash": "b3998828eab2ac971587b1c01be089d76638598a",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "default",
+          "aiSummary": "The commit removes the analytics page component responsible for displaying technology stack trends across projects. This page previously handled client-side data fetching, filtering by category, sorting by usage/name, and visualizing project statistics with UI components like badges and progress bars. The deletion suggests a refactoring or architectural shift in how analytics are presented, potentially consolidating functionality or rethinking data visualization approach.",
+          "keyDecisions": [
+            "Removed client-side analytics page to simplify architecture or consolidate features",
+            "Eliminated category filtering and sorting logic from frontend implementation",
+            "Deprecated custom UI components for tech stack visualization in favor of new approach"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Client Component Removal",
+              "description": "Removed 'use client' component that handled analytics visualization, indicating a shift toward server-side rendering or external analytics integration"
+            },
+            {
+              "type": "pattern-used",
+              "title": "TypeScript Interfaces",
+              "description": "Defined TechUsageStats interface for type safety, demonstrating commitment to strongly-typed data handling"
+            },
+            {
+              "type": "performance-insight",
+              "title": "Client-Side Filtering",
+              "description": "Previously implemented filtering/sorting in browser - removal suggests performance optimization by shifting this logic server-side"
+            },
+            {
+              "type": "learning",
+              "title": "UI/UX Patterns",
+              "description": "Used progressive disclosure patterns with loading/error states and categorized data visualization techniques"
+            }
+          ],
+          "duration": 34643,
+          "tokens": {
+            "inputTokens": 2530,
+            "outputTokens": 1006,
+            "totalTokens": 3536
+          },
+          "generatedAt": "2026-01-24T04:10:18.960Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale": {
+        "default": {
+          "hash": "b3998828eab2ac971587b1c01be089d76638598a",
+          "modelName": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale",
+          "promptId": "default",
+          "aiSummary": "This commit removes an outdated client-side analytics page and updates the filtering system, likely in favor of a more modern, server-side component architecture. The change simplifies the codebase and improves maintainability.",
+          "keyDecisions": [
+            "Remove client-side analytics component to simplify the codebase.",
+            "Implement a new filtering system to enhance user experience."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Server Component Adoption",
+              "description": "The commit removes client-side rendering and adopts a server-side component approach, reducing client-side logic and improving performance."
+            }
+          ],
+          "duration": 8949,
+          "tokens": {
+            "inputTokens": 2366,
+            "outputTokens": 520,
+            "totalTokens": 2886
+          },
+          "generatedAt": "2026-01-24T04:10:27.972Z"
+        }
+      },
+      "openai/gpt-oss-120b:novita": {
+        "default": {
+          "hash": "b3998828eab2ac971587b1c01be089d76638598a",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "default",
+          "aiSummary": "In this commit the team removed the large client‑side analytics page (src/app/analytics/page.tsx) that displayed technology usage statistics, and refreshed the repository data file (.data/repos.db). The removal suggests a refactor of the analytics UI—likely moving the logic to a different route, simplifying filter handling, or shifting to a server‑rendered approach. The change aligns with a broader effort to streamline the codebase, reduce bundle size, and improve the maintainability of filter logic across the application.",
+          "keyDecisions": [
+            "Delete the client‑side analytics page component to simplify the UI and reduce bundle weight.",
+            "Refresh the repository database file, indicating an update to the underlying data set used by analytics.",
+            "Consolidate or redesign filter handling (as implied by the commit message \"update filters\")."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Remove heavy client component",
+              "description": "The analytics page, which performed data fetching with useEffect and rendered complex UI, was deleted. This reduces the client bundle size and shifts responsibility for data aggregation to a different layer (likely server‑side or a dedicated component)."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Client‑side data fetching with useEffect",
+              "description": "The removed page used the classic React pattern of fetching data in a useEffect hook, handling loading, error, and state updates. This pattern is now being reconsidered in favor of server‑side data fetching or React Server Components."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Bundle size and initial load improvement",
+              "description": "By deleting the large analytics page, the initial JavaScript payload sent to the browser is reduced, leading to faster page loads and lower memory usage on client devices."
+            },
+            {
+              "type": "learning",
+              "title": "Importance of modular filter UI",
+              "description": "The commit message \"update filters\" and the removal of filter UI code highlight a lesson that filter components should be modular and reusable across pages, prompting a redesign to avoid duplication."
+            },
+            {
+              "type": "design-decision",
+              "title": "Data store update",
+              "description": "A binary change to .data/repos.db suggests the analytics data source was refreshed, indicating a decision to keep the analytics dataset current and possibly to decouple data updates from UI code."
+            }
+          ],
+          "duration": 6855,
+          "tokens": {
+            "inputTokens": 2483,
+            "outputTokens": 863,
+            "totalTokens": 3346
+          },
+          "generatedAt": "2026-01-24T04:10:34.864Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai": {
+        "default": {
+          "hash": "b3998828eab2ac971587b1c01be089d76638598a",
+          "modelName": "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai",
+          "promptId": "default",
+          "aiSummary": "Commit b399882: update filters",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 21627,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-24T04:10:56.518Z"
+        }
+      }
+    }
+  }
+}

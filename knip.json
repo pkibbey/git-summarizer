@@ -1,13 +1,22 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "entry": [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "lib/**/*.{ts,tsx}",
     "scripts/**/*.{ts,js}"
   ],
   "project": [
-    "**/*.{js,ts}"
+    "**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx,mjs}",
+    "!node_modules/**"
   ],
   "ignoreDependencies": [
     "dotenv",
-    "tailwindcss"
-  ]
+    "tailwindcss",
+    "clsx",
+    "postcss"
+  ],
+  "ignoreExportsUsedInFile": {
+    "type": true
+  }
 }

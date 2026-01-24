@@ -15,7 +15,7 @@ export interface Commit {
     additions: number;
     deletions: number;
   };
-  shortDiff?: string; // First 2000 chars of diff for AI analysis
+  fullDiff?: string; // Complete diff for AI analysis
 }
 
 export interface ArchitecturalCallout {
@@ -24,23 +24,25 @@ export interface ArchitecturalCallout {
   description: string;
 }
 
-export interface DayPost {
-  date: string; // ISO format: YYYY-MM-DD
-  dayOfWeek: string;
-  commits: Commit[];
-  aiSummary: string;
-  keyDecisions: string[];
-  architecturalCallouts: ArchitecturalCallout[];
-  stats: {
-    totalCommits: number;
-    filesChanged: number;
-    additions: number;
-    deletions: number;
-  };
+export interface TokenUsage {
+  inputTokens: number;
+  outputTokens: number;
+  totalTokens: number;
 }
 
-export interface BlogData {
-  generatedAt: string;
-  sourceRepo: string;
-  days: DayPost[];
+export interface CostMetrics {
+  inputCost: number;     // cost per 1M tokens
+  outputCost: number;    // cost per 1M tokens
+  estimatedCost: number; // in USD
+}
+
+export interface Prompt {
+  id: string;
+  name: string;
+  description?: string;
+  summaryPrompt: string;
+  decisionsPrompt: string;
+  insightsPrompt: string;
+  createdAt: string;
+  updatedAt: string;
 }
