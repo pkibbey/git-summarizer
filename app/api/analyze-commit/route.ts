@@ -185,7 +185,7 @@ export async function GET(request: NextRequest) {
 		if (!result) {
 			return NextResponse.json(
 				{ error: "Analysis result not found" },
-				{ status: 404 },
+				{ status: 200 },
 			);
 		}
 

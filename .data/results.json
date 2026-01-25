@@ -2833,6 +2833,241 @@
           "generatedAt": "2026-01-25T02:04:02.043Z"
         }
       }
+    },
+    "a2d2b187ebf588086ae32626bd7bb02a19e570f1": {
+      "Qwen/Qwen3-32B:nscale": {
+        "executive-summary": {
+          "hash": "a2d2b187ebf588086ae32626bd7bb02a19e570f1",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit focused on refining the user interface and expanding language/tool support. Key changes include simplifying the 'Load Repos' prompt, updating link button styling for consistency, and adding 40+ new language/framework icons (e.g., MongoDB, Tailwind CSS, Vite). The dashboard now displays a cleaner interface by removing outdated status indicators while enhancing visual recognition of technical stacks.",
+          "keyDecisions": [
+            "Prioritized visual consistency by standardizing link button dimensions and hover states",
+            "Expanded language icon library to improve technical stack visibility",
+            "Simplified repository card UI by removing non-essential status metadata"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Language Icon Expansion",
+              "description": "Added comprehensive icon support for modern frameworks and tools to enhance user understanding of repository technical contexts"
+            },
+            {
+              "type": "performance-insight",
+              "title": "UI Simplification",
+              "description": "Removed 53 lines of unused code related to last-generated timestamps, improving maintainability without sacrificing core functionality"
+            },
+            {
+              "type": "pattern-used",
+              "title": "Consistent Component Styling",
+              "description": "Standardized button sizing (h-6/w-6) and icon scaling (h-2/w-2) across external link components for visual harmony"
+            }
+          ],
+          "duration": 27666,
+          "tokens": {
+            "inputTokens": 2949,
+            "outputTokens": 778,
+            "totalTokens": 3727
+          },
+          "generatedAt": "2026-01-25T05:55:38.344Z"
+        }
+      },
+      "openai/gpt-oss-120b:novita": {
+        "executive-summary": {
+          "hash": "a2d2b187ebf588086ae32626bd7bb02a19e570f1",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "This update focuses on polishing the user interface and expanding the visual language support in the product. The wording on the dashboard is clarified, button icons and sizes are made more consistent, and a large set of new technology icons (e.g., Tailwind CSS, Express, Prisma, MongoDB, Vercel, Angular, etc.) along with their brand colors have been added to the language‑icon component. At the same time, the code that displayed a “last updated” timestamp was removed, simplifying the repository card view and cutting an unused date‑formatting library. Overall, the changes improve the look and feel of the application, make it easier for users to recognize the tools used in their repositories, and reduce unnecessary code, which supports a cleaner, more maintainable product.",
+          "keyDecisions": [
+            "Removed the display of repository ‘last updated’ timestamps to simplify the UI and eliminate an unused date‑formatting dependency.",
+            "Standardized button dimensions and icon sizes for a more consistent visual experience.",
+            "Extended the language‑icon library to cover many additional frameworks, libraries, and services, enhancing brand recognition for users.",
+            "Cleaned up text strings for better readability and to avoid HTML entity issues."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "UI Simplification by Dropping Timestamp",
+              "description": "The decision to stop showing the ‘last generated at’ information removes visual clutter from repository cards and eliminates the need for the date-fns library, leading to a leaner component and faster load times."
+            },
+            {
+              "type": "design-decision",
+              "title": "Consistent Button and Icon Sizing",
+              "description": "Adjusted the size classes of external link buttons and their icons (from 7×7 to 6×6 and from 4×4 to 2×2) to align with the design system, providing a more uniform look across the app."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Scalable Icon Mapping Strategy",
+              "description": "Extended the existing language‑icon mapping pattern by adding a broad set of new entries for frameworks, libraries, and services, demonstrating a maintainable way to grow visual coverage without altering component logic."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Bundle Size Reduction",
+              "description": "Removing the import of `formatDistanceToNow` from date‑fns eliminates unused code, decreasing JavaScript bundle size and improving initial page load performance."
+            },
+            {
+              "type": "learning",
+              "title": "Importance of Comprehensive Tech Icon Coverage",
+              "description": "The addition of many new icons highlighted a user need to quickly identify a wide variety of technologies in repositories, informing future UI enhancements and documentation."
+            }
+          ],
+          "duration": 4708,
+          "tokens": {
+            "inputTokens": 2820,
+            "outputTokens": 811,
+            "totalTokens": 3631
+          },
+          "generatedAt": "2026-01-25T05:55:43.095Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-V3.1:novita": {
+        "executive-summary": {
+          "hash": "a2d2b187ebf588086ae32626bd7bb02a19e570f1",
+          "modelName": "deepseek-ai/DeepSeek-V3.1:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "Enhanced the repository dashboard's visual polish and maintainability by expanding technology icon support and refining UI components. The commit significantly expands the range of programming languages and frameworks that display proper branded icons (from ~20 to ~50), improving visual recognition for developers. It also cleans up UI inconsistencies by removing redundant timestamp information and standardizing button sizes, resulting in a more streamlined interface. While not adding new user-facing features, these improvements enhance the professional appearance and developer experience of the application.",
+          "keyDecisions": [
+            "Expanded technology icon library to cover 30+ additional frameworks and tools",
+            "Removed redundant 'last updated' timestamp from repository cards to streamline interface",
+            "Standardized external link button sizing for consistent visual design",
+            "Prioritized UI polish and maintainability over new feature development"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Comprehensive Technology Icon Expansion",
+              "description": "Decision to significantly expand the supported technology icons from ~20 to ~50 frameworks/tools. This improves visual recognition for developers working with diverse tech stacks and demonstrates forward-thinking design for accommodating ecosystem growth."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Centralized Icon Mapping Pattern",
+              "description": "Maintained the existing pattern of using centralized mapping objects (languageIconMap, languageColorMap) for easy maintenance and scalability. This allows new technologies to be added by simply extending existing data structures rather than modifying component logic."
+            },
+            {
+              "type": "design-decision",
+              "title": "UI Simplification Through Information Removal",
+              "description": "Strategic removal of the 'last updated' timestamp from repository cards to reduce visual clutter. This decision prioritizes clean, focused interfaces over comprehensive but potentially overwhelming information display."
+            }
+          ],
+          "duration": 15500,
+          "tokens": {
+            "inputTokens": 2836,
+            "outputTokens": 387,
+            "totalTokens": 3223
+          },
+          "generatedAt": "2026-01-25T05:55:58.632Z"
+        }
+      },
+      "Qwen/Qwen2.5-Coder-32B-Instruct:nscale": {
+        "executive-summary": {
+          "hash": "a2d2b187ebf588086ae32626bd7bb02a19e570f1",
+          "modelName": "Qwen/Qwen2.5-Coder-32B-Instruct:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit focused on cleaning up and refining several components within the application. The main changes included fixing inconsistencies in HTML entity usage, updating icon sizes and styles, and removing outdated or unnecessary code related to date formatting and repository update timestamps.",
+          "keyDecisions": [
+            "Decided to standardize HTML entity usage for better rendering consistency.",
+            "Removed less relevant metadata (like last updated time) to simplify the user interface."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Improved Link Display Consistency",
+              "description": "The commit ensured that all links are displayed consistently across the application by replacing plain text with the appropriate HTML entities, enhancing the overall user experience."
+            },
+            {
+              "type": "design-decision",
+              "title": "Adjusted Icon Sizes and Styles",
+              "description": "Updated the sizes and styles of icons used in buttons and other UI elements, making them more visually appealing and consistent with the design guidelines."
+            },
+            {
+              "type": "learning",
+              "title": "Untitled",
+              "description": "Identified opportunities to streamline the code by removing unused or outdated features, which can lead to better maintainability and performance in the long run."
+            }
+          ],
+          "duration": 11006,
+          "tokens": {
+            "inputTokens": 2970,
+            "outputTokens": 265,
+            "totalTokens": 3235
+          },
+          "generatedAt": "2026-01-25T05:56:09.690Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Instruct-2507:novita": {
+        "executive-summary": {
+          "hash": "a2d2b187ebf588086ae32626bd7bb02a19e570f1",
+          "modelName": "Qwen/Qwen3-235B-A22B-Instruct-2507:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit focused on refining the user interface and improving the visual consistency of the application by updating icon sizes, adjusting styling for better usability, and expanding language/framework support for better repository representation. The changes enhance the professionalism and clarity of the product, ensuring a more polished experience for users exploring their GitHub repositories. While no new features were added, these updates contribute to higher user satisfaction by improving accessibility and visual feedback, particularly in repository cards and external navigation elements.",
+          "keyDecisions": [
+            "Prioritized UI polish and consistency over new feature development in this cycle",
+            "Expanded support for additional technologies and frameworks to improve repository metadata accuracy",
+            "Removed outdated or redundant status indicators to simplify the interface"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Consistent Icon Sizing and Spacing",
+              "description": "Standardized icon and button sizes across components (e.g., reducing external link icons to 6x6 and 2x2) to create a more cohesive and balanced visual hierarchy, improving overall UI polish and responsiveness."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Extensible Language Icon Mapping",
+              "description": "Expanded the language icon and color mapping system to support over 30 additional frameworks and tools, enabling accurate visual representation of diverse tech stacks without requiring future structural changes."
+            },
+            {
+              "type": "learning",
+              "title": "User Interface Clarity Over Information Density",
+              "description": "Removed the 'last updated' timestamp from repository cards, indicating a shift toward reducing visual clutter and focusing on actionable insights rather than metadata, based on usability considerations."
+            }
+          ],
+          "duration": 10659,
+          "tokens": {
+            "inputTokens": 2949,
+            "outputTokens": 361,
+            "totalTokens": 3310
+          },
+          "generatedAt": "2026-01-25T05:56:20.392Z"
+        }
+      },
+      "deepcogito/cogito-v2-preview-llama-70B:together": {
+        "executive-summary": {
+          "hash": "a2d2b187ebf588086ae32626bd7bb02a19e570f1",
+          "modelName": "deepcogito/cogito-v2-preview-llama-70B:together",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit focused on UI improvements and content updates across the application. The main changes include: 1) Enhancing the external link button component with improved styling and sizing, 2) Expanding the language icon library to support a wider range of technologies, and 3) Updating the repository card component to improve layout and remove last-generated-at timestamps. These changes aim to improve the overall user experience and provide better visual representation of repository information.",
+          "keyDecisions": [
+            "Standardized and simplified the external link button design",
+            "Expanded language icon support to cover more technologies and frameworks",
+            "Removed timestamp display from repository cards to declutter the interface"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "UI Component Standardization",
+              "description": "The commit demonstrates a push towards consistent UI design patterns, particularly in the external link button component, with careful attention to sizing and styling across different contexts."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Component Reusability",
+              "description": "The language icon component showcases effective use of a centralized mapping system for icons, making it easy to add new languages and maintain consistency across the application."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Reduced Visual Complexity",
+              "description": "The removal of last-generated-at timestamps from repository cards suggests a focus on decluttering the interface and improving the signal-to-noise ratio for users."
+            }
+          ],
+          "duration": 7246,
+          "tokens": {
+            "inputTokens": 2731,
+            "outputTokens": 328,
+            "totalTokens": 3059
+          },
+          "generatedAt": "2026-01-25T05:56:27.674Z"
+        }
+      }
     }
   }
 }

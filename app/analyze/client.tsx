@@ -33,7 +33,9 @@ function AnalyzePageContent() {
 	const [selectedCommitHash, setSelectedCommitHash] = useState<string | null>(
 		commitFromUrl,
 	);
-	const [selectedModels, setSelectedModels] = useState<Set<string>>(new Set());
+	const [selectedModels, setSelectedModels] = useState<Set<string>>(
+		new Set(MODELS.map((m) => m.id)),
+	);
 	const [prompts, setPrompts] = useState<Prompt[]>([]);
 	const [selectedPromptId, setSelectedPromptId] = useState<string>("default");
 	const [analyzing, setAnalyzing] = useState(false);
@@ -65,8 +67,8 @@ function AnalyzePageContent() {
 	);
 	const [visibility, setVisibility] = useState({
 		summary: true,
-		decisions: true,
-		callouts: true,
+		decisions: false,
+		callouts: false,
 	});
 
 	// Are all models currently selected?
@@ -182,8 +184,8 @@ function AnalyzePageContent() {
 						return newResults;
 					});
 				}
-			} catch (err) {
-				console.error(`Failed to fetch cached result for ${modelName}:`, err);
+			} catch (_err) {
+				// console.error(`Failed to fetch cached result for ${modelName}:`, err);
 			}
 		},
 		[results, selectedCommitHash, repoUrl, selectedPromptId],
