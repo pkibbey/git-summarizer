@@ -3,6 +3,8 @@
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Select } from "@/components/ui/select";
 import { MODELS, Model } from "@/lib/models";
 import type { Commit, Prompt } from "@/lib/types";
 
@@ -72,7 +74,6 @@ function AnalyzePageContent() {
 			}
 		>
 	>(new Map());
-	const [loadingCached, setLoadingCached] = useState<Set<string>>(new Set());
 	const [currentlyAnalyzing, setCurrentlyAnalyzing] = useState<string | null>(
 		null,
 	);
@@ -81,6 +82,19 @@ function AnalyzePageContent() {
 		decisions: true,
 		callouts: true,
 	});
+
+	// Are all models currently selected?
+	const allSelected = MODELS.every((m) => selectedModels.has(m.id));
+
+	const handleToggleSelectAll = () => {
+		if (allSelected) {
+			setSelectedModels(new Set());
+			return;
+		}
+
+		const newSet = new Set(MODELS.map((m) => m.id));
+		setSelectedModels(newSet);
+	};
 
 	// Fetch commits
 	useEffect(() => {
@@ -159,8 +173,6 @@ function AnalyzePageContent() {
 				return;
 			}
 
-			setLoadingCached((prev) => new Set(prev).add(resultKey));
-
 			try {
 				const response = await fetch(
 					`/api/analyze-commit?repoUrl=${encodeURIComponent(repoUrl)}&commitHash=${selectedCommitHash}&modelName=${modelName}&promptId=${selectedPromptId}`,
@@ -186,12 +198,6 @@ function AnalyzePageContent() {
 				}
 			} catch (err) {
 				console.error(`Failed to fetch cached result for ${modelName}:`, err);
-			} finally {
-				setLoadingCached((prev) => {
-					const newSet = new Set(prev);
-					newSet.delete(resultKey);
-					return newSet;
-				});
 			}
 		},
 		[results, selectedCommitHash, repoUrl, selectedPromptId],
@@ -467,56 +473,56 @@ function AnalyzePageContent() {
 
 							{/* Model Selection */}
 							<div className="mb-6">
-								<h3 className="font-semibold mb-3">Select Models</h3>
+								<div className="flex items-center justify-between mb-3">
+									<h3 className="font-semibold">Select Models</h3>
+									<label className="inline-flex items-center gap-2 cursor-pointer">
+										<Checkbox
+											checked={allSelected}
+											onCheckedChange={() => handleToggleSelectAll()}
+										/>
+										<span className="text-xs text-slate-300">
+											{allSelected ? "Deselect all" : "Select all"}
+										</span>
+									</label>
+								</div>
 								<div className="space-y-2">
 									{MODELS.map((model) => (
 										<label
 											key={model.id}
 											className="flex items-center gap-2 cursor-pointer"
 										>
-											<input
-												type="checkbox"
+											<Checkbox
 												checked={selectedModels.has(model.id)}
-												onChange={(e) => {
+												onCheckedChange={(value) => {
 													const newModels = new Set(selectedModels);
-													if (e.target.checked) {
+													if (value) {
 														newModels.add(model.id);
-														// Fetch cached result for this model
 														fetchCachedResult(model.id);
 													} else {
 														newModels.delete(model.id);
 													}
 													setSelectedModels(newModels);
 												}}
-												className="w-4 h-4"
 											/>
 											<div className="flex items-baseline gap-2 flex-1">
-												<span className="text-sm">{model.name}</span>
+												<span className="text-sm truncate">{model.name}</span>
 												{currentlyAnalyzing === model.id && (
 													<span className="text-xs text-yellow-400">
 														⏳ analyzing...
 													</span>
 												)}
 												{selectedCommitHash &&
-													loadingCached.has(
-														`${selectedCommitHash}-${model.id}-${selectedPromptId}`,
-													) && (
-														<span className="text-xs text-blue-400">
-															fetching cache...
-														</span>
-													)}
-												{selectedCommitHash &&
 													results.has(
 														`${selectedCommitHash}-${model.id}-${selectedPromptId}`,
 													) && (
-														<span className="text-xs text-green-400">
+														<span className="text-xs text-green-400 truncate">
 															✓ ready
 														</span>
 													)}
 												{model.pricing?.inputCost !== undefined && (
-													<span className="text-xs text-slate-400">
+													<span className="text-xs flex-1 text-right text-slate-400 truncate">
 														${""}
-														{model.pricing.inputCost.toFixed(2)} /1M in
+														{model.pricing.inputCost.toFixed(2)}
 													</span>
 												)}
 											</div>
@@ -528,17 +534,16 @@ function AnalyzePageContent() {
 							{/* Prompt Selection */}
 							<div className="mb-6">
 								<h3 className="font-semibold mb-3">Select Prompt</h3>
-								<select
+								<Select
 									value={selectedPromptId}
-									onChange={(e) => setSelectedPromptId(e.target.value)}
-									className="w-full bg-slate-700 border border-slate-600 rounded px-3 py-2 text-sm"
+									onValueChange={(value) => setSelectedPromptId(value || "")}
 								>
 									{prompts.map((prompt) => (
 										<option key={prompt.id} value={prompt.id}>
 											{prompt.name}
 										</option>
 									))}
-								</select>
+								</Select>
 							</div>
 
 							{/* Analyze Button */}
@@ -647,8 +652,10 @@ function AnalyzePageContent() {
 									key={key}
 									className="relative bg-slate-800 rounded-lg p-6 border border-slate-700"
 								>
-									<button
+									<Button
 										onClick={() => handleDelete(key)}
+										variant="ghost"
+										size="icon"
 										className="absolute top-3 right-3 text-slate-400 hover:text-red-400 p-1 rounded"
 										title="Delete analysis"
 									>
@@ -666,7 +673,7 @@ function AnalyzePageContent() {
 												d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3"
 											/>
 										</svg>
-									</button>
+									</Button>
 									<div className="flex items-center justify-between mb-4">
 										<div>
 											{(() => {

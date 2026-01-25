@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Home() {
 	const [repoUrl, setRepoUrl] = useState("");
@@ -80,13 +81,13 @@ export default function Home() {
 							>
 								Repository URL
 							</label>
-							<input
+							<Input
 								id="repoUrl"
 								type="url"
 								placeholder="https://github.com/user/repo"
 								value={repoUrl}
 								onChange={(e) => setRepoUrl(e.target.value)}
-								className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-md text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+								
 							/>
 							<p className="text-xs text-slate-400 mt-2">
 								Must be a publicly accessible repository

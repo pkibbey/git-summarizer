@@ -2,8 +2,6 @@
   <img src="./public/logo.png" alt="MultiCam logo" width="400" />
 </p>
 
-<h1 align="center">Git Summarizer</h1>
-
 A lightweight blog interface that analyzes git commit history and surfaces AI-driven summaries, commit diffs, and daily insights. Visually it presents posts organized by date with commit timelines, diffs, and a compact calendar for navigation.
 
 <!-- [Live Demo](https://...) -->
