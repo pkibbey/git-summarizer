@@ -45,3 +45,4 @@ next-env.d.ts
 # temporary repo clone
 .temp-repo/
 
+.data

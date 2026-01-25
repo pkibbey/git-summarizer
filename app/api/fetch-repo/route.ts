@@ -4,7 +4,7 @@ import { fetchCommitsFromRepo } from "@/lib/git-service";
 export async function POST(request: NextRequest) {
 	try {
 		const body = await request.json();
-		const { repoUrl } = body;
+		const { repoUrl, refresh } = body;
 
 		if (!repoUrl || typeof repoUrl !== "string") {
 			return NextResponse.json(
@@ -13,7 +13,7 @@ export async function POST(request: NextRequest) {
 			);
 		}
 
-		const result = await fetchCommitsFromRepo(repoUrl);
+		const result = await fetchCommitsFromRepo(repoUrl, refresh === true);
 
 		return NextResponse.json({
 			success: true,

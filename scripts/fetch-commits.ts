@@ -1,6 +1,6 @@
-import simpleGit, { SimpleGit } from "simple-git";
 import { promises as fs } from "fs";
 import path from "path";
+import simpleGit, { SimpleGit } from "simple-git";
 import type { Commit } from "../lib/types";
 
 const TEMP_REPO_DIR = path.join(process.cwd(), ".temp-repo");

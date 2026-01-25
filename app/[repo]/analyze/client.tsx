@@ -10,6 +10,7 @@ import { AnalyzeSidebar } from "./components/AnalyzeSidebar";
 import { CommitDetails } from "./components/CommitDetails";
 import { EmptyResultsState } from "./components/EmptyResultsState";
 import { ErrorAlert } from "./components/ErrorAlert";
+import GlobalTotal from "./components/GlobalTotal";
 import { LoadingSpinner } from "./components/LoadingSpinner";
 import { ResultVisibilityToggle } from "./components/ResultVisibilityToggle";
 
@@ -83,6 +84,32 @@ function AnalyzePageContent() {
 		const newSet = new Set(MODELS.map((m) => m.id));
 		setSelectedModels(newSet);
 	};
+
+	const handleRefreshCommits = useCallback(async () => {
+		if (!repoUrl) return;
+
+		setLoading(true);
+		setError(null);
+		try {
+			const response = await fetch(
+				`/api/fetch-repo?repoUrl=${encodeURIComponent(repoUrl)}&refresh=true`,
+			);
+			const data = await response.json();
+			if (!response.ok) {
+				throw new Error(data.error || "Failed to refresh commits");
+			}
+			setCommits(data.commits || []);
+			if (data.commits?.length > 0) {
+				setSelectedCommitHash(data.commits[0].hash);
+			}
+		} catch (err) {
+			setError(
+				err instanceof Error ? err.message : "Failed to refresh commits",
+			);
+		} finally {
+			setLoading(false);
+		}
+	}, [repoUrl]);
 
 	// Fetch commits
 	useEffect(() => {
@@ -184,8 +211,8 @@ function AnalyzePageContent() {
 						return newResults;
 					});
 				}
-			} catch (_err) {
-				// console.error(`Failed to fetch cached result for ${modelName}:`, err);
+			} catch (err) {
+				console.error(`Failed to fetch cached result for ${modelName}:`, err);
 			}
 		},
 		[results, selectedCommitHash, repoUrl, selectedPromptId],
@@ -357,7 +384,7 @@ function AnalyzePageContent() {
 			<div className="max-w-6xl mx-auto p-4">
 				<AnalyzeHeader
 					repoUrl={repoUrl}
-					globalTotal={globalTotal}
+					onRefresh={handleRefreshCommits}
 					onBackClick={() => router.push("/")}
 				/>
 
@@ -368,31 +395,8 @@ function AnalyzePageContent() {
 						commits={commits}
 						selectedCommitHash={selectedCommitHash}
 						onCommitSelect={setSelectedCommitHash}
-						onRefreshCommits={async () => {
-							setLoading(true);
-							setError(null);
-							try {
-								const response = await fetch(
-									`/api/fetch-repo?repoUrl=${encodeURIComponent(repoUrl || "")}&refresh=true`,
-								);
-								const data = await response.json();
-								if (!response.ok) {
-									throw new Error(data.error || "Failed to refresh commits");
-								}
-								setCommits(data.commits || []);
-								if (data.commits?.length > 0) {
-									setSelectedCommitHash(data.commits[0].hash);
-								}
-							} catch (err) {
-								setError(
-									err instanceof Error
-										? err.message
-										: "Failed to refresh commits",
-								);
-							} finally {
-								setLoading(false);
-							}
-						}}
+						onRefreshCommits={handleRefreshCommits}
+						loading={loading}
 						selectedModels={selectedModels}
 						onModelToggle={(modelId, checked) => {
 							const newModels = new Set(selectedModels);
@@ -413,7 +417,6 @@ function AnalyzePageContent() {
 						analyzing={analyzing}
 						analyzingModel={currentlyAnalyzing}
 						cachedResults={results}
-						loading={loading}
 					/>
 
 					<div className="lg:col-span-2 space-y-6">
@@ -448,6 +451,9 @@ function AnalyzePageContent() {
 						<EmptyResultsState isAnalyzing={analyzing} />
 					</div>
 				</div>
+				<footer className="mt-16 py-16 border-t border-border/20 text-right">
+					<GlobalTotal globalTotal={globalTotal} />
+				</footer>
 			</div>
 		</div>
 	);

@@ -47,7 +47,7 @@ export default function Home() {
 					/^https?:\/\/(www\.)?github\.com\//i,
 					"",
 				);
-				window.location.href = `/analyze/${encodeURIComponent(repoRest)}`;
+				window.location.href = `/${encodeURIComponent(repoRest)}/analyze`;
 			}, 1000);
 		} catch (err) {
 			setError(err instanceof Error ? err.message : "An error occurred");

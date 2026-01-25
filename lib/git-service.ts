@@ -2,12 +2,12 @@ import { promises as fs } from "fs";
 import { tmpdir } from "os";
 import path from "path";
 import { simpleGit } from "simple-git";
-import type { Commit } from "@/lib/types";
 import {
+	getStoredCommits,
 	hasRepoBeenFetched,
 	storeCommits,
-	getStoredCommits,
 } from "@/lib/database";
+import type { Commit } from "@/lib/types";
 
 /**
  * Validate that a repo URL is publicly accessible
@@ -129,6 +129,100 @@ async function extractCommitsFromRepo(repoPath: string): Promise<Commit[]> {
 }
 
 /**
+ * Get the diff for a specific file at a specific commit
+ */
+export async function getFileDiffAtCommit(
+	repoUrl: string,
+	commitHash: string,
+	filePath: string,
+): Promise<string> {
+	// Clone and extract
+	const tmpDir = tmpdir();
+	const repoName =
+		repoUrl
+			.split("/")
+			.pop()
+			?.replace(/\.git$/, "") || "repo";
+	const clonePath = path.join(
+		tmpDir,
+		`git-summarizer-diff-${Date.now()}-${repoName}`,
+	);
+
+	try {
+		const git = simpleGit();
+		await git.clone(repoUrl, clonePath, ["--depth", "1000"]); // Fetch some history
+		const repoGit = simpleGit(clonePath);
+
+		try {
+			return await repoGit.diff([
+				`${commitHash}^..${commitHash}`,
+				"--",
+				filePath,
+			]);
+		} catch {
+			// Try show for initial commit
+			return await repoGit.show([commitHash, "--", filePath]);
+		}
+	} finally {
+		try {
+			await fs.rm(clonePath, { recursive: true, force: true });
+		} catch {
+			// Ignore cleanup errors
+		}
+	}
+}
+
+/**
+ * Get diffs for multiple commits of a single file
+ */
+export async function getFileDiffsForFile(
+	repoUrl: string,
+	filePath: string,
+	commitHashes: string[],
+): Promise<Record<string, string>> {
+	const tmpDir = tmpdir();
+	const repoName =
+		repoUrl
+			.split("/")
+			.pop()
+			?.replace(/\.git$/, "") || "repo";
+	const clonePath = path.join(
+		tmpDir,
+		`git-summarizer-bulk-${Date.now()}-${repoName}`,
+	);
+
+	const diffs: Record<string, string> = {};
+
+	try {
+		const git = simpleGit();
+		await git.clone(repoUrl, clonePath);
+		const repoGit = simpleGit(clonePath);
+
+		for (const hash of commitHashes) {
+			try {
+				const diff = await repoGit.diff([`${hash}^..${hash}`, "--", filePath]);
+				diffs[hash] = diff;
+			} catch {
+				try {
+					const diff = await repoGit.show([hash, "--", filePath]);
+					diffs[hash] = diff;
+				} catch {
+					diffs[hash] = "";
+				}
+			}
+		}
+	} finally {
+		try {
+			await fs.rm(clonePath, { recursive: true, force: true });
+		} catch {
+			// Ignore cleanup errors
+		}
+	}
+
+	return diffs;
+}
+
+/**
  * Fetch commits from a public GitHub repo
  * Returns cached commits if already fetched, unless refresh is true
  */
@@ -172,7 +266,7 @@ export async function fetchCommitsFromRepo(
 	try {
 		// Clone the repository
 		const git = simpleGit();
-		await git.clone(repoUrl, clonePath, ["--depth", "100"]); // Limit depth to recent commits
+		await git.clone(repoUrl, clonePath);
 
 		// Extract commits
 		const commits = await extractCommitsFromRepo(clonePath);
