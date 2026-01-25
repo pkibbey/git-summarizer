@@ -37,43 +37,6 @@
           "generatedAt": "2026-01-24T03:23:41.677Z"
         }
       },
-      "meta-llama/Llama-3.1-8B-Instruct:nscale": {
-        "default": {
-          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
-          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
-          "promptId": "default",
-          "aiSummary": "This is the initial commit from Create Next App, setting up a new Next.js project with TypeScript, ESLint, and Tailwind CSS. The project includes a basic README, .gitignore, and package-lock.json files, as well as a next.config.ts file for configuring the Next.js app.",
-          "keyDecisions": [
-            "Setting up a new Next.js project with TypeScript",
-            "Using ESLint for code linting and Tailwind CSS for styling",
-            "Configuring the Next.js app using the next.config.ts file"
-          ],
-          "architecturalCallouts": [
-            {
-              "type": "design-decision",
-              "title": "Using a FlatCompat ESLint configuration",
-              "description": "The project uses a FlatCompat ESLint configuration, which is a lightweight and modular approach to ESLint configuration. This design decision allows for easy customization and extension of the ESLint configuration."
-            },
-            {
-              "type": "pattern-used",
-              "title": "Using a package-lock.json file",
-              "description": "The project includes a package-lock.json file, which is used to lock down the dependencies of the project. This is a common pattern in Node.js projects to ensure reproducibility and consistency of dependencies."
-            },
-            {
-              "type": "performance-insight",
-              "title": "Using Web Vitals for performance optimization",
-              "description": "The project includes the `next/core-web-vitals` ESLint configuration, which is used to optimize the performance of the Next.js app. This is a best practice for ensuring a fast and responsive user experience."
-            },
-            {
-              "type": "learning",
-              "title": "Setting up a new Next.js project",
-              "description": "This commit provides a starting point for learning how to set up a new Next.js project from scratch. The included files and configurations provide a solid foundation for building a Next.js app."
-            }
-          ],
-          "duration": 7486,
-          "generatedAt": "2026-01-24T03:52:17.507Z"
-        }
-      },
       "Qwen/Qwen3-32B:nscale": {
         "default": {
           "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
@@ -677,6 +640,273 @@
             "totalTokens": 0
           },
           "generatedAt": "2026-01-24T05:34:47.438Z"
+        }
+      },
+      "ServiceNow-AI/Apriel-1.6-15b-Thinker:together": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "ServiceNow-AI/Apriel-1.6-15b-Thinker:together",
+          "promptId": "default",
+          "aiSummary": "Commit 721fc53: Add local AI analysis",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 13334,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T03:42:43.941Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-V3.1:novita": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "deepseek-ai/DeepSeek-V3.1:novita",
+          "promptId": "default",
+          "aiSummary": "Added GitHub Copilot CLI integration for AI-powered repository analysis, replacing the previous document-based approach. The system now clones repositories to temporary directories and uses Copilot to analyze the full codebase context, providing more comprehensive insights into architecture, dependencies, and code organization. This represents a major upgrade in analysis capabilities, moving from surface-level markdown parsing to deep code understanding.",
+          "keyDecisions": [
+            "Migrate from document-based analysis to full repository analysis using GitHub Copilot CLI",
+            "Implement temporary repository cloning with authentication support for private repos",
+            "Use shallow clones (--depth 1) for performance optimization",
+            "Maintain fallback mechanism with helpful error messages when Copilot is unavailable",
+            "Implement automatic cleanup of temporary repositories using finally blocks",
+            "Create comprehensive documentation (COPILOT_INTEGRATION.md) for the new feature"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Temporary Repository Cloning Strategy",
+              "description": "Designed a system that clones repositories to temporary directories for analysis, ensuring isolation and automatic cleanup. This allows full codebase access without permanent storage overhead."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Resource Cleanup Pattern",
+              "description": "Implemented finally blocks to ensure temporary repositories are cleaned up even when analysis fails, preventing disk space leaks and ensuring reliable operation."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Shallow Cloning for Performance",
+              "description": "Used --depth 1 parameter for git clone to only fetch the most recent commit, significantly reducing clone time and bandwidth usage while maintaining analysis effectiveness."
+            },
+            {
+              "type": "learning",
+              "title": "Full Context vs Document Analysis",
+              "description": "Learned that analyzing only markdown documents provides limited insights compared to full codebase analysis. Copilot CLI can identify architecture patterns, dependencies, and code organization that document analysis misses."
+            },
+            {
+              "type": "design-decision",
+              "title": "Structured Error Handling",
+              "description": "Designed comprehensive error handling that provides helpful feedback when Copilot CLI is unavailable, including installation instructions and troubleshooting steps for better user experience."
+            }
+          ],
+          "duration": 17507,
+          "tokens": {
+            "inputTokens": 2421,
+            "outputTokens": 489,
+            "totalTokens": 2910
+          },
+          "generatedAt": "2026-01-25T03:43:01.475Z"
+        }
+      },
+      "meta-llama/Llama-3.2-3B-Instruct:together": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "meta-llama/Llama-3.2-3B-Instruct:together",
+          "promptId": "default",
+          "aiSummary": "The commit introduces a new feature that integrates GitHub Copilot CLI for AI-powered repository analysis. This replaces the previous document-based analysis approach, offering a more comprehensive understanding of the project's structure, dependencies, and architecture. The new implementation includes improved error handling, a fallback mechanism, and enhanced troubleshooting tips.",
+          "keyDecisions": [
+            "Decided to replace document-based analysis with Copilot CLI for a more comprehensive understanding of the project's structure and dependencies.",
+            "Chose to implement a fallback mechanism to handle errors and provide informative error messages.",
+            "Determined the importance of error handling and response format in the API endpoint to maintain consistency and user experience."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Separation of Concerns",
+              "description": "Implemented separate files for repository cloning, Copilot analysis, and API route to maintain a clean and maintainable architecture."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Factory Pattern",
+              "description": "Used the factory pattern to create instances of `RepoAnalysis` and `RepoCloner` classes, promoting code reusability and flexibility."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Shallow Cloning",
+              "description": "Used shallow cloning (`--depth 1`) for performance, reducing the time required for analysis and improving overall system efficiency."
+            },
+            {
+              "type": "learning",
+              "title": "Error Handling",
+              "description": "Enhanced error handling mechanisms to provide informative error messages and maintain user experience, promoting a culture of robustness and reliability in the system."
+            }
+          ],
+          "duration": 3033,
+          "tokens": {
+            "inputTokens": 2411,
+            "outputTokens": 368,
+            "totalTokens": 2779
+          },
+          "generatedAt": "2026-01-25T03:43:04.547Z"
+        }
+      },
+      "meta-llama/Llama-4-Scout-17B-16E-Instruct:nscale": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "meta-llama/Llama-4-Scout-17B-16E-Instruct:nscale",
+          "promptId": "default",
+          "aiSummary": "Commit 721fc53: Add local AI analysis",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 264,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T03:43:04.846Z"
+        }
+      },
+      "Qwen/Qwen2.5-Coder-32B-Instruct:nscale": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "Qwen/Qwen2.5-Coder-32B-Instruct:nscale",
+          "promptId": "default",
+          "aiSummary": "Implemented local AI analysis using GitHub Copilot CLI, enhancing the repository analysis feature by providing a full-context understanding of the codebase, dependencies, and architecture patterns, while maintaining a fallback mechanism for LM Studio.",
+          "keyDecisions": [
+            "Integrate GitHub Copilot CLI for repository analysis instead of relying on document-based content.",
+            "Use shallow clones for performance optimization during repository cloning.",
+            "Maintain a cleanup workflow to remove temporary clones after analysis.",
+            "Implement an error handling mechanism to provide informative fallback messages when Copilot CLI fails."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Switch from Document-Based to Code-Based Analysis",
+              "description": "Changed the analysis approach to use the GitHub Copilot CLI, which analyzes the entire codebase rather than just markdown documents, providing deeper insights into the repository structure, dependencies, and frameworks."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Try-Finally Pattern",
+              "description": "Used the try-finally pattern in `src/app/api/repos/[owner]/[repo]/data/route.ts` to ensure that the repository clone is cleaned up regardless of whether the analysis succeeds or fails."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Shallow Clones for Speed",
+              "description": "Implemented shallow clones (`--depth 1`) to speed up the repository cloning process, which helps in reducing the time taken to perform analysis, especially for large repositories."
+            },
+            {
+              "type": "learning",
+              "title": "Handling Fallback Mechanisms Gracefully",
+              "description": "Learned how to implement robust fallback mechanisms by providing detailed error messages and alternative methods (LM Studio) to ensure the system remains functional and user-friendly even in the absence of Copilot CLI."
+            }
+          ],
+          "duration": 15413,
+          "tokens": {
+            "inputTokens": 2460,
+            "outputTokens": 400,
+            "totalTokens": 2860
+          },
+          "generatedAt": "2026-01-25T03:43:20.282Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Instruct-2507:novita": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "Qwen/Qwen3-235B-A22B-Instruct-2507:novita",
+          "promptId": "default",
+          "aiSummary": "Today's development focused on enhancing the projects dashboard with AI-powered repository analysis by integrating GitHub Copilot CLI. Instead of relying solely on limited markdown content, the system now performs deep codebase analysis by cloning repositories and leveraging Copilot’s full-context understanding of code structure, dependencies, and architecture. This shift enables richer, more accurate insights and actionable recommendations. The implementation includes robust error handling, cleanup workflows, and fallback mechanisms, while comprehensive documentation and setup scripts ensure a smooth developer experience. The overall direction emphasizes deeper technical intelligence, improved accuracy, and scalable analysis capabilities.",
+          "keyDecisions": [
+            "Replace document-based AI analysis with GitHub Copilot CLI for full codebase context awareness.",
+            "Implement temporary repository cloning with automatic cleanup to enable secure, isolated analysis.",
+            "Maintain LM Studio as a fallback option by preserving legacy analysis functions for flexibility.",
+            "Structure Copilot output into standardized JSON format (summary, insights, actions) for consistent UI rendering.",
+            "Document setup, architecture, and troubleshooting thoroughly to reduce onboarding friction."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Adopt Copilot CLI over document parsing",
+              "description": "The team decided to move away from analyzing only READMEs and markdown files to using GitHub Copilot CLI for full repository analysis. This allows the system to understand actual code structure, dependencies, frameworks, and architectural patterns, significantly improving insight quality and relevance."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Clone-analyze-cleanup workflow",
+              "description": "A consistent pattern of cloning repositories to temporary directories, performing analysis, and ensuring cleanup (via try-finally blocks) was implemented. This ensures resource efficiency, security, and isolation during AI analysis."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Use shallow clones for faster analysis",
+              "description": "To reduce clone time and improve performance—especially for large repositories—the system uses `git clone --depth 1`, which fetches only the latest commit. This optimization speeds up the analysis pipeline without sacrificing meaningful context."
+            },
+            {
+              "type": "learning",
+              "title": "External CLI tools require robust error handling and user guidance",
+              "description": "Integrating Copilot CLI revealed that external dependencies (like gh extensions) can fail silently or be misconfigured. The team learned to provide detailed error responses with actionable recovery steps, improving user experience and debuggability."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Graceful fallback with structured error responses",
+              "description": "When Copilot CLI is unavailable, the system returns a structured fallback response that mimics the expected format but includes diagnostic actions. This maintains API consistency and guides users toward resolving setup issues without breaking the UI."
+            }
+          ],
+          "duration": 17716,
+          "tokens": {
+            "inputTokens": 2439,
+            "outputTokens": 602,
+            "totalTokens": 3041
+          },
+          "generatedAt": "2026-01-25T03:43:38.031Z"
+        }
+      },
+      "deepcogito/cogito-v2-preview-llama-70B:together": {
+        "default": {
+          "hash": "721fc534c3784841bdee51badecde9ca2e9abbf6",
+          "modelName": "deepcogito/cogito-v2-preview-llama-70B:together",
+          "promptId": "default",
+          "aiSummary": "This commit introduces a major enhancement to the projects dashboard by integrating GitHub Copilot CLI for AI-powered repository analysis. The system now clones repositories, analyzes them with Copilot, and provides detailed technical insights, replacing the previous document-based analysis approach. The implementation includes comprehensive setup instructions, error handling, and fallback mechanisms. The project leverages GitHub CLI and Copilot extension to provide more accurate and context-aware analysis of codebases, including architecture, dependencies, and best practices.",
+          "keyDecisions": [
+            "Switch from document-based analysis to full repository analysis using Copilot CLI",
+            "Implement temporary repository cloning with shallow depth for performance",
+            "Create modular architecture with separate components for cloning, analysis, and cleanup",
+            "Include comprehensive fallback mechanisms for scenarios where Copilot CLI is unavailable",
+            "Provide detailed documentation and troubleshooting guides for setup and usage"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Repository Cloning Strategy",
+              "description": "Using shallow clones with --depth 1 for improved performance while maintaining necessary context for analysis"
+            },
+            {
+              "type": "performance-insight",
+              "title": "Analysis Performance",
+              "description": "The system acknowledges and documents the 10-30 second analysis time for larger projects, suggesting off-peak analysis as a mitigation strategy"
+            },
+            {
+              "type": "pattern-used",
+              "title": "Clean Architecture",
+              "description": "Separation of concerns between repository cloning (repo-cloner.ts), analysis (copilot-analyzer.ts), and API routing, making the system more maintainable and testable"
+            },
+            {
+              "type": "learning",
+              "title": "Fallback Strategy",
+              "description": "Implementation of a robust fallback mechanism that provides helpful error messages and instructions when Copilot CLI analysis fails, ensuring a better user experience"
+            },
+            {
+              "type": "design-decision",
+              "title": "Authentication and Security",
+              "description": "Use of GitHub tokens with repo scope for secure repository cloning and analysis, ensuring proper access control and security"
+            }
+          ],
+          "duration": 9946,
+          "tokens": {
+            "inputTokens": 2386,
+            "outputTokens": 451,
+            "totalTokens": 2837
+          },
+          "generatedAt": "2026-01-25T03:43:48.019Z"
         }
       }
     },

@@ -4,7 +4,15 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Select } from "@/components/ui/select";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectPositioner,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { MODELS, Model } from "@/lib/models";
 import type { Commit, Prompt } from "@/lib/types";
 
@@ -448,87 +456,91 @@ function AnalyzePageContent() {
 										Refresh commits ↻
 									</Button>
 								</div>
-								<div className="max-h-64 overflow-y-auto space-y-2">
-									{commits.map((commit) => (
-										<Button
-											key={commit.hash}
-											onClick={() => setSelectedCommitHash(commit.hash)}
-											className={`w-full text-left justify-start p-2 rounded text-sm transition ${
-												selectedCommitHash === commit.hash
-													? "bg-blue-600"
-													: "bg-slate-700 hover:bg-slate-600"
-											}`}
-										>
-											<div className="font-mono text-xs">
-												{commit.hash.slice(0, 7)}
-											</div>
-											<div className="truncate">{commit.message}</div>
-											<div className="flex-1 text-right text-xs text-slate-400">
-												{new Date(commit.date).toLocaleDateString()}
-											</div>
-										</Button>
-									))}
-								</div>
+								<ScrollArea className="h-48 w-full pr-4">
+									<div className="flex flex-col space-y-2">
+										{commits.map((commit) => (
+											<Button
+												key={commit.hash}
+												onClick={() => setSelectedCommitHash(commit.hash)}
+												className={`w-full text-left justify-start p-2 rounded text-sm transition ${
+													selectedCommitHash === commit.hash
+														? "bg-blue-600"
+														: "bg-slate-700 hover:bg-slate-600"
+												}`}
+											>
+												<div className="font-mono text-xs">
+													{commit.hash.slice(0, 7)}
+												</div>
+												<div className="truncate">{commit.message}</div>
+												<div className="flex-1 text-right text-xs text-slate-400">
+													{new Date(commit.date).toLocaleDateString()}
+												</div>
+											</Button>
+										))}
+									</div>
+									<ScrollBar orientation="vertical" />
+								</ScrollArea>
 							</div>
 
 							{/* Model Selection */}
 							<div className="mb-6">
-								<div className="flex items-center justify-between mb-3">
-									<h3 className="font-semibold">Select Models</h3>
-									<label className="inline-flex items-center gap-2 cursor-pointer">
-										<Checkbox
-											checked={allSelected}
-											onCheckedChange={() => handleToggleSelectAll()}
-										/>
-										<span className="text-xs text-slate-300">
-											{allSelected ? "Deselect all" : "Select all"}
-										</span>
-									</label>
-								</div>
-								<div className="space-y-2">
-									{MODELS.map((model) => (
-										<label
-											key={model.id}
-											className="flex items-center gap-2 cursor-pointer"
-										>
-											<Checkbox
-												checked={selectedModels.has(model.id)}
-												onCheckedChange={(value) => {
-													const newModels = new Set(selectedModels);
-													if (value) {
-														newModels.add(model.id);
-														fetchCachedResult(model.id);
-													} else {
-														newModels.delete(model.id);
-													}
-													setSelectedModels(newModels);
-												}}
-											/>
-											<div className="flex items-baseline gap-2 flex-1">
-												<span className="text-sm truncate">{model.name}</span>
-												{currentlyAnalyzing === model.id && (
-													<span className="text-xs text-yellow-400">
-														⏳ analyzing...
-													</span>
-												)}
-												{selectedCommitHash &&
-													results.has(
-														`${selectedCommitHash}-${model.id}-${selectedPromptId}`,
-													) && (
-														<span className="text-xs text-green-400 truncate">
-															✓ ready
+								<h3 className="font-semibold mb-1">Select Models</h3>
+								<label className="inline-flex items-center gap-2 cursor-pointer mb-3">
+									<Checkbox
+										checked={allSelected}
+										onCheckedChange={() => handleToggleSelectAll()}
+									/>
+									<span className="text-xs text-slate-400">
+										{allSelected ? "Deselect all" : "Select all"}
+									</span>
+								</label>
+								<ScrollArea className="h-48 w-full pr-4">
+									<div className="space-y-2">
+										{MODELS.map((model) => (
+											<label
+												key={model.id}
+												className="flex items-center gap-2 cursor-pointer"
+											>
+												<Checkbox
+													checked={selectedModels.has(model.id)}
+													onCheckedChange={(value) => {
+														const newModels = new Set(selectedModels);
+														if (value) {
+															newModels.add(model.id);
+															fetchCachedResult(model.id);
+														} else {
+															newModels.delete(model.id);
+														}
+														setSelectedModels(newModels);
+													}}
+												/>
+												<div className="flex items-baseline gap-2 flex-1">
+													<span className="text-sm truncate">{model.name}</span>
+													{currentlyAnalyzing === model.id && (
+														<span className="text-xs text-yellow-400">
+															⏳ analyzing...
 														</span>
 													)}
-												{model.pricing?.inputCost !== undefined && (
-													<span className="text-xs flex-1 text-right text-slate-400 truncate">
-														${""}
-														{model.pricing.inputCost.toFixed(2)}
-													</span>
-												)}
-											</div>
-										</label>
-									))}
-								</div>
+													{selectedCommitHash &&
+														results.has(
+															`${selectedCommitHash}-${model.id}-${selectedPromptId}`,
+														) && (
+															<span className="text-xs text-green-400 truncate">
+																✓ ready
+															</span>
+														)}
+													{model.pricing?.inputCost !== undefined && (
+														<span className="text-xs flex-1 text-right text-slate-400 truncate">
+															${""}
+															{model.pricing.inputCost.toFixed(2)}
+														</span>
+													)}
+												</div>
+											</label>
+										))}
+									</div>
+									<ScrollBar orientation="vertical" />
+								</ScrollArea>
 							</div>
 
 							{/* Prompt Selection */}
@@ -538,11 +550,18 @@ function AnalyzePageContent() {
 									value={selectedPromptId}
 									onValueChange={(value) => setSelectedPromptId(value || "")}
 								>
-									{prompts.map((prompt) => (
-										<option key={prompt.id} value={prompt.id}>
-											{prompt.name}
-										</option>
-									))}
+									<SelectTrigger className="w-full">
+										<SelectValue placeholder="Select prompt" />
+									</SelectTrigger>
+									<SelectPositioner side="inline-end" sideOffset={10}>
+										<SelectContent>
+											{prompts.map((prompt) => (
+												<SelectItem key={prompt.id} value={prompt.id}>
+													{prompt.name}
+												</SelectItem>
+											))}
+										</SelectContent>
+									</SelectPositioner>
 								</Select>
 							</div>
 
@@ -618,31 +637,60 @@ function AnalyzePageContent() {
 						{/* Analysis Results */}
 						<div className="mb-4">
 							<div className="sticky top-20 bg-slate-800 rounded-lg p-3 border border-slate-700 flex items-center gap-3">
-								<div className="text-sm text-slate-300">Show:</div>
-								<Button
-									onClick={() =>
-										setVisibility((v) => ({ ...v, summary: !v.summary }))
-									}
-									className={`px-2 py-1 text-sm rounded ${visibility.summary ? "bg-blue-600 text-white" : "bg-slate-700 text-slate-300"}`}
-								>
-									Summary
-								</Button>
-								<Button
-									onClick={() =>
-										setVisibility((v) => ({ ...v, decisions: !v.decisions }))
-									}
-									className={`px-2 py-1 text-sm rounded ${visibility.decisions ? "bg-blue-600 text-white" : "bg-slate-700 text-slate-300"}`}
-								>
-									Key Decisions
-								</Button>
-								<Button
-									onClick={() =>
-										setVisibility((v) => ({ ...v, callouts: !v.callouts }))
-									}
-									className={`px-2 py-1 text-sm rounded ${visibility.callouts ? "bg-blue-600 text-white" : "bg-slate-700 text-slate-300"}`}
-								>
-									Callouts
-								</Button>
+								<label className="inline-flex items-center gap-2 cursor-pointer">
+									<Checkbox
+										checked={Object.values(visibility).every(Boolean)}
+										indeterminate={
+											Object.values(visibility).some(Boolean) &&
+											!Object.values(visibility).every(Boolean)
+										}
+										onCheckedChange={() => {
+											const all = Object.values(visibility).every(Boolean);
+											setVisibility({
+												summary: !all,
+												decisions: !all,
+												callouts: !all,
+											});
+										}}
+									/>
+								</label>
+								<div className="text-sm text-slate-300">All</div>
+
+								<label className="inline-flex items-center gap-2 cursor-pointer">
+									<Checkbox
+										checked={visibility.summary}
+										onCheckedChange={(v) =>
+											setVisibility((s) => ({ ...s, summary: !!v }))
+										}
+									/>
+									<span className="text-slate-300 px-2 py-1 text-sm">
+										Summary
+									</span>
+								</label>
+
+								<label className="inline-flex items-center gap-2 cursor-pointer">
+									<Checkbox
+										checked={visibility.decisions}
+										onCheckedChange={(v) =>
+											setVisibility((s) => ({ ...s, decisions: !!v }))
+										}
+									/>
+									<span className="text-slate-300 px-2 py-1 text-sm">
+										Key Decisions
+									</span>
+								</label>
+
+								<label className="inline-flex items-center gap-2 cursor-pointer">
+									<Checkbox
+										checked={visibility.callouts}
+										onCheckedChange={(v) =>
+											setVisibility((s) => ({ ...s, callouts: !!v }))
+										}
+									/>
+									<span className="text-slate-300 px-2 py-1 text-sm">
+										Callouts
+									</span>
+								</label>
 							</div>
 						</div>
 
