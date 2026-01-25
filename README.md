@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./logo.png" alt="MultiCam logo" width="400" />
+  <img src="./public/logo.png" alt="MultiCam logo" width="400" />
 </p>
 
 <h1 align="center">Git Summarizer</h1>

@@ -234,6 +234,40 @@
           },
           "generatedAt": "2026-01-24T04:57:38.649Z"
         }
+      },
+      "sshleifer/distilbart-cnn-12-6": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "sshleifer/distilbart-cnn-12-6",
+          "promptId": "default",
+          "aiSummary": "Commit 46cd9b3: Initial commit from Create Next App",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 6486,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T02:41:21.724Z"
+        }
+      },
+      "facebook/bart-large-cnn": {
+        "default": {
+          "hash": "46cd9b3bdd2334f52d97848e031c19ff0e760080",
+          "modelName": "facebook/bart-large-cnn",
+          "promptId": "default",
+          "aiSummary": "Commit 46cd9b3: Initial commit from Create Next App",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 1190,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T02:42:37.468Z"
+        }
       }
     },
     "b3998828eab2ac971587b1c01be089d76638598a": {
@@ -686,6 +720,60 @@
             "totalTokens": 3713
           },
           "generatedAt": "2026-01-24T06:31:33.385Z"
+        },
+        "executive-summary": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit adds project statistics by introducing new dependencies and updating existing ones. The changes include the addition of several Radix UI components, updating dependencies to the latest versions, and removing unused dependencies. This change is expected to improve the project's overall performance and user experience.",
+          "keyDecisions": [
+            "Prioritizing the addition of project statistics as a key feature",
+            "Deciding to use Radix UI components for improved performance and user experience"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Radix UI Component Selection",
+              "description": "The team has decided to use Radix UI components for their project, which will improve the project's performance and user experience. This decision was made after evaluating several alternatives and considering factors such as ease of use, customization options, and community support."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Dependency Management",
+              "description": "The team has used a consistent approach to managing dependencies in the project, which includes updating dependencies to the latest versions, removing unused dependencies, and using a package manager to simplify the process."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Improved Performance",
+              "description": "The addition of Radix UI components and the update of dependencies to the latest versions are expected to improve the project's performance, making it more efficient and responsive for users."
+            },
+            {
+              "type": "learning",
+              "title": "Radix UI Component Customization",
+              "description": "The team has learned how to customize Radix UI components to fit their project's specific needs, which will be useful for future development and maintenance."
+            }
+          ],
+          "duration": 6899,
+          "tokens": {
+            "inputTokens": 3342,
+            "outputTokens": 371,
+            "totalTokens": 3713
+          },
+          "generatedAt": "2026-01-24T06:42:44.718Z"
+        },
+        "technical-deep-dive": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "technical-deep-dive",
+          "aiSummary": "Commit ad8ff61: Add project stats",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 254,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T02:44:47.331Z"
         }
       },
       "Qwen/Qwen3-32B:nscale": {
@@ -729,6 +817,46 @@
             "totalTokens": 4227
           },
           "generatedAt": "2026-01-24T06:31:59.905Z"
+        },
+        "executive-summary": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit introduces a new project statistics feature, enhancing user visibility into project metrics. It includes updates to key dependencies, including React 19.2 and Tailwind CSS 4.1.14, improving stability and performance. The addition of Radix UI components supports enhanced UI interactivity.",
+          "keyDecisions": [
+            "Prioritized project stats feature to improve user insight and engagement",
+            "Standardized on React 19.2 for improved performance and compatibility",
+            "Integrated Radix UI components for consistent, accessible UI patterns"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Radix UI Integration",
+              "description": "Added @radix-ui/react-toggle-group and related components to standardize interactive UI elements, improving accessibility and design consistency across the platform."
+            },
+            {
+              "type": "performance-insight",
+              "title": "React Version Upgrade",
+              "description": "Upgraded to React 19.2.0 and React DOM 19.2.0, enabling better performance optimizations and access to new framework capabilities."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Dependency Management",
+              "description": "Updated all major tooling (TypeScript, ESLint, Tailwind) to latest stable versions, ensuring compatibility and security best practices."
+            },
+            {
+              "type": "learning",
+              "title": "Dev Dependency Synchronization",
+              "description": "Maintained strict alignment between runtime and development dependencies to prevent version conflicts and streamline the build process."
+            }
+          ],
+          "duration": 26382,
+          "tokens": {
+            "inputTokens": 3465,
+            "outputTokens": 734,
+            "totalTokens": 4199
+          },
+          "generatedAt": "2026-01-24T06:43:11.137Z"
         }
       },
       "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale": {
@@ -765,6 +893,29 @@
             "totalTokens": 3937
           },
           "generatedAt": "2026-01-24T06:32:10.043Z"
+        },
+        "executive-summary": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit updates several dependencies in the project, including React, Next.js, and various Radix UI components to their latest versions. This ensures the project is using current, supported versions of these libraries which can improve security, performance, and compatibility. The changes are minimal but important for maintaining the project's health and alignment with modern library versions.",
+          "keyDecisions": [
+            "Updating React and related dependencies to their latest versions"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "pattern-used",
+              "title": "Dependency Version Update",
+              "description": "The project updated several dependencies to their latest versions, following best practices for maintaining code health and compatibility."
+            }
+          ],
+          "duration": 7838,
+          "tokens": {
+            "inputTokens": 3312,
+            "outputTokens": 454,
+            "totalTokens": 3766
+          },
+          "generatedAt": "2026-01-24T06:43:19.020Z"
         }
       },
       "openai/gpt-oss-120b:novita": {
@@ -818,6 +969,47 @@
             "totalTokens": 4328
           },
           "generatedAt": "2026-01-24T06:32:26.223Z"
+        },
+        "executive-summary": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "The team upgraded the core front‑end stack (React 19.2, React‑DOM 19.2, TypeScript 5.9, ESLint 9, Tailwind 4.1) and added the Radix UI component library, specifically the @radix-ui/react-toggle-group package and its related primitives. This enables a new, accessible toggle‑group UI that will be used to display project statistics. The dependency upgrades also bring newer language features, better linting, and improved styling capabilities, laying the groundwork for a richer, more responsive stats dashboard that can be shipped to customers.",
+          "keyDecisions": [
+            "Adopt Radix UI as the primary UI component library for new features",
+            "Upgrade React and React‑DOM to version 19.2 to leverage the latest rendering improvements",
+            "Update TypeScript, ESLint, and Tailwind to their latest stable releases for better developer experience",
+            "Introduce a toggle‑group component to allow users to switch between different statistical views"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Adopt Radix UI for Accessible Component Architecture",
+              "description": "Choosing Radix UI provides a set of well‑tested, accessibility‑first components (e.g., toggle groups, roving focus) that integrate cleanly with React 19.2, reducing the need to build custom UI primitives from scratch."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Toggle‑Group Interaction Pattern for Stats Dashboard",
+              "description": "The newly added @radix-ui/react-toggle-group enables a clear, keyboard‑navigable way for users to filter and switch between different project statistics, improving usability and aligning with modern interaction patterns."
+            },
+            {
+              "type": "performance-insight",
+              "title": "React 19.2 Upgrade Improves Rendering Efficiency",
+              "description": "Moving to React 19.2 brings performance optimizations such as better concurrent rendering and smaller bundle size, which will make the stats view load faster and feel more responsive under heavy data loads."
+            },
+            {
+              "type": "learning",
+              "title": "Managing Large Dependency Bumps in package‑lock",
+              "description": "The extensive lock‑file changes highlight the importance of version pinning and regression testing when upgrading core libraries, ensuring that the new UI components work seamlessly across the existing codebase."
+            }
+          ],
+          "duration": 12157,
+          "tokens": {
+            "inputTokens": 3339,
+            "outputTokens": 783,
+            "totalTokens": 4122
+          },
+          "generatedAt": "2026-01-24T06:43:31.219Z"
         }
       },
       "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai": {
@@ -860,6 +1052,646 @@
             "totalTokens": 4856
           },
           "generatedAt": "2026-01-24T06:32:39.432Z"
+        },
+        "executive-summary": {
+          "hash": "ad8ff61e6b1cdc5ea8ddf66e8daacf12fd2b454a",
+          "modelName": "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai",
+          "promptId": "executive-summary",
+          "aiSummary": "Commit ad8ff61: Add project stats",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 20768,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-24T06:43:52.029Z"
+        }
+      }
+    },
+    "9e7507baee0a17f4a4113a1ba378789013801948": {
+      "meta-llama/Llama-3.1-8B-Instruct:nscale": {
+        "executive-summary": {
+          "hash": "9e7507baee0a17f4a4113a1ba378789013801948",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "The commit adds a logo to the README file and removes unused filters, with 21 files changed and 28 additions and 30 deletions.",
+          "keyDecisions": [
+            "Adding a logo to the README file to enhance brand visibility",
+            "Removing unused filters to simplify the codebase and improve performance"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Logo Design Standards",
+              "description": "The addition of a logo to the README file sets design standards for branding and visual identity across the project."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Dependency Updates",
+              "description": "The commit includes updates to several dependencies, including @esbuild/aix-ppc64, @esbuild/android-arm, and @esbuild/darwin-arm64, to ensure compatibility with the latest versions."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Simplified Codebase",
+              "description": "The removal of unused filters simplifies the codebase, reduces complexity, and improves performance by eliminating unnecessary code."
+            },
+            {
+              "type": "learning",
+              "title": "GitHub Repository Analysis",
+              "description": "The project's ability to analyze and process GitHub repositories to generate README content, screenshots, short descriptions, and tech-stack insights demonstrates a learning capability in data analysis and AI-powered insights."
+            }
+          ],
+          "duration": 6227,
+          "tokens": {
+            "inputTokens": 3640,
+            "outputTokens": 313,
+            "totalTokens": 3953
+          },
+          "generatedAt": "2026-01-24T19:39:58.003Z"
+        }
+      },
+      "Qwen/Qwen3-32B:nscale": {
+        "executive-summary": {
+          "hash": "9e7507baee0a17f4a4113a1ba378789013801948",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit enhances the project's branding by adding a logo to the README and streamlines the codebase by removing unused filters. It also updates key dependencies to their latest versions, improving stability, security, and compatibility. These changes support long-term maintainability and align with modern development practices.",
+          "keyDecisions": [
+            "Prioritized brand visibility by introducing a branded logo in the README to strengthen project identity",
+            "Invested in technical debt reduction by updating 21 dependencies to their latest stable versions"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Brand Identity Enhancement",
+              "description": "Added a central logo to the README.md with stylized presentation, creating a more professional user-facing impression and reinforcing brand recognition"
+            },
+            {
+              "type": "performance-insight",
+              "title": "Dependency Modernization",
+              "description": "Upgraded critical packages including React (v19.2.3), Next.js (v16.1.1), and OpenAI (v6.16.0) to leverage performance improvements, security patches, and new features from these versions"
+            },
+            {
+              "type": "pattern-used",
+              "title": "Proactive Maintenance",
+              "description": "Systematically updated all dependency versions across packages, including optional platform-specific binaries, demonstrating commitment to keeping the tech stack current"
+            }
+          ],
+          "duration": 25605,
+          "tokens": {
+            "inputTokens": 3880,
+            "outputTokens": 713,
+            "totalTokens": 4593
+          },
+          "generatedAt": "2026-01-24T19:40:23.639Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale": {
+        "executive-summary": {
+          "hash": "9e7507baee0a17f4a4113a1ba378789013801948",
+          "modelName": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit made several meaningful improvements to the project. It added a logo to enhance branding and removed unused filters to clean up the codebase. Additionally, important dependencies were updated to their latest versions to improve performance and stability.",
+          "keyDecisions": [
+            "Added the project logo to the README to improve branding.",
+            "Updated various dependencies to their latest versions to ensure optimal performance and security."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Logo Addition",
+              "description": "Added a project logo to the README to enhance visual brand presence and improve the user experience."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Dependency Updates",
+              "description": "Updated multiple dependencies to their latest versions to ensure compatibility and performance."
+            }
+          ],
+          "duration": 11536,
+          "tokens": {
+            "inputTokens": 3610,
+            "outputTokens": 703,
+            "totalTokens": 4313
+          },
+          "generatedAt": "2026-01-24T19:40:35.215Z"
+        }
+      },
+      "openai/gpt-oss-120b:novita": {
+        "executive-summary": {
+          "hash": "9e7507baee0a17f4a4113a1ba378789013801948",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "The commit adds a visual logo to the project’s README, giving the product a more polished and recognizable brand presence for customers and partners. At the same time the team performed a broad upgrade of core libraries—including Next.js, React, BullMQ, better‑sqlite3, and numerous UI components—to their latest stable releases. Unused filter code was also removed, cleaning up the codebase. These changes improve the product’s public image, reduce technical debt, and position the platform to take advantage of performance, security, and feature improvements in the updated dependencies, supporting the roadmap for a more reliable and scalable web dashboard.",
+          "keyDecisions": [
+            "Add a project logo to the README to strengthen branding.",
+            "Upgrade major dependencies (Next.js, React, BullMQ, better‑sqlite3, UI libraries) to the latest stable versions.",
+            "Remove unused filter logic to simplify the codebase."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Branding enhancement in documentation",
+              "description": "Including a centered logo in the README creates a professional first‑impression for external stakeholders, improving perceived product quality and aiding marketing efforts."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Centralized dependency version bump",
+              "description": "All library versions were updated in package.json and lockfile in a single coordinated change, following a ‘dependency upgrade’ pattern that ensures compatibility and reduces fragmented version drift."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Improved queue and database performance",
+              "description": "Upgrading BullMQ (5.10.0 → 5.66.4) and better‑sqlite3 (12.4.1 → 12.6.0) brings performance optimizations and bug fixes that can speed up background job processing and repository data storage, directly benefiting user‑facing responsiveness."
+            },
+            {
+              "type": "learning",
+              "title": "Continuous maintenance awareness",
+              "description": "The extensive version updates (e.g., Next 16.0.0 → 16.1.1, React 19.2.0 → 19.2.3) highlight the need for ongoing monitoring of third‑party libraries to capture security patches and new features, reinforcing a culture of proactive technical health."
+            }
+          ],
+          "duration": 29405,
+          "tokens": {
+            "inputTokens": 3635,
+            "outputTokens": 909,
+            "totalTokens": 4544
+          },
+          "generatedAt": "2026-01-24T19:41:04.653Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai": {
+        "executive-summary": {
+          "hash": "9e7507baee0a17f4a4113a1ba378789013801948",
+          "modelName": "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai",
+          "promptId": "executive-summary",
+          "aiSummary": "Commit 9e7507b: Add logo to readme - remove unused filters",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 49394,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-24T19:41:54.072Z"
+        }
+      }
+    },
+    "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9": {
+      "meta-llama/Llama-3.1-8B-Instruct:nscale": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "meta-llama/Llama-3.1-8B-Instruct:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "A comprehensive summary of the commit",
+          "keyDecisions": [
+            "Integration of GitHub source repos",
+            "Removal of view mode feature",
+            "Changes to tech stack feature architecture"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Shift to GitHub for source repos",
+              "description": "The team has decided to integrate GitHub as the source for repos, replacing the previous implementation."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Use of Next.js Devtools",
+              "description": "The commit introduces Next.js Devtools, indicating a decision to leverage this pattern for development purposes."
+            },
+            {
+              "type": "learning",
+              "title": "Improved understanding of tech stack detection",
+              "description": "The commit suggests a deeper understanding of tech stack detection, with improved implementation and organization of related code."
+            }
+          ],
+          "duration": 4605,
+          "tokens": {
+            "inputTokens": 2042,
+            "outputTokens": 206,
+            "totalTokens": 2248
+          },
+          "generatedAt": "2026-01-25T01:03:17.151Z"
+        }
+      },
+      "Qwen/Qwen3-32B:nscale": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "Qwen/Qwen3-32B:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit enhances the product's ability to analyze GitHub repositories by integrating KNIP for dependency analysis and removing an underutilized 'view mode' to simplify the user interface. The changes focus on improving data accuracy and user workflow efficiency, aligning with the product's goal of delivering actionable tech stack insights.",
+          "keyDecisions": [
+            "Prioritized GitHub integration for repository sourcing to expand data collection capabilities",
+            "Removed non-essential 'view mode' to reduce UI complexity and streamline user workflows"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "KNIP Integration for Dependency Analysis",
+              "description": "Added KNIP tool to enhance package.json parsing and tech stack detection, improving the accuracy of repository analysis."
+            },
+            {
+              "type": "design-decision",
+              "title": "Simplified User Interface",
+              "description": "Removed view mode interface elements to focus on core workflows: repository generation and analytics."
+            },
+            {
+              "type": "learning",
+              "title": "Architecture Documentation Transition",
+              "description": "Deleted detailed architecture documentation in favor of maintaining up-to-date code comments, reflecting a shift toward lightweight documentation practices."
+            }
+          ],
+          "duration": 30489,
+          "tokens": {
+            "inputTokens": 2062,
+            "outputTokens": 861,
+            "totalTokens": 2923
+          },
+          "generatedAt": "2026-01-25T01:03:47.682Z"
+        }
+      },
+      "openai/gpt-oss-120b:novita": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "openai/gpt-oss-120b:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "This release tightens the product’s technical foundation while simplifying the user experience. A new linting tool (knip) was added to automatically spot dead code and enforce best‑practice rules, improving code quality and reducing future bugs. Developers now have a VS Code shortcut to launch Next.js dev‑tools, accelerating debugging and feature iteration. The application’s UI was streamlined by removing an outdated \"view mode\" option, making the interface clearer for end‑users. Additionally, the internal architecture documentation was removed from the codebase, indicating a shift to external or automated documentation processes. Together these changes boost reliability, speed up development cycles, and focus effort on core repository‑sourcing functionality, delivering a more stable and maintainable product.",
+          "keyDecisions": [
+            "Adopt knip linting to enforce code health and eliminate dead code.",
+            "Add VS Code configuration for next‑devtools to improve developer debugging speed.",
+            "Remove the legacy view‑mode feature to simplify the user interface.",
+            "Delete ARCHITECTURE.md from the repo, moving detailed design docs to a separate location."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Removal of View Mode UI",
+              "description": "The team decided to drop the optional view mode, reducing UI complexity and maintenance overhead while delivering a cleaner experience for users."
+            },
+            {
+              "type": "pattern-used",
+              "title": "VS Code Extension Configuration for Next‑DevTools",
+              "description": "A new entry in .vscode/mcp.json launches next‑devtools via an npm command, standardizing the debugging workflow across the development team."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Integration of knip Linter",
+              "description": "Introducing knip catches dead code and unused exports early, leading to smaller bundle sizes and faster runtime performance."
+            },
+            {
+              "type": "learning",
+              "title": "Shift of Architecture Documentation Strategy",
+              "description": "The removal of ARCHITECTURE.md reflects a strategic move to keep detailed design documentation outside the source tree, reducing repository clutter and encouraging centralized documentation practices."
+            }
+          ],
+          "duration": 14284,
+          "tokens": {
+            "inputTokens": 2052,
+            "outputTokens": 966,
+            "totalTokens": 3018
+          },
+          "generatedAt": "2026-01-25T01:04:02.003Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit introduces a new feature 'knip' as a code snippet source from GitHub and removes the view mode, enhancing user experience and simplifying the interface. The architecture documentation is updated or removed, and the MCP configuration is adjusted.",
+          "keyDecisions": [
+            "Adding 'knip' as a code snippet source from GitHub",
+            "Removing the view mode to simplify user experience",
+            "Updating MCP configuration to include next-devtools command"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "ARCHITECTURE.md File Deletion",
+              "description": "The architecture documentation file was deleted, indicating a shift towards more streamlined and possibly updated documentation practices."
+            }
+          ],
+          "duration": 12371,
+          "tokens": {
+            "inputTokens": 2012,
+            "outputTokens": 770,
+            "totalTokens": 2782
+          },
+          "generatedAt": "2026-01-25T01:04:14.408Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "Qwen/Qwen3-235B-A22B-Thinking-2507:fireworks-ai",
+          "promptId": "executive-summary",
+          "aiSummary": "Commit eeb0678: add knip - source repos from github - remove view mode -",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 34853,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T01:04:49.310Z"
+        }
+      },
+      "ServiceNow-AI/Apriel-1.6-15b-Thinker:together": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "ServiceNow-AI/Apriel-1.6-15b-Thinker:together",
+          "promptId": "executive-summary",
+          "aiSummary": "The commit introduces a new data‑source integration (knip) that automatically pulls repository information from GitHub, expands developer tooling by adding a Next.js devtools configuration, and streamlines the product UI by removing a legacy \"view mode\" feature. At the same time, the detailed architecture markdown is retired, indicating a shift toward leaner documentation. These changes broaden the product’s data coverage, improve developer workflow, and simplify the user experience, delivering tangible value for end‑users who rely on up‑to‑date repository insights while reducing unnecessary UI complexity.",
+          "keyDecisions": [
+            "Prioritize integration with a GitHub‑based data source (knip) over maintaining a separate view mode UI component",
+            "Add Next.js devtools support to accelerate developer debugging and feature iteration",
+            "Retire the comprehensive architecture markdown in favor of a more concise, up‑to‑date documentation approach"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Removal of Legacy View Mode",
+              "description": "The team decided to drop the \"view mode\" UI surface, simplifying the product’s front‑end and reducing maintenance overhead. This aligns with a focus on core value‑adding features and improves load times for end users."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Knip Integration for GitHub Repository Sourcing",
+              "description": "A new data ingestion pipeline was added that leverages the knip tool to fetch repository metadata directly from GitHub. This pattern of external data sourcing expands the product’s repository catalog and ensures fresher data for analytics."
+            },
+            {
+              "type": "learning",
+              "title": "Lean Documentation Strategy",
+              "description": "The deletion of the extensive ARCHITECTURE.md file reflects a learning that detailed static architecture docs become outdated quickly and can be replaced with concise, maintainable guides (e.g., inline code comments and updated wikis)."
+            }
+          ],
+          "duration": 9240,
+          "tokens": {
+            "inputTokens": 2340,
+            "outputTokens": 1339,
+            "totalTokens": 3679
+          },
+          "generatedAt": "2026-01-25T01:04:58.572Z"
+        }
+      },
+      "deepseek-ai/DeepSeek-V3.1:novita": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "deepseek-ai/DeepSeek-V3.1:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit represents a major product milestone by integrating real GitHub repository analysis capabilities, transforming the application from a demo/prototype into a functional tool. Users can now analyze actual GitHub repositories instead of demo data, delivering the core value proposition of automated tech stack detection. The removal of 'view mode' indicates a strategic shift from demonstration to production-ready functionality, significantly enhancing the tool's business utility for developers and engineering teams seeking to understand technology usage across their codebases.",
+          "keyDecisions": [
+            "Shift from demo data to real GitHub repository integration",
+            "Remove view mode to commit to production functionality",
+            "Add Knop for enhanced package analysis capabilities",
+            "Integrate Next.js devtools for improved development experience"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Real Data Integration Over Demo Mode",
+              "description": "Decision to replace synthetic demo data with actual GitHub repository analysis, fundamentally changing the product from a proof-of-concept to a functional tool that delivers real value to users."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Database-Driven Repository Management",
+              "description": "Implementation of a structured database approach for storing and managing repository analyses, enabling scalable data persistence and retrieval compared to temporary demo data storage."
+            },
+            {
+              "type": "learning",
+              "title": "Production Readiness Validation",
+              "description": "Insight gained from removing the 'view mode' safety net, indicating confidence in the core tech stack detection functionality and commitment to delivering a production-ready user experience."
+            }
+          ],
+          "duration": 9675,
+          "tokens": {
+            "inputTokens": 2022,
+            "outputTokens": 339,
+            "totalTokens": 2361
+          },
+          "generatedAt": "2026-01-25T01:05:08.280Z"
+        }
+      },
+      "meta-llama/Llama-3.2-3B-Instruct:together": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "meta-llama/Llama-3.2-3B-Instruct:together",
+          "promptId": "executive-summary",
+          "aiSummary": "The commit introduces a new feature that allows users to view their tech stack analysis, including frontend, backend, and database components. This feature is integrated into the main dashboard and analytics dashboard. The tech stack analysis is generated by fetching data from GitHub and applying a set of predefined rules to categorize and display the results. The feature also includes color-coded badges to indicate the level of adoption of each technology.",
+          "keyDecisions": [
+            "Feature prioritization: The development team prioritized the tech stack analysis feature, which was deemed crucial for the product's overall health.",
+            "Scope change: The scope of the project was expanded to include the development of a new feature that integrates tech stack analysis into the main dashboard and analytics dashboard."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Tech Stack Analysis Component",
+              "description": "A new component was created to handle the tech stack analysis logic, which includes data fetching from GitHub, categorization, and display of results."
+            },
+            {
+              "type": "pattern-used",
+              "title": "GitHub API Integration",
+              "description": "The project utilizes the GitHub API to fetch data, demonstrating a pattern of using third-party APIs to enhance the product's functionality."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Data Fetching Optimization",
+              "description": "The development team optimized the data fetching process by applying a caching mechanism to reduce the number of requests to the GitHub API, resulting in improved performance."
+            },
+            {
+              "type": "learning",
+              "title": "Tech Stack Mapping",
+              "description": "The team learned the importance of creating a comprehensive tech stack mapping system, which includes a set of predefined rules to categorize and display the results."
+            }
+          ],
+          "duration": 3199,
+          "tokens": {
+            "inputTokens": 2042,
+            "outputTokens": 388,
+            "totalTokens": 2430
+          },
+          "generatedAt": "2026-01-25T01:05:11.522Z"
+        }
+      },
+      "meta-llama/Llama-4-Scout-17B-16E-Instruct:nscale": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "meta-llama/Llama-4-Scout-17B-16E-Instruct:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "Commit eeb0678: add knip - source repos from github - remove view mode -",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 279,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T01:05:11.834Z"
+        }
+      },
+      "Qwen/Qwen3-235B-A22B-Instruct-2507:novita": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "Qwen/Qwen3-235B-A22B-Instruct-2507:novita",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit enhances the platform's ability to analyze GitHub repositories by integrating automated codebase inspection through Knip, enabling deeper insights into technology stacks used across projects. The team removed an outdated view mode and streamlined the architecture by eliminating redundant documentation, focusing on core functionality. These changes improve data accuracy and system maintainability, delivering more reliable tech stack analytics to users. The addition of Next.js DevTools also sets the stage for faster debugging and development velocity, increasing long-term product agility and responsiveness to user needs.",
+          "keyDecisions": [
+            "Prioritized automated code analysis over manual view modes to improve data quality",
+            "Removed outdated architecture documentation to reduce maintenance overhead",
+            "Integrated Next.js DevTools to accelerate frontend development and debugging",
+            "Shifted focus toward automation and tooling to support scalable repository analysis"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Removal of Redundant View Mode",
+              "description": "The team eliminated an obsolete view mode, simplifying the user interface and reducing code complexity. This decision aligns the product with current usage patterns and focuses development on high-value features."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Integration of Knip for Static Code Analysis",
+              "description": "Knip was added to automatically detect unused files, dependencies, and exports in source code, improving the accuracy of technology stack detection and enabling more precise analytics for users."
+            },
+            {
+              "type": "learning",
+              "title": "Shift Toward Automation in Tech Stack Detection",
+              "description": "The team is moving away from static mappings and manual views toward dynamic, code-driven analysis, indicating a strategic learning that real-time code inspection provides more reliable insights than predefined configurations."
+            },
+            {
+              "type": "performance-insight",
+              "title": "Binary Database Update Suggests Pre-Seeded Repository Cache",
+              "description": "The change in the binary repos.db file indicates an updated or pre-populated cache of GitHub repositories, which can reduce API load and improve response times for repository analysis requests."
+            }
+          ],
+          "duration": 15215,
+          "tokens": {
+            "inputTokens": 2062,
+            "outputTokens": 452,
+            "totalTokens": 2514
+          },
+          "generatedAt": "2026-01-25T01:05:27.067Z"
+        }
+      },
+      "Qwen/Qwen2.5-Coder-32B-Instruct:nscale": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "Qwen/Qwen2.5-Coder-32B-Instruct:nscale",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit integrates a new tool called Knip to fetch repository data directly from GitHub, removes an outdated view mode, and updates the development environment configuration to include Next DevTools. The ARCHITECTURE.md file was deleted as it no longer reflected the current system architecture.",
+          "keyDecisions": [
+            "To incorporate Knip for enhanced data fetching capabilities from GitHub repositories.",
+            "To eliminate the view mode feature, which was deemed unnecessary or outdated.",
+            "To include Next DevTools in the development environment to improve developer productivity."
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Integration of Knip for GitHub Data Fetching",
+              "description": "Knip is added to directly fetch repository data from GitHub, which enhances the tool's ability to retrieve and analyze up-to-date repository information. This improvement will likely provide more accurate and timely analytics for users, thereby increasing the utility and value of the product."
+            },
+            {
+              "type": "design-decision",
+              "title": "Removal of Outdated View Mode",
+              "description": "The view mode feature has been removed to streamline the user interface. This decision simplifies the product by removing unnecessary complexity, potentially leading to a better user experience and easier maintenance."
+            },
+            {
+              "type": "pattern-used",
+              "title": "Updated Development Environment Configuration",
+              "description": "Next DevTools is included in the .vscode/mcp.json configuration, indicating a shift towards using modern development tools that can improve efficiency and code quality for the development team."
+            },
+            {
+              "type": "learning",
+              "title": "Refinement of Documentation",
+              "description": "The deletion of ARCHITECTURE.md suggests that the documentation has been updated or moved to a more appropriate location. This indicates ongoing efforts to keep the documentation accurate and relevant to the current state of the project."
+            }
+          ],
+          "duration": 15632,
+          "tokens": {
+            "inputTokens": 2083,
+            "outputTokens": 410,
+            "totalTokens": 2493
+          },
+          "generatedAt": "2026-01-25T01:05:42.762Z"
+        }
+      },
+      "deepcogito/cogito-v2-preview-llama-70B:together": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "deepcogito/cogito-v2-preview-llama-70B:together",
+          "promptId": "executive-summary",
+          "aiSummary": "This commit represents a significant architectural change to a technology stack analysis tool, focusing on removing view modes and implementing direct GitHub repository integration. The changes streamline the data flow by eliminating intermediate view modes and establishing a direct connection to source repositories through GitHub. This refactoring improves the tool's efficiency and user experience while maintaining core functionality for analyzing and displaying technology stack information.",
+          "keyDecisions": [
+            "Removal of view mode functionality to simplify the user interface",
+            "Implementation of direct GitHub repository integration for source data",
+            "Removal of detailed architecture documentation to potentially streamline onboarding"
+          ],
+          "architecturalCallouts": [
+            {
+              "type": "design-decision",
+              "title": "Streamlined Data Flow",
+              "description": "The architecture now emphasizes a direct flow from user interaction to data generation, removing intermediate view modes to improve efficiency"
+            },
+            {
+              "type": "performance-insight",
+              "title": "Reduced Complexity",
+              "description": "Removing view modes and architecture documentation suggests a focus on simplifying the system, potentially improving maintainability and performance"
+            },
+            {
+              "type": "pattern-used",
+              "title": "Direct Integration Pattern",
+              "description": "Implementation of direct GitHub repository integration demonstrates a shift towards using native platform APIs and reducing third-party dependencies"
+            },
+            {
+              "type": "learning",
+              "title": "Documentation Evolution",
+              "description": "The removal of detailed architecture documentation suggests a maturation of the system, where initial detailed documentation may be less necessary as the system becomes more established"
+            }
+          ],
+          "duration": 8362,
+          "tokens": {
+            "inputTokens": 2017,
+            "outputTokens": 338,
+            "totalTokens": 2355
+          },
+          "generatedAt": "2026-01-25T01:05:51.160Z"
+        }
+      },
+      "bge-multilingual-gemma2": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "bge-multilingual-gemma2",
+          "promptId": "executive-summary",
+          "aiSummary": "Commit eeb0678: add knip - source repos from github - remove view mode -",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 623,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T02:02:33.520Z"
+        }
+      },
+      "bge-multilingual-gemma2:scaleaway": {
+        "executive-summary": {
+          "hash": "eeb0678b9b958cbc1ad517a8c0a20b2671e621d9",
+          "modelName": "bge-multilingual-gemma2:scaleaway",
+          "promptId": "executive-summary",
+          "aiSummary": "Commit eeb0678: add knip - source repos from github - remove view mode -",
+          "keyDecisions": [],
+          "architecturalCallouts": [],
+          "duration": 603,
+          "tokens": {
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "totalTokens": 0
+          },
+          "generatedAt": "2026-01-25T02:04:02.043Z"
         }
       }
     }

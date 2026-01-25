@@ -1,0 +1,57 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.3.12/schema.json",
+	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+	"files": {
+		"ignoreUnknown": false,
+		"includes": [
+			"app/**",
+			"components/**",
+			"lib/**",
+			"scripts/**",
+			"*.json",
+			"!!**/package*"
+		]
+	},
+	"formatter": { "enabled": true, "indentStyle": "tab" },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": false,
+			"complexity": { "noUselessTypeConstraint": "error" },
+			"correctness": { "noUnusedVariables": "error" },
+			"performance": {
+				"noImgElement": "warn",
+				"noUnwantedPolyfillio": "warn",
+				"useGoogleFontPreconnect": "warn"
+			},
+			"style": {
+				"noCommonJs": "error",
+				"noHeadElement": "warn",
+				"noNamespace": "error",
+				"useArrayLiterals": "error",
+				"useAsConstAssertion": "error"
+			},
+			"suspicious": {
+				"noDocumentImportInPage": "error",
+				"noExplicitAny": "error",
+				"noExtraNonNullAssertion": "error",
+				"noHeadImportInDocument": "error",
+				"noMisleadingInstantiator": "error",
+				"noNonNullAssertedOptionalChain": "error",
+				"noUnsafeDeclarationMerging": "error",
+				"useGoogleFontDisplay": "warn",
+				"useNamespaceKeyword": "error"
+			}
+		}
+	},
+	"javascript": { "formatter": { "quoteStyle": "double" }, "globals": [] },
+	"assist": {
+		"enabled": true,
+		"actions": { "source": { "organizeImports": "on" } }
+	},
+	"css": {
+		"parser": {
+			"tailwindDirectives": true
+		}
+	}
+}

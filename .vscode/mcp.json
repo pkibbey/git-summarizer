@@ -1,35 +1,24 @@
 {
-  "servers": {
-    "shadcn": {
-      "command": "npx",
-      "args": [
-        "shadcn@latest",
-        "mcp"
-      ]
-    },
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
-    },
-    "next-devtools": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "next-devtools-mcp@latest"
-      ]
-    },
-    "lucide-icons": {
-      "command": "npx",
-      "args": [
-        "lucide-icons-mcp",
-        "--stdio"
-      ]
-    },
-    "Vercel": {
-      "url": "https://mcp.vercel.com",
-      "type": "http"
-    }
-  }
+	"servers": {
+		"shadcn": {
+			"command": "npx",
+			"args": ["shadcn@latest", "mcp"]
+		},
+		"playwright": {
+			"command": "npx",
+			"args": ["@playwright/mcp@latest"]
+		},
+		"next-devtools": {
+			"command": "npx",
+			"args": ["-y", "next-devtools-mcp@latest"]
+		},
+		"lucide-icons": {
+			"command": "npx",
+			"args": ["lucide-icons-mcp", "--stdio"]
+		},
+		"Vercel": {
+			"url": "https://mcp.vercel.com",
+			"type": "http"
+		}
+	}
 }

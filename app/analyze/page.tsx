@@ -1,7 +1,7 @@
-import { AnalyzeClient } from './client';
+import { AnalyzeClient } from "./client";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function AnalyzePage() {
-  return <AnalyzeClient />;
+	return <AnalyzeClient />;
 }
